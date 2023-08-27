@@ -15,7 +15,8 @@ module.exports = mongoose => {
         fromContractId: String,
         destChainId: String,
         destContractId: String,
-        data: String
+        data: String,
+        extra: String
     }, { timestamps: false });
 
     return mongoose.model("events", schema);

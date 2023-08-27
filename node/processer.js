@@ -27,29 +27,42 @@ const handlerEvmKey = process.env.HANDLER_EVM_PRIVATE_KEY
 const handlerEvmAddress = process.env.HANDLER_EVM_PUBLIC_KEY
 
 exports.processEvent = async (event) => {
-    const payload = {
+    const link = {
         hash: event.hash,
-        fromChainId: event.fromChainId,
-        fromContractId: event.fromContractId,
-        destChainId: event.destChainId,
         destContractId: event.destContractId,
-        bridgeFee: event.bridgeFee,
-        data: event.data
+        fromContractId: event.fromContractId,
+        data: event.data,
+        destChainId: event.destChainId,
+        extra: event.extra
     }
 
-    console.log(payload);
+    console.log(link);
 
-    const web3 = new Web3(rpcs[payload.destChainId])
+    const web3 = new Web3(rpcs[link.destChainId])
 
-    const contract = new web3.eth.Contract(W3Link.abi, w3linkIds[payload.destChainId])
+    const contract = new web3.eth.Contract(W3Link.abi, w3linkIds[link.destChainId])
     const account = web3.eth.accounts.privateKeyToAccount(handlerEvmKey)
     web3.eth.accounts.wallet.add(account);
 
     try {
-        const gas = await contract.methods.swayExecute(payload).estimateGas({ from: handlerEvmAddress })
+        const gas = await contract.methods.execute(
+            link.hash,
+            link.destContractId,
+            link.fromContractId,
+            link.data,
+            link.destChainId,
+            link.extra
+        ).estimateGas({ from: handlerEvmAddress })
         const gasPrice = await web3.eth.getGasPrice()
 
-        const { transactionHash } = await contract.methods.swayExecute(payload).send({
+        const { transactionHash } = await contract.methods.execute(
+            link.hash,
+            link.destContractId,
+            link.fromContractId,
+            link.data,
+            link.destChainId,
+            link.extra
+        ).send({
             from: handlerEvmAddress,
             gasPrice: gasPrice,
             gas: gas
