@@ -1,35 +1,8 @@
 const db = require("../models");
-
-const evmEventStream = require("../utils/evm-event-stream")
-
 const { processEvent } = require('../processer');
+const { dispatch } = require('./../event/listener.event')
 
 const Event = db.event;
-
-// Create and Save a new Event
-exports.create = async (req, res) => {
-    // a POST REQUEST from the smart contract through moralis stream
-    const events = evmEventStream.toEvents(req)
-    if (events == null || events.length == 0) return res.send("No events found")
-
-    const event = events[0]
-
-    // Save Event to database
-    Event.findOneAndUpdate(
-        { fromHash: event.fromHash },
-        { $set: event },
-        {
-            upsert: true,
-            returnNewDocument: true,
-            returnDocument: "after"
-        }).then(data => {
-            res.send(data)
-        }).catch(err => {
-            res.status(500).send({
-                message: err || "Some err occurred."
-            })
-        })
-};
 
 // Retrieve all Event from the database.
 exports.findAll = async (req, res) => {
@@ -76,6 +49,26 @@ exports.findOne = (req, res) => {
 
 /////////////////////////
 
+dispatch(11155111, (error, event) => {
+    console.log(error, event);
+}, 123456, undefined)
+
+
+//  // Save Event to database
+//  Event.findOneAndUpdate(
+//     { fromHash: event.fromHash },
+//     { $set: event },
+//     {
+//         upsert: true,
+//         returnNewDocument: true,
+//         returnDocument: "after"
+//     }).then(data => {
+//         res.send(data)
+//     }).catch(err => {
+//         res.status(500).send({
+//             message: err || "Some err occurred."
+//         })
+//     })
 
 exports.commit = async () => {
     // order by nonce - asc

@@ -25,8 +25,10 @@ contract W3Link is IW3Link, Ownable2Step {
         bytes32 hash,
         address destContractId,
         address fromContractId,
+        uint256 destChainId,
+        uint256 fee,
         bytes data,
-        uint256 destChainId
+        bytes32 extra
     );
     event Executed(bytes32 hash);
     event Deposit(address contractId, uint256 value);
@@ -40,15 +42,23 @@ contract W3Link is IW3Link, Ownable2Step {
         address destContractId,
         bytes calldata data,
         uint256 destChainId,
-        bytes32 /* extra */
+        bytes32 extra
     ) external override {
         bytes32 hash = "";
 
         _executed[hash] = false;
 
-        _payGas(destChainId);
+        uint256 fee = _payGas(destChainId);
 
-        emit Dispatch(hash, destContractId, _msgSender(), data, destChainId);
+        emit Dispatch(
+            hash,
+            destContractId,
+            _msgSender(),
+            destChainId,
+            fee,
+            data,
+            extra
+        );
     }
 
     function execute(
