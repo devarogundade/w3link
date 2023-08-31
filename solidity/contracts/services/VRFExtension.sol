@@ -71,6 +71,8 @@ abstract contract VRFExtension is IW3LinkApp {
         bytes memory data,
         bytes32 /* extra */
     ) external override {
+        _w3linkConfig.onlyHandler();
+        
         onRandomWords(abi.decode(data, (uint256[])));
     }
 

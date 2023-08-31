@@ -6,5 +6,7 @@ interface IW3LinkConfig {
 
     function handler() external view returns (address);
 
-    function verify(bytes calldata data) external view returns (bool);
+    function verify(bytes32 hash) external view returns (bool);
+
+    function onlyHandler() external;
 }

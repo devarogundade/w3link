@@ -1,5 +1,5 @@
+const { Sepolia, BnbTestnet, PegoTestnet, Mumbai } = require("../configs/chains.config");
 const db = require("../models");
-const { processEvent } = require('../processer');
 const { dispatch } = require('./../event/listener.event')
 
 const Event = db.event;
@@ -46,32 +46,34 @@ exports.findOne = (req, res) => {
     })
 };
 
+//////////// Indexers /////////////
 
-/////////////////////////
+dispatch(PegoTestnet, (error, dispatchModel) => {
+    if (!error) {
+        // Save Event to database
+        Event.findOneAndUpdate(
+            { fromHash: dispatchModel.fromHash },
+            { $set: dispatchModel },
+            {
+                upsert: true,
+                returnNewDocument: true,
+                returnDocument: "after"
+            }).then(data => {
+                res.send(data)
+            }).catch(err => {
+                res.status(500).send({
+                    message: err || "Some err occurred."
+                })
+            })
+    }
+    console.log(error, dispatchModel);
+})
 
-dispatch(11155111, (error, event) => {
-    console.log(error, event);
-}, 123456, undefined)
 
+///////////// Jobs ///////////////
 
-//  // Save Event to database
-//  Event.findOneAndUpdate(
-//     { fromHash: event.fromHash },
-//     { $set: event },
-//     {
-//         upsert: true,
-//         returnNewDocument: true,
-//         returnDocument: "after"
-//     }).then(data => {
-//         res.send(data)
-//     }).catch(err => {
-//         res.status(500).send({
-//             message: err || "Some err occurred."
-//         })
-//     })
 
 exports.commit = async () => {
-    // order by nonce - asc
     const unProcessedEvent = await Event.findOne({ status: 'DISPATCHED' })
     if (!unProcessedEvent) return
 

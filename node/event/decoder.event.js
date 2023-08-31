@@ -1,5 +1,4 @@
 const Web3 = require('web3')
-const hashUtils = require('./hash.event')
 
 module.exports = {
     decodeLog: function (format, value) {
@@ -11,15 +10,11 @@ module.exports = {
     },
     toDisptachModel: function (data, transactionHash, fromChainId) {
         return {
-            bridgeHash: hashUtils.newHash(),
+            bridgeHash: newHash(),
             status: 'DISPATCHED',
             fromHash: transactionHash,
-            toHash: '',
             dispatchTimestamp: Date.now(),
-            validator: '',
-            sncAddress: '',
-            bridgeNumber: 0,
-
+            // event specific
             hash: data[0],
             destContractId: data[1],
             fromContractId: data[2],
@@ -29,5 +24,10 @@ module.exports = {
             data: data[5],
             extra: data[6]
         }
+    },
+    newHash: function () {
+        const left = (Math.random() + 1).toString(12).replace('.', '')
+        const right = (Math.random() + 1).toString(24).replace('.', '')
+        return `link_${left}${right}`
     }
 }

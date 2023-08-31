@@ -51,6 +51,8 @@ contract VRF is VRFConsumerBaseV2, IW3LinkApp {
         bytes memory data,
         bytes32 extra
     ) external override {
+        _w3linkConfig.onlyHandler();
+        
         address fromContractId = abi.decode(data, (address));
 
         (uint64 subcriptionId, uint16 confirmations) = abi.decode(

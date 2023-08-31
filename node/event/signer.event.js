@@ -1,10 +1,10 @@
-const { } = require('./configs/chains.config')
+const { } = require('../configs/chains.config')
 const Web3 = require('web3')
 
 const env = require('dotenv')
 env.config()
 
-const W3Link = require('./abis/W3Link.json')
+const W3Link = require('../abis/W3Link.json')
 
 // Signing Key and Address
 const handlerEvmKey = process.env.HANDLER_EVM_PRIVATE_KEY

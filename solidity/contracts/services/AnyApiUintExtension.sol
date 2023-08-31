@@ -49,6 +49,8 @@ abstract contract AnyApiUintExtension is IW3LinkApp {
         bytes memory data,
         bytes32 /* extra */
     ) external override {
+        _w3linkConfig.onlyHandler();
+        
         onResponse(abi.decode(data, (uint256)));
     }
 

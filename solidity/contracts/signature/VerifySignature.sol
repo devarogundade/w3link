@@ -6,6 +6,10 @@ pragma solidity ^0.8.17;
 /// @notice Explain to an end user what this does
 /// @dev Explain to a developer any extra details
 contract VerifySignature {
+    function getHash(uint256 _seed) public pure returns (bytes32) {
+        return bytes32(_seed);
+    }
+
     function getMessageHash(
         address _to,
         uint _amount,

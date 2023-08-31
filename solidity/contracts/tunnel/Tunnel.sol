@@ -47,6 +47,8 @@ contract Tunnel is IW3LinkApp, Context {
         bytes memory data,
         bytes32 /* extra */
     ) external override {
+        _w3linkConfig.onlyHandler();
+
         (address holder, address nftContractId, uint256 tokenId) = abi.decode(
             data,
             (address, address, uint256)

@@ -39,6 +39,8 @@ contract AnyApiUint is ChainlinkClient, Ownable2Step, IW3LinkApp {
         bytes memory data,
         bytes32 extra /* jobId */
     ) external override {
+        _w3linkConfig.onlyHandler();
+        
         (
             string memory url,
             string memory path,

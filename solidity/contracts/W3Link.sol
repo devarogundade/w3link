@@ -34,8 +34,10 @@ contract W3Link is IW3Link, Ownable2Step {
     event Deposit(address contractId, uint256 value);
     event Withdraw(address contractId, uint256 value);
 
-    constructor(uint256 chainId_) Ownable2Step() {
+    constructor(uint256 chainId_, address config_) Ownable2Step() {
         _chainId = chainId_;
+        _config = config_;
+        
     }
 
     function dispatch(
@@ -68,7 +70,7 @@ contract W3Link is IW3Link, Ownable2Step {
         bytes calldata data,
         uint256 destChainId,
         bytes32 extra
-    ) external {
+    ) external {      
         require(!_executed[hash], "Execute Completed");
 
         // bool validation = VerifySignature.verify(_signer, _to, _amount, _message, _nonce, signature);
