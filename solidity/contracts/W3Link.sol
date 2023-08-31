@@ -4,13 +4,18 @@ pragma solidity ^0.8.17;
 import "./interfaces/IW3Link.sol";
 import "./interfaces/IW3LinkApp.sol";
 import "./interfaces/IW3LinkConfig.sol";
-import "./signature/VerifySignature.sol";
+import "./signature/Signature.sol";
 
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract W3Link is IW3Link, Ownable2Step {
+contract W3Link is IW3Link, Ownable2Step {    
+    using Counters for Counters.Counter;
+    
     address private _config;
     uint256 public immutable _chainId;
+
+    Counters.Counter private _dispatchId;
 
     mapping(bytes32 => bool) private _executed;
 
@@ -46,7 +51,7 @@ contract W3Link is IW3Link, Ownable2Step {
         uint256 destChainId,
         bytes32 extra
     ) external override {
-        bytes32 hash = "";
+        bytes32 hash = Signature.getHash(_dispatchId.current());
 
         _executed[hash] = false;
 
@@ -61,6 +66,8 @@ contract W3Link is IW3Link, Ownable2Step {
             data,
             extra
         );
+
+        _dispatchId.increment();
     }
 
     function execute(
@@ -72,9 +79,7 @@ contract W3Link is IW3Link, Ownable2Step {
         bytes32 extra
     ) external {      
         require(!_executed[hash], "Execute Completed");
-
-        // bool validation = VerifySignature.verify(_signer, _to, _amount, _message, _nonce, signature);
-        // require(validation, "validation Failed");
+        require(Signature.verifyHash(hash), "validation Failed");
 
         IW3LinkApp(destContractId).execute(_chainId, data, extra);
 

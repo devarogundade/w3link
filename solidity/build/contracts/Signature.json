@@ -1,0 +1,380 @@
+{
+  "contractName": "Signature",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifyHash",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "dispatchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"dispatchId\",\"type\":\"uint256\"}],\"name\":\"getHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"verifyHash\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/signature/Signature.sol\":\"Signature\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/signature/Signature.sol\":{\"keccak256\":\"0x143db55c7a75ca6f467e9aa2b64f34c39272103c86a5f1d1aaee2fb829784c74\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e3d68d6893a4953de7437b5cf00c2becf2a0af5ff2ae367e27e2b91973499bad\",\"dweb:/ipfs/QmPvV8pPDfALCBHS2JUEpN7CtpZ4tGemEYTKyzeKHZyhvv\"]}},\"version\":1}",
+  "bytecode": "0x608080604052346100195760b4908161001f823930815050f35b600080fdfe6080806040526004361015601257600080fd5b7c0100000000000000000000000000000000000000000000000000000000600035049081636b2fafa9146069575063ef020f4a14604e57600080fd5b6020366003190112606457602060405160018152f35b600080fd5b60203660031901126064576020906004358152f3fea26469706673582212201b0d2e1dd96fa838dbd13abc5f8ae051f8a92de448b09a20734eacd53a5fe76b64736f6c63430008110033",
+  "deployedBytecode": "0x6080806040526004361015601257600080fd5b7c0100000000000000000000000000000000000000000000000000000000600035049081636b2fafa9146069575063ef020f4a14604e57600080fd5b6020366003190112606457602060405160018152f35b600080fd5b60203660031901126064576020906004358152f3fea26469706673582212201b0d2e1dd96fa838dbd13abc5f8ae051f8a92de448b09a20734eacd53a5fe76b64736f6c63430008110033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "61:271:39:-:0;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "61:271:39:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:271:39;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:271:39;;;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\nlibrary Signature {\r\n    // @todo\r\n    function verifyHash(bytes32 hash) public pure returns (bool) {\r\n        return true;\r\n    }\r\n    \r\n    // @todo\r\n    function getHash(uint256 dispatchId) public pure returns (bytes32) {\r\n        return bytes32(dispatchId);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\signature\\Signature.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/signature/Signature.sol",
+    "exportedSymbols": {
+      "Signature": [
+        6730
+      ]
+    },
+    "id": 6731,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6706,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:39"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Signature",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 6730,
+        "linearizedBaseContracts": [
+          6730
+        ],
+        "name": "Signature",
+        "nameLocation": "69:9:39",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 6715,
+              "nodeType": "Block",
+              "src": "161:30:39",
+              "statements": [
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 6713,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "179:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 6712,
+                  "id": 6714,
+                  "nodeType": "Return",
+                  "src": "172:11:39"
+                }
+              ]
+            },
+            "functionSelector": "ef020f4a",
+            "id": 6716,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifyHash",
+            "nameLocation": "109:10:39",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6709,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6708,
+                  "mutability": "mutable",
+                  "name": "hash",
+                  "nameLocation": "128:4:39",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6716,
+                  "src": "120:12:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 6707,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "120:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "119:14:39"
+            },
+            "returnParameters": {
+              "id": 6712,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6711,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6716,
+                  "src": "155:4:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 6710,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "155:4:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "154:6:39"
+            },
+            "scope": 6730,
+            "src": "100:91:39",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 6728,
+              "nodeType": "Block",
+              "src": "284:45:39",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 6725,
+                        "name": "dispatchId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6718,
+                        "src": "310:10:39",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 6724,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "302:7:39",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_bytes32_$",
+                        "typeString": "type(bytes32)"
+                      },
+                      "typeName": {
+                        "id": 6723,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "302:7:39",
+                        "typeDescriptions": {}
+                      }
+                    },
+                    "id": 6726,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "302:19:39",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 6722,
+                  "id": 6727,
+                  "nodeType": "Return",
+                  "src": "295:26:39"
+                }
+              ]
+            },
+            "functionSelector": "6b2fafa9",
+            "id": 6729,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getHash",
+            "nameLocation": "226:7:39",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6719,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6718,
+                  "mutability": "mutable",
+                  "name": "dispatchId",
+                  "nameLocation": "242:10:39",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6729,
+                  "src": "234:18:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6717,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "234:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "233:20:39"
+            },
+            "returnParameters": {
+              "id": 6722,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6721,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6729,
+                  "src": "275:7:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 6720,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "274:9:39"
+            },
+            "scope": 6730,
+            "src": "217:112:39",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 6731,
+        "src": "61:271:39",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:301:39"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-08-31T14:19:38.809Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
