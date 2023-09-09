@@ -1,0 +1,85 @@
+@import './base.css';
+
+@font-face {
+  font-family: Matter;
+  src: url('/fonts/Matter-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Matter;
+  src: url('/fonts/Matter-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Matter;
+  src: url('/fonts/Matter-SemiBold.ttf');
+  font-weight: 600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Matter;
+  text-decoration: none;
+  transition: .2s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+}
+
+#section {
+  display: flex;
+  justify-content: center;
+}
+
+.app_width {
+  width: 1320px;
+  max-width: 90%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: 100px 0;
+}
+
+.empty p {
+  color: var(--tx-dimmed);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  /* 16.8px */
+  letter-spacing: 0.28px;
+}
+
+.scroll_y {
+  overflow-y: auto;
+}
+
+.scroll_y::-webkit-scrollbar {
+  display: none;
+}
