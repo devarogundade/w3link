@@ -6,7 +6,7 @@
                     <div class="faucet_rect_toolbar">
                         <p>NFT Faucet</p>
                         <div class="sort">
-                            <p>Change image</p>
+                            <p>Custom image</p>
                             <SortIcon />
                         </div>
                     </div>
@@ -222,6 +222,8 @@ export default {
     gap: 10px;
     border-radius: 4px;
     background: var(--bg-lighter, #0C171A);
+    cursor: pointer;
+    user-select: none;
 }
 
 .faucet_rect_toolbar .sort p {
