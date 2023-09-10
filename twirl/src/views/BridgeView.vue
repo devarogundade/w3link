@@ -4,10 +4,12 @@
             <div class="bridge_header">
                 <h3>Bridge NFT</h3>
 
-                <div class="powered">
-                    <p>Powered by</p>
-                    <W3LinkIcon />
-                </div>
+                <a target="_blank" href="https://w3-link.site">
+                    <div class="powered">
+                        <p>Powered by</p>
+                        <W3LinkIcon />
+                    </div>
+                </a>
             </div>
 
             <div class="bridge_rect">
@@ -18,11 +20,11 @@
                         <p :class="step > 2 ? 'labels_active' : ''">Bridge</p>
                     </div>
                     <div class="icons">
-                        <ActiveIcon />
+                        <ActiveIcon style="cursor: pointer;" @click="step = 1" />
                         <div class="line"></div>
 
                         <InActiveIcon v-if="step <= 1" />
-                        <ActiveIcon v-else />
+                        <ActiveIcon style="cursor: pointer;" @click="step = 2" v-else />
 
                         <UnBridgedIcon v-if="step <= 2" />
                         <BridgedIcon v-else />
@@ -121,6 +123,8 @@
                     </div>
                 </div>
 
+                <!--  -->
+
                 <div class="step2" v-show="step == 2" v-if="selectedNft && destChainId">
                     <div class="review_tokens">
                         <div class="review_token">
@@ -175,7 +179,7 @@
 
                 <div class="step3" v-show="step == 3">
                     <div class="success_image">
-                        <img src="/images/ethereum.png" alt="">
+                        <img src="/images/success.png" alt="">
                     </div>
 
                     <div class="success_msg">
@@ -190,9 +194,9 @@
                         :state="destChainId == null ? 'disable' : ''" />
                     <PrimaryButton @click="step = 3" v-if="step == 2" :text="'Bridge'" />
 
-                    <div class="view_trx" v-if="step == 3">
+                    <div class="view_trx" v-if="step == 3" @click="step = 1; destChainId = null; selectedNft = null">
                         <AddIcon />
-                        <p @click="step = 1; destChainId = null; selectedNft = null">New Transaction</p>
+                        <p>New Transaction</p>
                     </div>
                 </div>
             </div>
@@ -492,6 +496,8 @@ export default {
     letter-spacing: 0.32px;
     border-radius: 4px;
     background: var(--background-lightest, #0C1A33);
+    cursor: pointer;
+    user-select: none;
 }
 
 .route_picker {
@@ -529,6 +535,7 @@ export default {
     border: 2px solid var(--bg-lighter, #091121);
     border-radius: 4px;
     background: var(--bg-light, #050C17);
+    animation: fade_in .1s ease-in-out;
 }
 
 .dest_chain {
@@ -750,6 +757,7 @@ export default {
     user-select: none;
     width: 100%;
     border: none;
+    gap: 12px;
 }
 
 .view_trx p {
@@ -767,12 +775,13 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 30px ;
+    padding: 30px;
 }
 
 .success_image img {
-    width: 220px;
-    height: 220px;
+    width: 300px;
+    height: 300px;
+    margin: -45px 0;
 }
 
 .success_msg {

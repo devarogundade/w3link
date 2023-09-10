@@ -232,6 +232,7 @@ a .tab_item {
     background: var(--bg-light);
     width: 220px;
     left: 0;
+    animation: fade_in .1s ease-in-out;
 }
 
 .inactive_chain .chain {

@@ -86,6 +86,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fade_in .2s ease-in-out;
 }
 
 .box {
@@ -95,6 +96,7 @@ export default {
     border: 2px solid var(--bg-lighter, #091121);
     background: var(--bg-dark, #04080D);
     overflow: hidden;
+    animation: slide_in_up .2s ease-in-out;
 }
 
 .box_header {
@@ -202,6 +204,7 @@ export default {
     overflow: hidden;
     z-index: 1;
     border: 1px solid var(--bg-lighter);
+    animation: fade_in .1s ease-in-out;
 }
 
 .network img {
