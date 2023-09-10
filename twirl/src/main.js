@@ -12,7 +12,7 @@ import utils from './plugins/utils'
 const store = createStore({
     state() {
         return {
-            activeChainId: 97,
+            activeChainId: 123456,
             wallet: { 
                 isConnected: false, 
                 isConnecting: false, 

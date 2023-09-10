@@ -34,6 +34,7 @@
                                 <div class="chain" v-for="chain, index in $chains" :key="index" @click="switchChain(chain.id)">
                                     <img :src="chain.image" alt="">
                                     <p>{{ chain.name }}</p>
+                                    <ActiveIcon v-if="$store.state.activeChainId == chain.id" />
                                 </div>
                             </div>
                         </div>
@@ -61,6 +62,7 @@ import WalletIcon from '../components/icons/WalletIcon.vue'
 import WalletProfile from '../components/icons/WalletProfile.vue'
 import WalletDownIcon from '../components/icons/WalletDownIcon.vue'
 import SunIcon from '../components/icons/SunIcon.vue'
+import ActiveIcon from './icons/ActiveIcon.vue'
 </script >
 
 <script>

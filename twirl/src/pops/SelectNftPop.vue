@@ -12,20 +12,36 @@
             <div class="toolbar">
                 <div class="text">
                     <p>Your assets on <span>All Networks</span></p>
-                    <p><span>14</span> NFTs</p>
+                    <p><span>5</span> NFTs</p>
                 </div>
 
-                <div class="network">
-                    <BoxMenuIcon />
-                    <p>All</p>
+                <div class="network" @click="switching = !switching">
+                    <BoxMenuIcon v-if="network == 0" />
+                    <img v-else :src="$chain(network).image" :alt="$chain(network).symbol">
+
+                    <p v-if="network == 0">All</p>
+                    <p v-else>{{ $chain(network).name }}</p>
                     <ArrowDownIcon />
+
+                    <div class="networks" v-if="switching">
+                        <div class="network" @click="network = 0">
+                            <BoxMenuIcon />
+                            <p>All</p>
+                        </div>
+                        <div class="network" v-for="chain, i in $chains" :key="i" @click="network = chain.id">
+                            <img :src="chain.image" :alt="chain.symbol">
+                            <p>{{ chain.name }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="scroll_y">
                 <div class="items">
-                    <div class="item" v-for="i in 5" :key="i">
-                        <img src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380" alt="">
+                    <div class="item" v-for="i in 5" :key="i"
+                        @click="$emit('nft', { name: 'Dark Knight OSX 420', symbol: 'OSX', tokenId: i, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 123456 })">
+                        <img src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380"
+                            alt="">
                         <div class="item_detail">
                             <div class="item_text">
                                 <p>Dark Knight OSX 420</p>
@@ -44,6 +60,17 @@
 import CloseIcon from '../components/icons/CloseIcon.vue'
 import ArrowDownIcon from '../components/icons/ArrowDownIcon.vue'
 import BoxMenuIcon from '../components/icons/BoxMenuIcon.vue'
+</script>
+
+<script>
+export default {
+    data() {
+        return {
+            switching: false,
+            network: 0
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -150,7 +177,7 @@ import BoxMenuIcon from '../components/icons/BoxMenuIcon.vue'
     height: 48px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 
     color: var(--tx-normal, #EEF1F8);
     font-family: Matter;
@@ -160,8 +187,39 @@ import BoxMenuIcon from '../components/icons/BoxMenuIcon.vue'
     line-height: 120%;
     /* 19.2px */
     letter-spacing: 0.32px;
+    cursor: pointer;
+    user-select: none;
+
+    position: relative;
 }
 
+.networks {
+    position: absolute;
+    top: 60px;
+    width: 180px;
+    right: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1;
+    border: 1px solid var(--bg-lighter);
+}
+
+.network img {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+}
+
+.networks .network {
+    border-radius: 0;
+    height: 55px;
+    border-bottom: 1px solid var(--bg-lighter);
+    background: var(--bg-light, #091121);
+}
+
+.networks .network:last-child {
+    border: none;
+}
 
 .scroll_y {
     max-height: 60vh;
@@ -177,9 +235,15 @@ import BoxMenuIcon from '../components/icons/BoxMenuIcon.vue'
 
 .item {
     width: 220px;
-    background: var(--bg-lightest, #0C1A33);
+    background: var(--bg-lighter, #0C1A33);
     border-radius: 6px;
     overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.item:hover {
+    background: var(--bg-lightest, #0C1A33);
 }
 
 .item img {

@@ -13,7 +13,7 @@
   background-image: url('/images/bg.png');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100%;
+  background-size: 1920px;
   height: 100vh;
   width: 100vw;
 }

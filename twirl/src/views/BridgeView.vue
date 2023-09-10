@@ -13,81 +13,220 @@
             <div class="bridge_rect">
                 <div class="progress">
                     <div class="labels">
-                        <p class="labels_active">Select</p>
-                        <p>Review</p>
-                        <p>Bridge</p>
+                        <p :class="step > 0 ? 'labels_active' : ''">Select</p>
+                        <p :class="step > 1 ? 'labels_active' : ''">Review</p>
+                        <p :class="step > 2 ? 'labels_active' : ''">Bridge</p>
                     </div>
                     <div class="icons">
                         <ActiveIcon />
                         <div class="line"></div>
-                        <InActiveIcon />
-                        <UnBridgedIcon />
+
+                        <InActiveIcon v-if="step <= 1" />
+                        <ActiveIcon v-else />
+
+                        <UnBridgedIcon v-if="step <= 2" />
+                        <BridgedIcon v-else />
                     </div>
                 </div>
 
-                <div class="picker">
-                    <p class="picker_title">Select a NFT</p>
-                    <div class="picker_nft">
-                        <div class="image">
-                            <ImageIcon />
-                        </div>
+                <div class="step1" v-show="step == 1">
+                    <!--  -->
 
-                        <div class="pick_nft">
-                            <p>No NFT selected</p>
-                            <div class="select" @click="pickingNft = true">
-                                <PlusIcon />
-                                <p>Select</p>
+                    <div class="picker" v-if="selectedNft == null">
+                        <p class="picker_title">Select a NFT</p>
+                        <div class="picker_nft">
+                            <div class="image">
+                                <ImageIcon />
+                            </div>
+
+                            <div class="pick_nft">
+                                <p>No NFT selected</p>
+                                <div class="select" @click="pickingNft = true">
+                                    <PlusIcon />
+                                    <p>Select</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="picker" v-else>
+                        <p class="picker_title">Select a NFT</p>
+                        <div class="picked_nft">
+                            <div class="image">
+                                <img :src="selectedNft.uri" alt="">
+                            </div>
+
+                            <div class="nft">
+                                <div class="name">
+                                    <p>{{ selectedNft.name }}</p>
+                                    <WalletDownIcon @click="pickingNft = true" />
+                                </div>
+                                <div class="token_standard">
+                                    <p>Token Standard</p>
+                                    <p>ERC-721</p>
+                                </div>
+                                <div class="token_id">
+                                    <p>Token ID</p>
+                                    <p>{{ selectedNft.tokenId }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  -->
+
+                    <div class="route_picker" v-if="selectedNft == null">
+                        <p class="picker_title">Select bridge route</p>
+                        <div class="chains">
+                            <div class="chain">
+                                <img src="/images/none.png" alt="">
+                                <p>Source chain</p>
+                            </div>
+
+                            <ArrowRightIcon />
+
+                            <div class="chain">
+                                <p>Destination chain</p>
+                                <img src="/images/none.png" alt="">
+                                <WalletDownIcon />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="route_picker" v-else>
+                        <p class="picker_title">Select bridge route</p>
+                        <div class="chains">
+                            <div class="chain">
+                                <img :src="$chain(selectedNft.chainId).image" alt="">
+                                <p>{{ $chain(selectedNft.chainId).name }}</p>
+                            </div>
+
+                            <ArrowRightIcon />
+
+                            <div class="chain" @click="pickingDestChain = !pickingDestChain">
+                                <p>{{ destChainId == null ? 'Destination chain' : $chain(destChainId).name }}</p>
+                                <img :src="destChainId == null ? '/images/none.png' : $chain(destChainId).image" alt="">
+                                <WalletDownIcon />
+
+                                <div class="dest_chains" v-if="pickingDestChain">
+                                    <div class="dest_chain"
+                                        v-for="chain, i in $chains.filter(c => c.id != selectedNft.chainId)" :key="i"
+                                        @click="destChainId = chain.id">
+                                        <img :src="chain.image" :alt="chain.symbol">
+                                        <p>{{ chain.name }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="route_picker">
-                    <p class="picker_title">Select bridge route</p>
-                    <div class="chains">
-                        <div class="source">
-                            <img src="/images/none.png" alt="">
-                            <p>Source chain</p>
+                <div class="step2" v-show="step == 2" v-if="selectedNft && destChainId">
+                    <div class="review_tokens">
+                        <div class="review_token">
+                            <div class="review_image">
+                                <img :src="selectedNft.uri" :alt="selectedNft.symbol">
+                            </div>
+                            <div class="review_name">
+                                <img :src="$chain(selectedNft.chainId).image" :alt="$chain(selectedNft.chainId).symbol">
+
+                                <div class="review_token_name">
+                                    <p>{{ selectedNft.name }}</p>
+                                    <p>{{ $chain(selectedNft.chainId).name }}</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <InterChangeIcon />
+                        <ArrowRightIcon />
 
-                        <div class="source">
-                            <p>Source chain</p>
-                            <img src="/images/none.png" alt="">
-                            <WalletDownIcon />
+                        <div class="review_token">
+                            <div class="review_image">
+                                <img :src="selectedNft.uri" :alt="selectedNft.symbol">
+                            </div>
+                            <div class="review_name">
+                                <div class="review_token_name">
+                                    <p>{{ selectedNft.name }}</p>
+                                    <p>{{ $chain(destChainId).name }}</p>
+                                </div>
+
+                                <img :src="$chain(destChainId).image" :alt="$chain(destChainId).symbol">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="est">
+                        <p>Estimated Time</p>
+                        <div>
+                            <TimeIcon />
+                            <p>2 - 4 mins</p>
+                        </div>
+                    </div>
+
+                    <div class="est">
+                        <p>Bridge Fee</p>
+                        <div>
+                            <img :src="$chain(selectedNft.chainId).image" :alt="$chain(selectedNft.chainId).symbol">
+                            <p>1.25 {{ $chain(selectedNft.chainId).symbol }}</p>
                         </div>
                     </div>
                 </div>
 
+                <!--  -->
+
+                <div class="step3" v-show="step == 3">
+                    <div class="success_image">
+                        <img src="/images/ethereum.png" alt="">
+                    </div>
+
+                    <div class="success_msg">
+                        <p>Asset Bridged Successfully</p>
+                        <p>Transaction completed, view or track your transactions on the <RouterLink to="/transactions">
+                                transaction history</RouterLink> page.</p>
+                    </div>
+                </div>
+
                 <div class="bridge_action">
-                    <PrimaryButton :text="'Review'" :state="'disable'" />
+                    <PrimaryButton @click="step = 2" v-if="step == 1" :text="'Review'"
+                        :state="destChainId == null ? 'disable' : ''" />
+                    <PrimaryButton @click="step = 3" v-if="step == 2" :text="'Bridge'" />
+
+                    <div class="view_trx" v-if="step == 3">
+                        <AddIcon />
+                        <p @click="step = 1; destChainId = null; selectedNft = null">New Transaction</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <SelectNftPop v-if="pickingNft" @close="pickingNft = false" />
+    <SelectNftPop v-if="pickingNft" @close="pickingNft = false" @nft="selectedNft = $event; pickingNft = false" />
 </template>
 
 <script setup>
+import AddIcon from '../components/icons/AddIcon.vue'
 import W3LinkIcon from '../components/icons/W3LinkIcon.vue'
 import ActiveIcon from '../components/icons/ActiveIcon.vue'
 import InActiveIcon from '../components/icons/InActiveIcon.vue'
 import UnBridgedIcon from '../components/icons/UnBridgedIcon.vue'
+import BridgedIcon from '../components/icons/BridgedIcon.vue'
 import ImageIcon from '../components/icons/ImageIcon.vue'
 import PlusIcon from '../components/icons/PlusIcon.vue'
 import PrimaryButton from '../components/PrimaryButton.vue'
 import WalletDownIcon from '../components/icons/WalletDownIcon.vue'
-import InterChangeIcon from '../components/icons/InterChangeIcon.vue'
 import SelectNftPop from '../pops/SelectNftPop.vue'
+import ArrowRightIcon from '../components/icons/ArrowRightIcon.vue'
+import TimeIcon from '../components/icons/TimeIcon.vue'
 </script>
 
 <script>
 export default {
     data() {
         return {
-            pickingNft: false
+            step: 1,
+            pickingNft: false,
+            pickingDestChain: false,
+            destChainId: null,
+            selectedNft: null
         }
     }
 }
@@ -218,23 +357,102 @@ export default {
     line-height: 120%;
     /* 19.2px */
     letter-spacing: 0.32px;
+    margin-bottom: 28px;
 }
 
-.picker_nft {
-    margin-top: 28px;
+.picker_nft,
+.picked_nft {
     display: flex;
     align-items: center;
     background: var(--bg-lighter, #091121);
     border-radius: 6px;
+    overflow: hidden;
 }
 
-.picker_nft .image {
+.picker_nft .image,
+.picked_nft .image {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 172px;
     height: 172px;
     border-right: 2px var(--bg-light) solid;
+}
+
+
+.picked_nft {
+    background: var(--bg-lighter, #091121);
+}
+
+.picked_nft .nft {
+    height: 172px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - 172px);
+}
+
+.picked_nft .name,
+.picked_nft .token_standard,
+.picked_nft .token_id {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    background: var(--bg-lightest);
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.picked_nft .name svg {
+    width: 45px;
+    height: 45px;
+    border-left: var(--bg-lighter) 2px solid;
+    padding-left: 18px;
+    cursor: pointer;
+}
+
+.picked_nft .name p {
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    /* 19.2px */
+    letter-spacing: 0.32px;
+}
+
+.picked_nft .token_standard p:first-child,
+.picked_nft .token_id p:first-child {
+    color: var(--tx-dimmed, #5C5E66);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    /* 16.8px */
+    letter-spacing: 0.28px;
+}
+
+.picked_nft .token_standard p:last-child,
+.picked_nft .token_id p:last-child {
+
+    color: var(--tx-semi, #8B909E);
+    text-align: right;
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    /* 16.8px */
+    letter-spacing: 0.28px;
+}
+
+.picked_nft .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .pick_nft {
@@ -285,12 +503,11 @@ export default {
 .route_picker .chains {
     display: flex;
     align-items: center;
-    margin-top: 20px;
     position: relative;
     justify-content: space-between;
 }
 
-.route_picker .source {
+.route_picker .chain {
     border-radius: 6px;
     background: var(--bg-lighter, #091121);
     height: 92px;
@@ -300,6 +517,47 @@ export default {
     align-items: center;
     gap: 16px;
     position: relative;
+    cursor: pointer;
+}
+
+.dest_chains {
+    position: absolute;
+    right: 65px;
+    top: 30px;
+    z-index: 1;
+    width: 200px;
+    border: 2px solid var(--bg-lighter, #091121);
+    border-radius: 4px;
+    background: var(--bg-light, #050C17);
+}
+
+.dest_chain {
+    display: flex;
+    padding: 0 20px;
+    height: 64px;
+    gap: 8px;
+    align-items: center;
+    border-bottom: 2px solid var(--bg-lighter, #091121);
+    color: var(--tx-semi, #8B909E);
+    font-family: Matter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 16px */
+    letter-spacing: 0.32px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dest_chain:last-child {
+    border: none;
+}
+
+.dest_chain img {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 12px;
 }
 
 .route_picker .chains>svg {
@@ -314,11 +572,11 @@ export default {
     height: 40px;
 }
 
-.route_picker .source:last-child {
+.route_picker .chain:last-child {
     justify-content: flex-end;
 }
 
-.route_picker .source p {
+.route_picker .chain p {
     color: var(--tx-normal, #EEF1F8);
     font-family: Matter;
     font-size: 14px;
@@ -329,7 +587,7 @@ export default {
     letter-spacing: 0.28px;
 }
 
-.route_picker .source svg {
+.route_picker .chain svg {
     position: absolute;
     bottom: 24px;
 }
@@ -345,5 +603,210 @@ export default {
     margin-top: 3px;
     padding: 26px;
     background: var(--bg-lighter, #091121);
+}
+
+/*  */
+
+
+.review_tokens {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 32px 28px;
+    background: var(--bg-light, #050C17);
+}
+
+.review_token {
+    width: calc(50% - 1px);
+    background: var(--bg-lighter, #091121);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.review_name {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: var(--bg-light, #050C17) 2px solid;
+}
+
+.review_token_name p:first-child {
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    /* 16.8px */
+    letter-spacing: 0.28px;
+}
+
+.review_tokens>svg {
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, 0);
+    background: var(--bg-light);
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.review_token_name p:last-child {
+    margin-top: 4px;
+    color: var(--tx-dimmed, #5C5E66);
+    font-family: Matter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    /* 14.4px */
+    letter-spacing: 0.24px;
+}
+
+.review_token_name:last-child p {
+    text-align: right;
+}
+
+.review_name img {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+}
+
+.review_token .review_image {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.review_token .review_image img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+}
+
+.est {
+    height: 70px;
+    background: var(--bg-light, #050C17);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3px;
+    padding: 0 26px;
+}
+
+.est>p {
+    color: var(--tx-semi, #8B909E);
+    font-family: Matter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    /* 19.2px */
+    letter-spacing: 0.32px;
+}
+
+.est div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    /* 16.8px */
+    letter-spacing: 0.28px;
+}
+
+.est img {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}
+
+/*  */
+
+.success_image {
+    display: flex;
+    justify-content: center;
+}
+
+.view_trx {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--pr-dimmed, #C0B477);
+    height: 50px;
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+    border: none;
+}
+
+.view_trx p {
+    color: var(--bg-lightest, #0C1A33);
+    font-family: Matter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    /* 21.6px */
+    letter-spacing: 0.36px;
+}
+
+.step3 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px ;
+}
+
+.success_image img {
+    width: 220px;
+    height: 220px;
+}
+
+.success_msg {
+    margin-top: 30px;
+    width: 370px;
+    text-align: center;
+}
+
+.success_msg p:first-child {
+    color: var(--tx-normal, #EEF1F8);
+    text-align: center;
+    font-family: Matter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
+    /* 16px */
+    letter-spacing: 0.32px;
+}
+
+.success_msg p:last-child {
+    margin-top: 20px;
+    color: var(--tx-semi, #8B909E);
+    text-align: center;
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: 0.28px;
+}
+
+.success_msg p:last-child a {
+    color: var(--pr-primary, #E5C82E);
 }
 </style>

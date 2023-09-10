@@ -1,10 +1,11 @@
 import { Web3Modal } from '@web3modal/html'
-import { bscTestnet, sepolia } from '@wagmi/core/chains'
+import { bscTestnet, sepolia, polygonMumbai } from '@wagmi/core/chains'
 import { configureChains, createClient } from '@wagmi/core'
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { pegoTestnet } from './chains'
 
 const PROJECT_ID = import.meta.env.VITE_PROJECT_ID
-export const chains = [bscTestnet, sepolia]
+export const chains = [bscTestnet, sepolia, polygonMumbai, pegoTestnet]
 
 const WalletConnection = {
     web3modal: null,
@@ -44,7 +45,7 @@ const WalletConnection = {
             if (!this.web3modal) {
                 this.web3modal = new Web3Modal({ projectId: PROJECT_ID }, ethereumClient)
 
-                this.web3modal.setDefaultChain(bscTestnet)
+                this.web3modal.setDefaultChain(pegoTestnet)
                 this.web3modal.setTheme({
                     themeMode: 'dark',
                     themeVariables: {
@@ -81,7 +82,18 @@ const WalletConnection = {
     },
 
     switchNetwork: async function (toChainId) {
+        try {
+            const ethereumClient = await this.ethereumClient()
 
+            console.log(ethereumClient);
+
+            await ethereumClient.switchNetwork({ chainId: toChainId })
+
+            return true
+        } catch (error) {
+            console.error(error)
+            return false
+        }
     }
 }
 
