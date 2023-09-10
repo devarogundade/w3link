@@ -1,8 +1,36 @@
-const { Sepolia, BnbTestnet, PegoTestnet, Mumbai } = require("../configs/chains.config");
 const db = require("../models");
-const { dispatch } = require('./../event/listener.event')
+const { Sepolia, BnbTestnet, PegoTestnet, Mumbai } = require("../configs/chains.config");
+const { toEvents } = require('../utils/event-stream')
+const { processEvent } = require('../utils/signer')
 
 const Event = db.event;
+
+////////// Listeners ////////////
+
+// Create and Save a new Event
+exports.create = async (req, res) => {
+    // a POST REQUEST from the smart contract through moralis stream
+    const events = toEvents(req)
+    if (events == null || events.length == 0) return res.send("No events found")
+
+    const event = events[0]
+
+    // Save Event to database
+    Event.findOneAndUpdate(
+        { fromHash: event.fromHash },
+        { $set: event },
+        {
+            upsert: true,
+            returnNewDocument: true,
+            returnDocument: "after"
+        }).then(data => {
+            res.send(data)
+        }).catch(err => {
+            res.status(500).send({
+                message: err || "Some err occurred."
+            })
+        })
+};
 
 // Retrieve all Event from the database.
 exports.findAll = async (req, res) => {
@@ -46,30 +74,6 @@ exports.findOne = (req, res) => {
     })
 };
 
-//////////// Indexers /////////////
-
-dispatch(PegoTestnet, (error, dispatchModel) => {
-    if (!error) {
-        // Save Event to database
-        Event.findOneAndUpdate(
-            { fromHash: dispatchModel.fromHash },
-            { $set: dispatchModel },
-            {
-                upsert: true,
-                returnNewDocument: true,
-                returnDocument: "after"
-            }).then(data => {
-                res.send(data)
-            }).catch(err => {
-                res.status(500).send({
-                    message: err || "Some err occurred."
-                })
-            })
-    }
-    console.log(error, dispatchModel);
-})
-
-
 ///////////// Jobs ///////////////
 
 
@@ -77,7 +81,7 @@ exports.commit = async () => {
     const unProcessedEvent = await Event.findOne({ status: 'DISPATCHED' })
     if (!unProcessedEvent) return
 
-    // Save Event to database
+    // Update Event to database
     Event.findOneAndUpdate(
         { fromHash: unProcessedEvent.fromHash },
         { $set: { status: 'PROCESSING' } },

@@ -36,18 +36,20 @@
                 </div>
             </div>
 
-            <div class="scroll_y">
+            <div class="loader" v-if="loading">
+                <LoadingBox />
+            </div>
+
+            <div class="scroll_y" v-else>
                 <div class="items">
-                    <div class="item" v-for="i in 5" :key="i"
-                        @click="$emit('nft', { name: 'Dark Knight OSX 420', symbol: 'OSX', tokenId: i, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 123456 })">
-                        <img src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380"
-                            alt="">
+                    <div class="item" v-for="nft, i in nfts" :key="i" @click="$emit('nft', nft)">
+                        <img :src="nft.uri" :alt="nft.symbol">
                         <div class="item_detail">
                             <div class="item_text">
-                                <p>Dark Knight OSX 420</p>
-                                <p>442</p>
+                                <p>{{ nft.name }}</p>
+                                <p>{{ nft.tokenId }}</p>
                             </div>
-                            <img src="/images/pego.png" alt="">
+                            <img :src="$chain(nft.chainId).image" :alt="$chain(nft.chainId).name">
                         </div>
                     </div>
                 </div>
@@ -60,14 +62,34 @@
 import CloseIcon from '../components/icons/CloseIcon.vue'
 import ArrowDownIcon from '../components/icons/ArrowDownIcon.vue'
 import BoxMenuIcon from '../components/icons/BoxMenuIcon.vue'
+import LoadingBox from '../components/LoadingBox.vue'
 </script>
 
 <script>
+import { tryGetNfts } from '../scripts/token'
 export default {
     data() {
         return {
+            loading: true,
             switching: false,
-            network: 0
+            network: 0,
+            nfts: [
+                { name: 'Bored Ape', symbol: 'APE', tokenId: 1, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 97 },
+                { name: 'Dark Knight OSX 420', symbol: 'OSX', tokenId: 2, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 80001 },
+                { name: 'Fist Fight', symbol: 'FFT', tokenId: 3, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 97 },
+                { name: 'Wolf Safe Poor Girl', symbol: 'WSPG', tokenId: 4, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 11155111 },
+                { name: 'Lazy Designers', symbol: 'LDX', tokenId: 5, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 123456 }
+            ]
+        }
+    },
+    mounted() {
+        // this.getNfts()
+    },
+    methods: {
+        getNfts: async function () {
+            this.loading = true
+            this.nfts = await tryGetNfts(this.$store.state.wallet.addres)
+            this.loading = false
         }
     }
 }

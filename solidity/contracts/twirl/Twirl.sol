@@ -10,18 +10,25 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
-contract Tunnel is IW3LinkApp, Context {
+contract Twirl is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
-    address private _extContractId;
-    uint256 private _extChainId;
+    mapping(uint256 => address) private _extContractIds;
 
     constructor(address w3link_) {
         _w3link = IW3Link(w3link_);
         _w3linkConfig = IW3LinkConfig(_w3link.config());
     }
 
-    function bridge(uint256 tokenId, address nftContractId) external {
+    function estimateFee(uint256 destChainId) external view returns (uint256) {
+        return _w3linkConfig.fee(destChainId);
+    }
+
+    function bridge(
+        uint256 destChainId,
+        uint256 tokenId,
+        address nftContractId
+    ) external {
         IERC721 nft = IERC721(nftContractId);
         IERC721Metadata metadata = IERC721Metadata(nftContractId);
 
@@ -36,10 +43,15 @@ contract Tunnel is IW3LinkApp, Context {
             _msgSender()
         );
 
-        uint256 estFee = _w3linkConfig.fee(_extChainId);
+        uint256 estFee = _w3linkConfig.fee(destChainId);
         _w3link.deposit{value: estFee}();
 
-        _w3link.dispatch(_extContractId, data, _extChainId, "" /* no extra */);
+        _w3link.dispatch(
+            _extContractIds[destChainId],
+            data,
+            destChainId,
+            "" /* no extra */
+        );
     }
 
     function execute(

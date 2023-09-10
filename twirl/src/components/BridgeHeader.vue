@@ -76,9 +76,9 @@ export default {
     methods: {
         fineAddress: WalletConnection.fineAddress,
 
-        switchChain: async function (toChainId) {
-            const result = await WalletConnection.switchNetwork(toChainId)
-            this.$store.commit('setActiveChainId', toChainId)
+        switchChain: async function (destChainId) {
+            const result = await WalletConnection.switchNetwork(destChainId)
+            this.$store.commit('setActiveChainId', destChainId)
             console.log(result);
         },
 

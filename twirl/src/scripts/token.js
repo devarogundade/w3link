@@ -1,3 +1,5 @@
-export function fetchNfts(wallet) {
+import axios from 'axios'
+
+export async function tryGetNfts(wallet) {
 
 }

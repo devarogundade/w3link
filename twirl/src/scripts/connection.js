@@ -81,13 +81,13 @@ const WalletConnection = {
         }
     },
 
-    switchNetwork: async function (toChainId) {
+    switchNetwork: async function (destChainId) {
         try {
             const ethereumClient = await this.ethereumClient()
 
             console.log(ethereumClient);
 
-            await ethereumClient.switchNetwork({ chainId: toChainId })
+            await ethereumClient.switchNetwork({ chainId: destChainId })
 
             return true
         } catch (error) {

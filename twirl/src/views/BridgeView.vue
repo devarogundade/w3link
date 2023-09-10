@@ -192,7 +192,8 @@
                 <div class="bridge_action">
                     <PrimaryButton @click="step = 2" v-if="step == 1" :text="'Review'"
                         :state="destChainId == null ? 'disable' : ''" />
-                    <PrimaryButton @click="step = 3" v-if="step == 2" :text="'Bridge'" />
+
+                    <PrimaryButton @click="bridgeNft" v-if="step == 2" :text="'Bridge'" :progress="bridging" />
 
                     <div class="view_trx" v-if="step == 3" @click="step = 1; destChainId = null; selectedNft = null">
                         <AddIcon />
@@ -223,6 +224,8 @@ import TimeIcon from '../components/icons/TimeIcon.vue'
 </script>
 
 <script>
+import { tryEstimateFee, tryBridge, tryRevoke } from '../scripts/bridge'
+import { notify } from '../reactives/notify'
 export default {
     data() {
         return {
@@ -230,7 +233,53 @@ export default {
             pickingNft: false,
             pickingDestChain: false,
             destChainId: null,
-            selectedNft: null
+            selectedNft: null,
+            estimatedFee: 0,
+            bridging: false
+        }
+    },
+    watch: {
+        destChainId: function () {
+            this.estFee()
+        }
+    },
+    methods: {
+        estFee: async function () {
+            if (!this.selectedNft.chainId || !this.destChainId) return
+            this.estimatedFee = await tryEstimateFee(this.selectedNft.chainId, this.destChainId)
+        },
+        bridgeNft: async function () {
+            if (this.bridging) return
+            this.bridging = true
+
+            let transaction = null
+            let condition = true
+            
+            if (condition) {
+                transaction = await tryBridge(this.destChainId, this.selectedNft)
+            } else {
+                transaction = await tryRevoke(this.selectedNft)
+            }
+
+            if (transaction) {
+                notify.push({
+                    'title': 'Transaction sent',
+                    'description': 'View transaction at the transactions page!',
+                    'category': 'success',
+                    'linkTitle': 'View Trx',
+                    'linkUrl': '/transactions'
+                })
+
+                this.step = 3
+            } else {
+                notify.push({
+                    'title': 'Transaction failed',
+                    'description': 'Try again!',
+                    'category': 'error'
+                })
+            }
+
+            this.bridging = false
         }
     }
 }
