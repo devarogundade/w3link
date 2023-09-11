@@ -73,15 +73,14 @@ contract W3Link is IW3Link, Ownable2Step {
     function execute(
         bytes32 hash,
         address destContractId,
-        address fromContractId,
         bytes calldata data,
-        uint256 destChainId,
+        uint256 fromChainId,
         bytes32 extra
     ) external {      
         require(!_executed[hash], "Execute Completed");
         require(Signature.verifyHash(hash), "validation Failed");
 
-        IW3LinkApp(destContractId).execute(_chainId, data, extra);
+        IW3LinkApp(destContractId).execute(fromChainId, data, extra);
 
         _executed[hash] = true;
 

@@ -22,9 +22,8 @@ exports.processEvent = async (event) => {
         const gas = await w3Link.methods.execute(
             event.hash,
             event.destContractId,
-            event.fromContractId,
             event.data,
-            event.destChainId,
+            event.fromChainId,
             event.extra
         ).estimateGas({ from: handlerEvmAddress })
         const gasPrice = await web3.eth.getGasPrice()
@@ -32,9 +31,8 @@ exports.processEvent = async (event) => {
         const { transactionHash } = await w3Link.methods.execute(
             event.hash,
             event.destContractId,
-            event.fromContractId,
             event.data,
-            event.destChainId,
+            event.fromChainId,
             event.extra
         ).send({
             from: handlerEvmAddress,
