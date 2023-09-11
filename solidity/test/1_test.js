@@ -16,12 +16,12 @@ contract('W3LinkConfig', async accounts => {
 contract('Twirl', async accounts => {
     it('Twirl: Set Dest', async () => {
         const twirl = await Twirl.deployed()
-        await twirl.setExtContract(97, '')
+        await twirl.setExtContract(97, '0xa13a01C59369D6cda5BD802Caa669fd47fF1deDD')
     })
 
     it('Twirl: Mint NFT', async () => {
         const twirlFaucet = await TwirlFaucet.deployed()
-        await twirlFaucet.mint('')
+        await twirlFaucet.mint(JSON.stringify({ image: null, name: 'Chisom\'s Movie Ticket', symbol: 'CMT' }))
     })
 
     it('Twirl: Bridge NFT', async () => {

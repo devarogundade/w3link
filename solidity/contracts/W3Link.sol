@@ -9,7 +9,7 @@ import "./signature/Signature.sol";
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract W3Link is IW3Link, Ownable2Step {    
+contract W3Link is IW3Link, Ownable2Step, Signature {    
     using Counters for Counters.Counter;
     
     address private _config;
@@ -51,7 +51,7 @@ contract W3Link is IW3Link, Ownable2Step {
         uint256 destChainId,
         bytes32 extra
     ) external override {
-        bytes32 hash = Signature.getHash(_dispatchId.current());
+        bytes32 hash = getHash(_dispatchId.current());
 
         _executed[hash] = false;
 
@@ -78,7 +78,7 @@ contract W3Link is IW3Link, Ownable2Step {
         bytes32 extra
     ) external {      
         require(!_executed[hash], "Execute Completed");
-        require(Signature.verifyHash(hash), "validation Failed");
+        require(verifyHash(hash), "Validation Failed");
 
         IW3LinkApp(destContractId).execute(fromChainId, data, extra);
 

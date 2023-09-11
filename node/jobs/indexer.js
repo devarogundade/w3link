@@ -7,14 +7,13 @@ const Web3 = require('web3')
 
 // @dev This listener is create for Pego Network Only
 
-let fromBlock = 0
-let latestBlock = 0
+let fromBlock = 813841
 
 const job = new CronJob('0 */1 * * * *', async function () {
     const web3 = new Web3(rpcs[PegoTestnet])
     const w3link = new web3.eth.Contract(W3Link.abi, w3linkIds[PegoTestnet])
 
-    latestBlock = await web3.eth.getBlockNumber()
+    const latestBlock = await web3.eth.getBlockNumber()
 
     if (fromBlock == latestBlock) return
 

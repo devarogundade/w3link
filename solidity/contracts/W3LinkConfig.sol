@@ -23,10 +23,6 @@ contract W3LinkConfig is IW3LinkConfig, Ownable2Step {
         return _handler;
     }
 
-    function verify(bytes32 hash) external view override returns (bool) {
-        return true;
-    }
-
     function setFee(uint256 destChainId, uint256 newFee) external onlyOwner {
         _fees[destChainId] = newFee;
         emit SetFee(destChainId, newFee);
