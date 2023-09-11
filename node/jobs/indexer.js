@@ -10,14 +10,20 @@ const Web3 = require('web3')
 let fromBlock = 813841
 
 const job = new CronJob('0 */1 * * * *', async function () {
+    console.log('Indexer: Running Job')
+
     const web3 = new Web3(rpcs[PegoTestnet])
     const w3link = new web3.eth.Contract(W3Link.abi, w3linkIds[PegoTestnet])
 
     const latestBlock = await web3.eth.getBlockNumber()
+    console.log('Indexer: Lastest Block ', latestBlock)
 
     if (fromBlock == latestBlock) return
 
     w3link.getPastEvents('Dispatch', {filter: {}, fromBlock: fromBlock, toBlock: 'latest'}, function (error, events) {
+        console.log('Indexer: Error ', error)
+        console.log('Indexer: Events ', events)
+
         if (error) {
             console.error(error)
             return
@@ -44,6 +50,8 @@ const job = new CronJob('0 */1 * * * *', async function () {
     })
 
     fromBlock = latestBlock
+
+    console.log('Indexer: Ending Job')
 })
 
 job.start()
