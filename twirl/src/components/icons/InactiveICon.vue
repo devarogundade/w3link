@@ -3,5 +3,4 @@
 <rect width="20" height="20" rx="6" fill="#091121"/>
 <rect x="4" y="4" width="12" height="12" rx="6" fill="#04080D"/>
 </svg>
-
 </template>
