@@ -7,8 +7,8 @@ module.exports = {
     PegoTestnet: 123456,
     w3linkIds: {
         11155111: '',
-        80001: '',
-        97: '0x08BF65d69665624C76C0B9d6D0052c5abC7C4f72',
+        80001: '0x08BF65d69665624C76C0B9d6D0052c5abC7C4f72',
+        97: '',
         123456: '0x780433CC90978FB7c4F3c165327C3545aea983bF'
     },
     rpcs: {

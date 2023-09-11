@@ -12,8 +12,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 contract TwirlExtension is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
-    address private _tnlContractId;
-    uint256 private _tnlChainId;
+    mapping(uint256 => address) private _twlContractIds;
 
     mapping(address => address) private _nfts;
 
@@ -22,26 +21,42 @@ contract TwirlExtension is IW3LinkApp, Context {
         _w3linkConfig = IW3LinkConfig(_w3link.config());
     }
 
+    /// @dev For setting twirl contract ids
+    function setTwlContract(uint256 destChainId, address contractId) external {
+        _twlContractIds[destChainId] = contractId;
+    }
+
+    /// @dev This functions tell Twirl Contract that the minted NFT was burn
+    /// and it should unlock the original NFT
     function revoke(address nftContractId, uint256 tokenId) external payable {
         W3NFT nft = W3NFT(_nfts[nftContractId]);
         require(nft.ownerOf(tokenId) == _msgSender(), "Not owner");
         nft.burn(tokenId);
 
+        // Encode data for Twirl Contract
         bytes memory data = abi.encode(tokenId, nft.parent(), _msgSender());
 
-        uint256 estFee = _w3linkConfig.fee(_tnlChainId);
+        uint256 estFee = _w3linkConfig.fee(nft.parentId());
         _w3link.deposit{value: estFee}();
 
-        _w3link.dispatch(_tnlContractId, data, _tnlChainId, "" /* no extra */);
+        // Send message to Twirl Contract
+        _w3link.dispatch(
+            _twlContractIds[nft.parentId()],
+            data,
+            nft.parentId(),
+            "" /* no extra */
+        );
     }
 
+    /// @dev This function will mint a new similar NFT as locked on Twirl Contract
     function execute(
-        uint256 /* fromChainId */,
+        uint256 fromChainId,
         bytes memory data,
         bytes32 /* extra */
     ) external override {
         _w3linkConfig.onlyHandler();
 
+        // Decode data from Twirl Contract
         (
             uint256 tokenId,
             address fromContractId,
@@ -54,12 +69,15 @@ contract TwirlExtension is IW3LinkApp, Context {
                 (uint256, address, string, string, string, address)
             );
 
+        // Checks if NFT contract as already been created
+        // otherwise create it
         if (_nfts[fromContractId] == address(0)) {
             _nfts[fromContractId] = address(
-                new W3NFT(tokenName, tokenSymbol, fromContractId)
+                new W3NFT(tokenName, tokenSymbol, fromContractId, fromChainId)
             );
         }
 
+        // Mint the NFT
         W3NFT nft = W3NFT(_nfts[fromContractId]);
         nft.mint(holder, tokenId, tokenURI);
     }

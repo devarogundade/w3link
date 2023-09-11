@@ -8,13 +8,16 @@ contract W3NFT is ERC721, Ownable2Step {
     mapping(uint256 => string) private _tokenURIS;
 
     address private _parent;
+    uint256 private _parentId;
 
     constructor(
         string memory name_,
         string memory symbol_,
-        address parent_
+        address parent_,
+        uint256 parentId_
     ) ERC721(name_, symbol_) Ownable2Step() {
         _parent = parent_;
+        _parentId = parentId_;
     }
 
     function mint(
@@ -39,5 +42,9 @@ contract W3NFT is ERC721, Ownable2Step {
 
     function parent() external view returns (address) {
         return _parent;
+    }
+
+    function parentId() external view returns (uint256) {
+        return _parentId;
     }
 }

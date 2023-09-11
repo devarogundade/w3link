@@ -9,9 +9,9 @@ import "./signature/Signature.sol";
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract W3Link is IW3Link, Ownable2Step, Signature {    
+contract W3Link is IW3Link, Ownable2Step, Signature {
     using Counters for Counters.Counter;
-    
+
     address private _config;
     uint256 public immutable _chainId;
 
@@ -42,7 +42,6 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
     constructor(uint256 chainId_, address config_) Ownable2Step() {
         _chainId = chainId_;
         _config = config_;
-        
     }
 
     function dispatch(
@@ -76,7 +75,7 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
         bytes calldata data,
         uint256 fromChainId,
         bytes32 extra
-    ) external {      
+    ) external {
         require(!_executed[hash], "Execute Completed");
         require(verifyHash(hash), "Validation Failed");
 
@@ -102,8 +101,8 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
 
     function deposit() external payable override {
         uint256 amount = msg.value;
-
         _gasContents[_msgSender()].value += amount;
+
         payable(owner()).transfer(amount);
         emit Deposit(_msgSender(), amount);
     }
@@ -115,6 +114,12 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
 
         payable(_msgSender()).transfer(amount);
         emit Withdraw(_msgSender(), amount);
+    }
+
+    function balance(
+        address contractId
+    ) external view override returns (uint256) {
+        return _gasContents[contractId].value;
     }
 
     function setConfig(address newConfig) external onlyOwner {

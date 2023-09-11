@@ -13,5 +13,7 @@ interface IW3Link {
 
     function withdraw(uint256 amount) external;
 
+    function balance(address contractId) external view returns (uint256);
+
     function config() external view returns (address);
 }

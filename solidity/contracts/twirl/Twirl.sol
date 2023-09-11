@@ -20,14 +20,18 @@ contract Twirl is IW3LinkApp, Context {
         _w3linkConfig = IW3LinkConfig(_w3link.config());
     }
 
+    /// @dev For getting briging fee
     function estimateFee(uint256 destChainId) external view returns (uint256) {
         return _w3linkConfig.fee(destChainId);
     }
 
+    /// @dev For setting extension contract ids
     function setExtContract(uint256 destChainId, address contractId) external {
         _extContractIds[destChainId] = contractId;
     }
 
+    /// @dev This function locks the Original NFT
+    /// and tell TwirlExtension Contract to mint a new similar NFT
     function bridge(
         uint256 destChainId,
         uint256 tokenId,
@@ -38,6 +42,7 @@ contract Twirl is IW3LinkApp, Context {
 
         nft.transferFrom(_msgSender(), address(this), tokenId);
 
+        // Encode data for TwirlExtension Contract
         bytes memory data = abi.encode(
             tokenId,
             nftContractId,
@@ -50,6 +55,7 @@ contract Twirl is IW3LinkApp, Context {
         uint256 estFee = _w3linkConfig.fee(destChainId);
         _w3link.deposit{value: estFee}();
 
+        // Send message to TwirlExtension Contract
         _w3link.dispatch(
             _extContractIds[destChainId],
             data,
@@ -58,6 +64,8 @@ contract Twirl is IW3LinkApp, Context {
         );
     }
 
+    /// @dev This function unlocks the Original NFT to the 
+    /// owner of the burnt similar NFT on TwirlExtension
     function execute(
         uint256 /* fromChainId */,
         bytes memory data,
@@ -65,11 +73,13 @@ contract Twirl is IW3LinkApp, Context {
     ) external override {
         _w3linkConfig.onlyHandler();
 
+        // Decode data from TwirlExtension Contract
         (address holder, address nftContractId, uint256 tokenId) = abi.decode(
             data,
             (address, address, uint256)
         );
 
+        // Unlock NFT to owner
         IERC721 nft = IERC721(nftContractId);
         nft.transferFrom(address(this), holder, tokenId);
     }

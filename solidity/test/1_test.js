@@ -7,25 +7,27 @@ const TwirlExtension = artifacts.require("TwirlExtension")
 const TwirlFaucet = artifacts.require("TwirlFaucet")
 
 contract('W3LinkConfig', async accounts => {
-    it('W3LinkConfig: Set Fee', async () => {
-        const w3LinkConfig = await W3LinkConfig.deployed()
-        await w3LinkConfig.setFee(97 , '0')
-    })
+    // it('W3LinkConfig: Set Fee', async () => {
+    //     const w3LinkConfig = await W3LinkConfig.deployed()
+    //     await w3LinkConfig.setFee(80001 , '0')
+    // })
 })
 
 contract('Twirl', async accounts => {
-    it('Twirl: Set Dest', async () => {
-        const twirl = await Twirl.deployed()
-        await twirl.setExtContract(97, '0xa13a01C59369D6cda5BD802Caa669fd47fF1deDD')
-    })
+    // it('Twirl: Set Dest', async () => {
+    //     const twirl = await Twirl.deployed()
+    //     await twirl.setExtContract(80001, '0xa13a01C59369D6cda5BD802Caa669fd47fF1deDD')
+    // })
 
-    it('Twirl: Mint NFT', async () => {
-        const twirlFaucet = await TwirlFaucet.deployed()
-        await twirlFaucet.mint(JSON.stringify({ image: null, name: 'Chisom\'s Movie Ticket', symbol: 'CMT' }))
-    })
+    // it('Twirl: Mint NFT', async () => {
+    //     const twirlFaucet = await TwirlFaucet.deployed()
+    //     await twirlFaucet.mint(JSON.stringify({ image: null, name: 'Chisom\'s Movie Ticket', symbol: 'CMT' }))
+        
+    //     await twirlFaucet.approve(Twirl.address, 1)
+    // })
 
-    it('Twirl: Bridge NFT', async () => {
-        const twirl = await Twirl.deployed()
-        await twirl.bridge(97, 1, TwirlFaucet.address)
-    })
+    // it('Twirl: Bridge NFT', async () => {
+    //     const twirl = await Twirl.deployed()
+    //     await twirl.bridge(80001, 1, TwirlFaucet.address)
+    // })
 })

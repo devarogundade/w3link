@@ -33,6 +33,7 @@ const job = new CronJob('0 */1 * * * *', async function () {
             const event = events[index]
             
             const eventModel = {
+                status: 'DISPATCHED',
                 fromHash: event.transactionHash,
                 hash: event.returnValues.hash,
                 destContractId: event.returnValues.destContractId,

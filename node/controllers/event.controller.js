@@ -34,19 +34,16 @@ exports.create = async (req, res) => {
 // Create and Save a new Event
 exports.create2 = async (event) => {
     // Save Event to database
-    Event.updateOne(
-        { $not: { $exists: { fromHash: event.fromHash } } },
+    Event.findOneAndUpdate(
+        { fromHash: event.fromHash },
         { $set: event },
-        {
-            upsert: true
-        }).then(data => {
-            res.send(data)
-        }).catch(err => {
-            res.status(500).send({
-                message: err || "Some err occurred."
-            })
-        })
-};
+        { upsert: true }
+    ).then(data => {
+        console.log(data)
+    }).catch(err => {
+        console.error(err)
+    })
+}
 
 // Retrieve all Event from the database.
 exports.findAll = async (req, res) => {
@@ -96,6 +93,8 @@ exports.findOne = (req, res) => {
 exports.commit = async () => {
     const unProcessedEvent = await Event.findOne({ status: 'DISPATCHED' })
     if (!unProcessedEvent) return
+
+    console.log('Processing: ', unProcessedEvent)
 
     // Update Event to database
     Event.findOneAndUpdate(
