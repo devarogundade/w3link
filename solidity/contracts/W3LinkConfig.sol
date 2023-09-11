@@ -36,7 +36,7 @@ contract W3LinkConfig is IW3LinkConfig, Ownable2Step {
         _handler = newHandler;
     }
 
-    function onlyHandler() external override {
-        require(_msgSender() == _handler, "Unauthorized Handler");
+    function onlyHandler() external view override {
+        require(tx.origin == _handler, "Unauthorized Handler");
     }
 }

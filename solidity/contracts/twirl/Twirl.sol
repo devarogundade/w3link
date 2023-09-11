@@ -24,6 +24,10 @@ contract Twirl is IW3LinkApp, Context {
         return _w3linkConfig.fee(destChainId);
     }
 
+    function setExtContract(uint256 destChainId, address contractId) external {
+        _extContractIds[destChainId] = contractId;
+    }
+
     function bridge(
         uint256 destChainId,
         uint256 tokenId,
