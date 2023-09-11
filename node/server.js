@@ -32,7 +32,7 @@ db.mongoose
     })
     
     app.get("/", (req, res) => {
-        res.json({ message: "SwayCall Node V1" })
+        res.json({ message: "W3Link RPC Node V1" })
     })
     
     require("./routes/event.routes")(app)

@@ -1,14 +1,14 @@
 {
-  "name": "swaycall-snc",
+  "name": "w3link-node",
   "version": "1.0.0",
-  "description": "SwayCall Messaging API",
+  "description": "W3Link RPC Node",
   "main": "server.js",
   "scripts": {
     "test": "test"
   },
   "keywords": [
     "blockchain",
-    "fuel",
+    "pego",
     "evm",
     "brigde",
     "web3"
@@ -21,11 +21,10 @@
     "cron": "^2.4.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "fuels": "^0.44.0",
     "mongoose": "^7.3.0",
     "web3": "^1.8.2"
   },
   "devDependencies": {
-    "@types/node": "^20.4.4"
+    "@types/node": "^20.6.0"
   }
 }
