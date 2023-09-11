@@ -23,7 +23,7 @@
                         <ActiveIcon style="cursor: pointer;" @click="step = 1" />
                         <div class="line"></div>
 
-                        <InActiveIcon v-if="step <= 1" />
+                        <PassiveIcon v-if="step <= 1" />
                         <ActiveIcon style="cursor: pointer;" @click="step = 2" v-else />
 
                         <UnBridgedIcon v-if="step <= 2" />
@@ -211,7 +211,7 @@
 import AddIcon from '../components/icons/AddIcon.vue'
 import W3LinkIcon from '../components/icons/W3LinkIcon.vue'
 import ActiveIcon from '../components/icons/ActiveIcon.vue'
-import InActiveIcon from '../components/icons/InActiveIcon.vue'
+import PassiveIcon from '../components/icons/PassiveIcon.vue'
 import UnBridgedIcon from '../components/icons/UnBridgedIcon.vue'
 import BridgedIcon from '../components/icons/BridgedIcon.vue'
 import ImageIcon from '../components/icons/ImageIcon.vue'
