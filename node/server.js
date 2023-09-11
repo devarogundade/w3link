@@ -24,6 +24,7 @@ db.mongoose
     .then(() => {
         console.log("Connected to the database!")
         require("./jobs/transaction")
+        require("./jobs/indexer")
     })
     .catch(err => {
         console.log("Cannot connect to the database!", err)

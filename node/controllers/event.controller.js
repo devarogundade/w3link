@@ -1,5 +1,4 @@
 const db = require("../models");
-const { Sepolia, BnbTestnet, PegoTestnet, Mumbai } = require("../configs/chains.config");
 const { toEvents } = require('../utils/event-stream')
 const { processEvent } = require('../utils/signer')
 
@@ -23,6 +22,23 @@ exports.create = async (req, res) => {
             upsert: true,
             returnNewDocument: true,
             returnDocument: "after"
+        }).then(data => {
+            res.send(data)
+        }).catch(err => {
+            res.status(500).send({
+                message: err || "Some err occurred."
+            })
+        })
+};
+
+// Create and Save a new Event
+exports.create2 = async (event) => {
+    // Save Event to database
+    Event.updateOne(
+        { $not: { $exists: { fromHash: event.fromHash } } },
+        { $set: event },
+        {
+            upsert: true
         }).then(data => {
             res.send(data)
         }).catch(err => {
