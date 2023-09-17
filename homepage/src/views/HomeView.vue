@@ -106,7 +106,7 @@
               <tr>
                 <td>
                   <div class="service_name">
-                    <h4>Chainlink VRF</h4>
+                    <h4>W3Link VRF</h4>
                     <div>
                       <p>Info</p>
                       <OutIcon />
@@ -131,7 +131,7 @@
               <tr>
                 <td>
                   <div class="service_name">
-                    <h4>Chainlink Any API</h4>
+                    <h4>W3Link API</h4>
                     <div>
                       <p>Info</p>
                       <OutIcon />
