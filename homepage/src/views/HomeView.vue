@@ -139,7 +139,7 @@
                   </div>
                 </td>
                 <td>
-                  <p class="service_uses">Enables you to access any external data source offered by Chainlink oracle network.</p>
+                  <p class="service_uses">Enables you to access any external data source like wheather forecast, or sport prediction on-chain.</p>
                 </td>
                 <td>
                   <div class="service_provider">
