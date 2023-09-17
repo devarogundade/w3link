@@ -131,7 +131,7 @@
               <tr>
                 <td>
                   <div class="service_name">
-                    <h4>Chainlink VRF</h4>
+                    <h4>Chainlink Any API</h4>
                     <div>
                       <p>Info</p>
                       <OutIcon />
@@ -139,7 +139,7 @@
                   </div>
                 </td>
                 <td>
-                  <p class="service_uses">Access verified randomness without compromising security or usability.</p>
+                  <p class="service_uses">Enables you to access any external data source offered by Chainlink oracle network.</p>
                 </td>
                 <td>
                   <div class="service_provider">
