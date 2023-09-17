@@ -87,7 +87,7 @@ export default {
 
 .explore_title h3 {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 34px;
     font-style: normal;
     font-weight: 600;
@@ -100,7 +100,7 @@ export default {
     margin-top: 26px;
     color: var(--tx-semi, #8B909E);
     text-align: center;
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -118,7 +118,7 @@ export default {
 
 .explore_stat_title p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -130,7 +130,7 @@ export default {
 .explore_stat_title p:last-child {
     margin-top: 8px;
     color: var(--tx-dimmed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

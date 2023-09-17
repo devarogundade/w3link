@@ -85,6 +85,10 @@ input[type=number] {
   display: none;
 }
 
+a, button {
+  cursor: pointer;
+}
+
 @keyframes shake {
 
   10%,

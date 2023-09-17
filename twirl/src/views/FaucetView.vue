@@ -126,7 +126,7 @@ export default {
 
 .dest>p {
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -145,7 +145,7 @@ export default {
 
 .chain p {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -193,7 +193,7 @@ export default {
     align-items: center;
     border-bottom: 2px solid var(--bg-lighter, #091121);
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

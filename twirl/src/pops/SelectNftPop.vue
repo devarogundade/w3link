@@ -131,7 +131,7 @@ export default {
 
 .box_header h3 {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -145,7 +145,7 @@ export default {
     align-items: center;
     gap: 12px;
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -165,7 +165,7 @@ export default {
 
 .toolbar .text p:first-child {
     color: var(--tx-immed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -181,7 +181,7 @@ export default {
 .toolbar .text p:last-child {
     margin-top: 8px;
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -204,7 +204,7 @@ export default {
     gap: 8px;
 
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -286,7 +286,7 @@ export default {
 
 .item_detail p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -298,7 +298,7 @@ export default {
 .item_detail p:last-child {
     margin-top: 6px;
     color: var(--tx-dimmed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

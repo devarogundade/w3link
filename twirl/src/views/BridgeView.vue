@@ -306,7 +306,7 @@ export default {
 
 .bridge_header h3 {
     color: var(--text-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -323,7 +323,7 @@ export default {
 
 .powered p {
     color: var(--text-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -353,7 +353,7 @@ export default {
 
 .labels p {
     color: var(--tx-dimmed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -403,7 +403,7 @@ export default {
 
 .picker_title {
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -467,7 +467,7 @@ export default {
 
 .picked_nft .name p {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -479,7 +479,7 @@ export default {
 .picked_nft .token_standard p:first-child,
 .picked_nft .token_id p:first-child {
     color: var(--tx-dimmed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -493,7 +493,7 @@ export default {
 
     color: var(--tx-semi, #8B909E);
     text-align: right;
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -518,7 +518,7 @@ export default {
 
 .pick_nft>p {
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -536,7 +536,7 @@ export default {
     align-items: center;
     gap: 10px;
     color: var(--text-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -595,7 +595,7 @@ export default {
     align-items: center;
     border-bottom: 2px solid var(--bg-lighter, #091121);
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -634,7 +634,7 @@ export default {
 
 .route_picker .chain p {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -691,7 +691,7 @@ export default {
 
 .review_token_name p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -715,7 +715,7 @@ export default {
 .review_token_name p:last-child {
     margin-top: 4px;
     color: var(--tx-dimmed, #5C5E66);
-    font-family: Matter;
+    
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -758,7 +758,7 @@ export default {
 
 .est>p {
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -773,7 +773,7 @@ export default {
     gap: 10px;
 
     color: var(--tx-normal, #EEF1F8);
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -811,7 +811,7 @@ export default {
 
 .view_trx p {
     color: var(--bg-lightest, #0C1A33);
-    font-family: Matter;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -842,7 +842,7 @@ export default {
 .success_msg p:first-child {
     color: var(--tx-normal, #EEF1F8);
     text-align: center;
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -855,7 +855,7 @@ export default {
     margin-top: 20px;
     color: var(--tx-semi, #8B909E);
     text-align: center;
-    font-family: Matter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

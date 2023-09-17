@@ -11,7 +11,7 @@
                             <p>Docs</p>
                         </div>
                     </a>
-                    <a target="_blank" href="https://docs.w3-link.site">
+                    <a target="_blank" href="https://github.com/devarogundade/w3link">
                         <div :class="'tab_item'">
                             <p>Github</p>
                         </div>
@@ -30,9 +30,11 @@
                     </a>
                 </div>
                 <div class="connection">
-                    <div class="connection_action">
-                        Start building
-                    </div>
+                    <a href="https://docs.w3-link.site" target="_blank">
+                        <div class="connection_action">
+                            Start building
+                        </div>
+                    </a>
                 </div>
             </header>
         </div>
@@ -85,7 +87,7 @@ header {
 
     color: var(--tx-normal, #EEF1F8);
     text-align: center;
-    font-family: Matter;
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
