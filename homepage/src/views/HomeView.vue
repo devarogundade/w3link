@@ -13,7 +13,7 @@
               <div class="button">Build with W3Link</div>
             </a>
             <a href="https://docs.w3-link.site/ecosystem" target="_blank">
-              <div class="button">Ecosystem</div>
+              <div class="button">Ecosystem DApps</div>
             </a>
           </div>
         </div>
