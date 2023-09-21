@@ -67,7 +67,7 @@
         <h3>See W3link in Action? <span>Meet Whirl.</span></h3>
         <p>Harnessing the crosschain interoperability provided by W3link, Whirl moves NFT assets across PEGO and other
           blockchains.</p>
-        <a href="https://twirl.w3-link.site" target="_blank">
+        <a href="https://whirl.w3-link.site" target="_blank">
           <button>Try it Out</button>
         </a>
         <img src="/images/whirl.png" alt="">

@@ -8,13 +8,13 @@ const Utils = {
     chain: function (id) {
         return this.chains.find(chain => chain.id == id)
     },
-    twirlIds: {
+    whirlIds: {
         11155111: '0x1b6c979548033dFfC88cEe698c9d3E83c3b0669d',
         97: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26',
         80001: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa',
         123456: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa'
     },
-    twirlExtensionIds: {
+    whirlExtensionIds: {
         11155111: '0x1b6c979548033dFfC88cEe698c9d3E83c3b0669d',
         97: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26',
         80001: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa',

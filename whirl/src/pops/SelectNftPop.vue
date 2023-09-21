@@ -70,7 +70,7 @@ import { tryGetNfts } from '../scripts/token'
 export default {
     data() {
         return {
-            loading: true,
+            loading: false,
             switching: false,
             network: 0,
             nfts: [
@@ -152,6 +152,8 @@ export default {
     line-height: 120%;
     /* 16.8px */
     letter-spacing: 0.28px;
+
+    cursor: pointer;
 }
 
 .toolbar {

@@ -2,9 +2,9 @@ const W3LinkConfig = artifacts.require("W3LinkConfig")
 const W3Link = artifacts.require("W3Link")
 const W3LinkVRF = artifacts.require("W3LinkVRF")
 const W3LinkUintApi = artifacts.require("W3LinkUintApi")
-const Twirl = artifacts.require("Twirl")
-const TwirlExtension = artifacts.require("TwirlExtension")
-const TwirlFaucet = artifacts.require("TwirlFaucet")
+const whirl = artifacts.require("whirl")
+const whirlExtension = artifacts.require("whirlExtension")
+const whirlFaucet = artifacts.require("whirlFaucet")
 
 contract('W3LinkConfig', async accounts => {
     // it('W3LinkConfig: Set Fee', async () => {
@@ -13,21 +13,21 @@ contract('W3LinkConfig', async accounts => {
     // })
 })
 
-contract('Twirl', async accounts => {
-    // it('Twirl: Set Dest', async () => {
-    //     const twirl = await Twirl.deployed()
-    //     await twirl.setExtContract(80001, '0xa13a01C59369D6cda5BD802Caa669fd47fF1deDD')
+contract('whirl', async accounts => {
+    // it('whirl: Set Dest', async () => {
+    //     const whirl = await whirl.deployed()
+    //     await whirl.setExtContract(80001, '0xa13a01C59369D6cda5BD802Caa669fd47fF1deDD')
     // })
 
-    // it('Twirl: Mint NFT', async () => {
-    //     const twirlFaucet = await TwirlFaucet.deployed()
-    //     await twirlFaucet.mint(JSON.stringify({ image: null, name: 'Chisom\'s Movie Ticket', symbol: 'CMT' }))
+    // it('whirl: Mint NFT', async () => {
+    //     const whirlFaucet = await whirlFaucet.deployed()
+    //     await whirlFaucet.mint(JSON.stringify({ image: null, name: 'Chisom\'s Movie Ticket', symbol: 'CMT' }))
         
-    //     await twirlFaucet.approve(Twirl.address, 1)
+    //     await whirlFaucet.approve(whirl.address, 1)
     // })
 
-    // it('Twirl: Bridge NFT', async () => {
-    //     const twirl = await Twirl.deployed()
-    //     await twirl.bridge(80001, 1, TwirlFaucet.address)
+    // it('whirl: Bridge NFT', async () => {
+    //     const whirl = await whirl.deployed()
+    //     await whirl.bridge(80001, 1, whirlFaucet.address)
     // })
 })

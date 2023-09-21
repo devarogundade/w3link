@@ -4,7 +4,7 @@
             <header>
                 <div class="tabs">
                     <div class="logo">
-                        <TwirlLogo />
+                        <WhirlLogo />
                     </div>
 
                     <RouterLink to="/">
@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-import TwirlLogo from '../components/icons/TwirlLogo.vue'
+import WhirlLogo from '../components/icons/WhirlLogo.vue'
 import WalletIcon from '../components/icons/WalletIcon.vue'
 import WalletProfile from '../components/icons/WalletProfile.vue'
 import WalletDownIcon from '../components/icons/WalletDownIcon.vue'

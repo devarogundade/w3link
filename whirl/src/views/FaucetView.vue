@@ -5,10 +5,10 @@
                 <div class="faucet_rect">
                     <div class="faucet_rect_toolbar">
                         <p>NFT Faucet</p>
-                        <div class="sort">
+                        <!-- <div class="sort">
                             <p>Custom image</p>
                             <SortIcon />
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="faucet_rect_box">

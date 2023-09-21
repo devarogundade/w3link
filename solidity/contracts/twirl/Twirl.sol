@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
-contract Twirl is IW3LinkApp, Context {
+contract whirl is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
     mapping(uint256 => address) private _extContractIds;
@@ -31,7 +31,7 @@ contract Twirl is IW3LinkApp, Context {
     }
 
     /// @dev This function locks the Original NFT
-    /// and tell TwirlExtension Contract to mint a new similar NFT
+    /// and tell whirlExtension Contract to mint a new similar NFT
     function bridge(
         uint256 destChainId,
         uint256 tokenId,
@@ -42,7 +42,7 @@ contract Twirl is IW3LinkApp, Context {
 
         nft.transferFrom(_msgSender(), address(this), tokenId);
 
-        // Encode data for TwirlExtension Contract
+        // Encode data for whirlExtension Contract
         bytes memory data = abi.encode(
             tokenId,
             nftContractId,
@@ -55,7 +55,7 @@ contract Twirl is IW3LinkApp, Context {
         uint256 estFee = _w3linkConfig.fee(destChainId);
         _w3link.deposit{value: estFee}();
 
-        // Send message to TwirlExtension Contract
+        // Send message to whirlExtension Contract
         _w3link.dispatch(
             _extContractIds[destChainId],
             data,
@@ -65,7 +65,7 @@ contract Twirl is IW3LinkApp, Context {
     }
 
     /// @dev This function unlocks the Original NFT to the 
-    /// owner of the burnt similar NFT on TwirlExtension
+    /// owner of the burnt similar NFT on whirlExtension
     function execute(
         uint256 /* fromChainId */,
         bytes memory data,
@@ -73,7 +73,7 @@ contract Twirl is IW3LinkApp, Context {
     ) external override {
         _w3linkConfig.onlyHandler();
 
-        // Decode data from TwirlExtension Contract
+        // Decode data from whirlExtension Contract
         (address holder, address nftContractId, uint256 tokenId) = abi.decode(
             data,
             (address, address, uint256)

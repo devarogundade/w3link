@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract TwirlFaucet is ERC721 {
+contract whirlFaucet is ERC721 {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenId;
