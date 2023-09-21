@@ -1,6 +1,6 @@
 import { prepareWriteContract, writeContract, waitForTransaction, readContract, } from '@wagmi/core'
-import whirlJSON from '../contracts/whirl.json'
-import whirlExtension from '../contracts/whirlExtension.json'
+import whirlJSON from '../contracts/Whirl.json'
+import whirlExtension from '../contracts/WhirlExtension.json'
 import Utils from './utils'
 
 export async function tryEstimateFee(fromChainId, destChainId) {
