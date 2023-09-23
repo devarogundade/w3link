@@ -8,20 +8,20 @@ const Web3 = require('web3')
 
 let fromBlock = startBlock
 
-const job = new CronJob('0 */1 * * * *', async function () {
-    console.log('Indexer: Running Job')
+const job = new CronJob('*/30 * * * * *', async function () {
+    console.log('Faucet Indexer: Running Job')
 
     const web3 = new Web3(rpc)
     const whirlFaucet = new web3.eth.Contract(WhirlFaucet.abi, faucetId)
 
     const latestBlock = await web3.eth.getBlockNumber()
-    console.log('Indexer: Lastest Block ', latestBlock)
+    console.log('Faucet Indexer: Lastest Block ', latestBlock)
 
     if (fromBlock == latestBlock) return
 
     whirlFaucet.getPastEvents('NFTMinted', {filter: {}, fromBlock: fromBlock, toBlock: 'latest'}, function (error, events) {
-        console.log('Indexer: Error ', error)
-        console.log('Indexer: Events ', events)
+        console.log('Faucet Indexer: Error ', error)
+        console.log('Faucet Indexer: Events ', events)
 
         if (error) {
             console.error(error)
@@ -45,7 +45,7 @@ const job = new CronJob('0 */1 * * * *', async function () {
 
     fromBlock = latestBlock
 
-    console.log('Indexer: Ending Job')
+    console.log('Faucet Indexer: Ending Job')
 })
 
 job.start()
