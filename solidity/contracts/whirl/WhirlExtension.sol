@@ -9,7 +9,7 @@ import "./W3NFT.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
-contract whirlExtension is IW3LinkApp, Context {
+contract WhirlExtension is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
     mapping(uint256 => address) private _twlContractIds;

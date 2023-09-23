@@ -11,12 +11,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@moralisweb3/common-evm-utils": "^2.23.1",
     "@wagmi/core": "^0.10.8",
     "@web3modal/ethereum": "^2.2.2",
     "@web3modal/html": "^2.2.2",
     "axios": "^1.5.0",
     "bignumber.js": "^4.0.2",
     "ethers": "^5.7.2",
+    "moralis": "^2.23.1",
     "vue": "^3.3.4",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.2.4",

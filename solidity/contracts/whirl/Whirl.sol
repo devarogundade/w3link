@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
-contract whirl is IW3LinkApp, Context {
+contract Whirl is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
     mapping(uint256 => address) private _extContractIds;

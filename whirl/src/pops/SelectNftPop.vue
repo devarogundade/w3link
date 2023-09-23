@@ -12,7 +12,7 @@
             <div class="toolbar">
                 <div class="text">
                     <p>Your assets on <span>All Networks</span></p>
-                    <p><span>5</span> NFTs</p>
+                    <p><span>{{ nfts.length }}</span> NFTs</p>
                 </div>
 
                 <div class="network" @click="switching = !switching">
@@ -70,25 +70,19 @@ import { tryGetNfts } from '../scripts/token'
 export default {
     data() {
         return {
-            loading: false,
+            loading: true,
             switching: false,
             network: 0,
-            nfts: [
-                { name: 'Bored Ape', symbol: 'APE', tokenId: 1, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 97 },
-                { name: 'Dark Knight OSX 420', symbol: 'OSX', tokenId: 2, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 80001 },
-                { name: 'Fist Fight', symbol: 'FFT', tokenId: 3, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 97 },
-                { name: 'Wolf Safe Poor Girl', symbol: 'WSPG', tokenId: 4, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 11155111 },
-                { name: 'Lazy Designers', symbol: 'LDX', tokenId: 5, address: '', uri: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', chainId: 123456 }
-            ]
+            nfts: []
         }
     },
     mounted() {
-        // this.getNfts()
+        this.getNfts()
     },
     methods: {
         getNfts: async function () {
             this.loading = true
-            this.nfts = await tryGetNfts(this.$store.state.wallet.addres)
+            this.nfts = await tryGetNfts(this.$store.state.wallet.address)
             this.loading = false
         }
     }
@@ -96,6 +90,9 @@ export default {
 </script>
 
 <style scoped>
+.loader {
+    height: 500px;
+}
 .container {
     position: fixed;
     top: 0;

@@ -1,6 +1,7 @@
 import { prepareWriteContract, writeContract, waitForTransaction, readContract, } from '@wagmi/core'
 import whirlJSON from '../contracts/Whirl.json'
 import whirlExtension from '../contracts/WhirlExtension.json'
+import w3NFTJSON from '../contracts/W3NFT.json'
 import Utils from './utils'
 
 export async function tryEstimateFee(fromChainId, destChainId) {
@@ -55,3 +56,33 @@ export async function tryRevoke(nft) {
         return null
     }
 }
+
+// export async function tryFetchNfts(chainId, owner) {
+//     try {
+//         return readContract({
+//             address: Utils.whirlIds[chainId],
+//             abi: w3NFTJSON.abi,
+//             functionName: 'ownedTokenIds',
+//             args: [owner],
+//             chainId: chainId
+//         })
+//     } catch (error) {
+//         console.error(error)
+//         return []
+//     }
+// }
+
+// export async function tryFetchExtNfts(chainId, owner) {
+//     try {
+//         return readContract({
+//             address: Utils.whirlExtensionIds[chainId],
+//             abi: w3NFTJSON.abi,
+//             functionName: 'ownedTokenIds',
+//             args: [owner],
+//             chainId: chainId
+//         })
+//     } catch (error) {
+//         console.error(error)
+//         return []
+//     }
+// }

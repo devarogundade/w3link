@@ -29,12 +29,14 @@ import SnackbarPop from './pops/SnackbarPop.vue';
 </script>
 
 <script>
+import Moralis from 'moralis'
 import WalletConnection from './scripts/connection'
 export default {
   created() {
     WalletConnection.initialize()
   },
   async mounted() {
+    await Moralis.start({apiKey: "7276f8x2XPAFLXaLZZMT1JFWCgBzbQ3WPyaKjA8zEEVs23OQzD79J9z7KSeyawWC"})
     await WalletConnection.getWallet((wallet) => {
       this.$store.commit('setWallet', wallet)
     })

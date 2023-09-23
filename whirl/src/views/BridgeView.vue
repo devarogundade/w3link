@@ -170,7 +170,7 @@
                         <p>Bridge Fee</p>
                         <div>
                             <img :src="$chain(selectedNft.chainId).image" :alt="$chain(selectedNft.chainId).symbol">
-                            <p>1.25 {{ $chain(selectedNft.chainId).symbol }}</p>
+                            <p>{{ $toMoney($fromWei(estimatedFee)) }} {{ $chain(selectedNft.chainId).symbol }}</p>
                         </div>
                     </div>
                 </div>

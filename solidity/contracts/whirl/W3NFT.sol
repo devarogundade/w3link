@@ -5,7 +5,8 @@ import "@openzeppelin/contracts/access/Ownable2Step.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract W3NFT is ERC721, Ownable2Step {
-    mapping(uint256 => string) private _tokenURIS;
+    mapping(uint256 => string) public _tokenURIS;
+    mapping(address => uint256[]) private _ownedTokenIds;
 
     address private _parent;
     uint256 private _parentId;
@@ -18,6 +19,10 @@ contract W3NFT is ERC721, Ownable2Step {
     ) ERC721(name_, symbol_) Ownable2Step() {
         _parent = parent_;
         _parentId = parentId_;
+    }
+
+    function ownedTokenIds(address owner) external view returns (uint256[] memory) {
+        return _ownedTokenIds[owner];
     }
 
     function mint(
@@ -46,5 +51,15 @@ contract W3NFT is ERC721, Ownable2Step {
 
     function parentId() external view returns (uint256) {
         return _parentId;
+    }
+
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 firstTokenId,
+        uint256 /* batchSize */
+    ) internal override {
+        _ownedTokenIds[to].push(firstTokenId);
+        delete _ownedTokenIds[from][firstTokenId];
     }
 }

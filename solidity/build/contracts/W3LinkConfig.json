@@ -202,7 +202,7 @@
   "sourceMap": "166:917:28:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;166:917:28;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;166:917:28;719:10:20;166:917:28;;;;-1:-1:-1;166:917:28;;;719:10:20;;166:917:28;;2566:40:13;-1:-1:-1;2566:40:13;;166:917:28;;;;;;;;;;;;;;-1:-1:-1;166:917:28;;;;-1:-1:-1;166:917:28;;;;;-1:-1:-1;166:917:28",
   "deployedSourceMap": "166:917:28:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;166:917:28;;;;;-1:-1:-1;;;;;166:917:28;;;;;;;;1063:62:13;;:::i;:::-;166:917:28;-1:-1:-1;;;;;166:917:28;1228:24:14;166:917:28;;;1228:24:14;166:917:28;;;;1267:43:14;;;;166:917:28;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;926:13:14;166:917:28;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;661:8:28;166:917;;;;;;;;;;;;;;;;-1:-1:-1;;166:917:28;;;;;-1:-1:-1;;;;;166:917:28;;;;;;;1063:62:13;;:::i;:::-;-1:-1:-1;;;;;166:917:28;924:21;166:917;;;924:21;166:917;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1039:8:28;166:917;;1026:9;:21;166:917;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;166:917:28;;;;;;;;;;;;;;;;;;;;;;;;926:13:14;166:917:28;;-1:-1:-1;;;;;719:10:20;;166:917:28;;;1833:24:14;166:917:28;;-1:-1:-1;;;;166:917:28;;;926:13:14;166:917:28;;;719:10:20;166:917:28;;;;;;;;2566:40:13;166:917:28;;2566:40:13;166:917:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1063:62:13;;:::i;:::-;166:917:28;-1:-1:-1;;;;;166:917:28;;;1583:20:14;166:917:28;;1583:20:14;166:917:28;;;;;;;;;2566:40:13;;;;166:917:28;;;;;;;;;;;;;;;;;;;811:27;166:917;;;;1063:62:13;;:::i;:::-;166:917:28;;;;;;;;;;;;;;;;;;;;811:27;166:917;;;;;;;;;;;-1:-1:-1;;166:917:28;;;;;;;;;;;;;;;;;;;;;;1359:130:13;-1:-1:-1;;;;;1273:6:13;166:917:28;;719:10:20;1422:23:13;166:917:28;;1359:130:13:o;166:917:28:-;;;;;;;;;;;;;;;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\nimport \"./interfaces/IW3LinkConfig.sol\";\r\n\r\nimport \"@openzeppelin/contracts/access/Ownable2Step.sol\";\r\n\r\ncontract W3LinkConfig is IW3LinkConfig, Ownable2Step {\r\n    address private _handler;\r\n    mapping(uint256 => uint256) private _fees;\r\n\r\n    constructor(address handler_) Ownable2Step() {\r\n        _handler = handler_;\r\n    }\r\n\r\n    event SetFee(uint256 destChainId, uint256 newFee);\r\n\r\n    function fee(uint256 destChainId) external view override returns (uint256) {\r\n        return _fees[destChainId];\r\n    }\r\n\r\n    function handler() external view override returns (address) {\r\n        return _handler;\r\n    }\r\n\r\n    function setFee(uint256 destChainId, uint256 newFee) external onlyOwner {\r\n        _fees[destChainId] = newFee;\r\n        emit SetFee(destChainId, newFee);\r\n    }\r\n\r\n    function setHandler(address newHandler) external onlyOwner {\r\n        _handler = newHandler;\r\n    }\r\n\r\n    function onlyHandler() external view override {\r\n        require(tx.origin == _handler, \"Unauthorized Handler\");\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\W3LinkConfig.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\W3LinkConfig.sol",
   "ast": {
     "absolutePath": "project:/contracts/W3LinkConfig.sol",
     "exportedSymbols": {
@@ -1371,7 +1371,7 @@
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-11T17:30:35.684Z",
+  "updatedAt": "2023-09-23T07:11:14.699Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

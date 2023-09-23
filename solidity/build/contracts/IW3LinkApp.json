@@ -47,7 +47,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IW3LinkApp {\r\n    function execute(\r\n        uint256 fromChainId,\r\n        bytes calldata data,\r\n        bytes32 extra\r\n    ) external;\r\n\r\n    function onResult(bytes calldata data) external;\r\n}",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\interfaces\\IW3LinkApp.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\interfaces\\IW3LinkApp.sol",
   "ast": {
     "absolutePath": "project:/contracts/interfaces/IW3LinkApp.sol",
     "exportedSymbols": {
@@ -263,7 +263,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-11T17:30:35.688Z",
+  "updatedAt": "2023-09-23T07:11:14.706Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -5,10 +5,12 @@
                 <div class="faucet_rect">
                     <div class="faucet_rect_toolbar">
                         <p>NFT Faucet</p>
-                        <!-- <div class="sort">
-                            <p>Custom image</p>
-                            <SortIcon />
-                        </div> -->
+                        <a :href="faucets[nft.chainId]" target="_blank">
+                            <div class="sort">
+                            <p>{{ $chain(nft.chainId).symbol }} Faucet</p>
+                            <OutIcon />
+                        </div>
+                        </a>
                     </div>
 
                     <div class="faucet_rect_box">
@@ -37,7 +39,7 @@
                         </div>
 
                         <div class="action">
-                            <PrimaryButton :text="'Mint'" />
+                            <PrimaryButton :progress="minting" :text="'Mint'" @click="mint" />
                         </div>
                     </div>
                 </div>
@@ -51,16 +53,56 @@
 <script setup>
 import Loadingbox from '../components/LoadingBox.vue'
 import PrimaryButton from '../components/PrimaryButton.vue';
-import SortIcon from '../components/icons/SortIcon.vue'
+import OutIcon from '../components/icons/OutIcon.vue'
 import WalletDownIcon from '../components/icons/WalletDownIcon.vue'
+import { notify } from '../reactives/notify';
 </script>
 
 <script>
+import { tryMintNft } from '../scripts/faucet'
 export default {
     data() {
         return {
+            minting: false,
             nft: { chainId: 123456 },
+            faucets: {
+                123456: "https://faucet.pegotest.net/",
+                97: "https://testnet.bnbchain.org/faucet-smart",
+                80001: "https://faucet.polygon.technology/",
+                11155111: "https://faucet.polygon.technology/"
+            },
             pickingDestChain: false
+        }
+    },
+    methods: {
+        mint: async function () {
+            if (this.minting) return
+            this.minting = true
+
+            const transaction = await tryMintNft(
+                this.nft.chainId,
+                "https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380"
+            )
+
+            if (transaction) {
+                notify.push({
+                    'title': 'Transaction sent',
+                    'description': 'Faucet NFT Successfully minted!',
+                    'category': 'success',
+                    'linkTitle': 'View Trx',
+                    'linkUrl': '/transactions'
+                })
+
+                this.step = 3
+            } else {
+                notify.push({
+                    'title': 'Transaction failed',
+                    'description': 'Try again!',
+                    'category': 'error'
+                })
+            }
+
+            this.minting = false
         }
     }
 }
