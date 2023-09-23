@@ -21,7 +21,9 @@ contract W3NFT is ERC721, Ownable2Step {
         _parentId = parentId_;
     }
 
-    function ownedTokenIds(address owner) external view returns (uint256[] memory) {
+    function ownedTokenIds(
+        address owner
+    ) external view returns (uint256[] memory) {
         return _ownedTokenIds[owner];
     }
 
@@ -60,6 +62,10 @@ contract W3NFT is ERC721, Ownable2Step {
         uint256 /* batchSize */
     ) internal override {
         _ownedTokenIds[to].push(firstTokenId);
-        delete _ownedTokenIds[from][firstTokenId];
+        for (uint256 index = 0; index < _ownedTokenIds[from].length; index++) {
+            if (_ownedTokenIds[from][index] == firstTokenId) {
+                delete _ownedTokenIds[from][index];
+            }
+        }
     }
 }

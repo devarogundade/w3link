@@ -26,14 +26,62 @@
                                     </thead>
                                 </div>
                             </table>
-                            <div class="tbody" v-for="transaction, i in transactions" :key="i">
+                            <div class="tbody" v-for="transaction, i in 2" :key="i">
                                 <tbody>
-                                    <tr></tr>
+                                    <tr>
+                                        <td>
+                                            <div class="bridge_asset">
+                                                <img class="bridge_asset_image"
+                                                    src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380" />
+                                                <div class="bridge_asset_name">
+                                                    <p>Dark Knight</p>
+                                                    <p class="bridge_asset_name_id">2861
+                                                        <OutIcon />
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="time_created">
+                                                <p>9 Sept 23</p>
+                                                <p>12:33:43 PM</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="asset_status">
+                                                <OngoingIcon />
+                                                <p>Ongoing</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="source_chain">
+                                                <div class="chain">
+                                                    <img src="/images/pego.png" alt="">
+                                                    <p>PEGO</p>
+                                                </div>
+                                                <p class="view_trx">
+                                                    <OutIcon /> View Txn
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="dest_chain">
+                                                <div class="chain">
+                                                    <p>Binance</p>
+                                                    <img src="/images/bsc.png" alt="">
+                                                </div>
+                                                <p class="view_trx">
+                                                    View Txn
+                                                    <OutIcon />
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </div>
-                            <div class="empty" v-if="transactions.length == 0">
+                            <!-- <div class="empty" v-if="transactions.length == 0">
                                 <img src="/images/empty.png" alt="">
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="transaction_navigation">
@@ -68,10 +116,12 @@ import Loadingbox from '../components/LoadingBox.vue'
 import SortIcon from '../components/icons/SortIcon.vue'
 import ArrowRightIcon from '../components/icons/ArrowRightIcon.vue'
 import ArrowLeftIcon from '../components/icons/ArrowLeftIcon.vue'
+import OngoingIcon from '../components/icons/OngoingIcon.vue'
 </script>
 
 <script>
-import { fetchTransactions } from '../scripts/scan'
+// import { fetchTransactions } from '../scripts/scan'
+import OutIcon from '../components/icons/OutIcon.vue'
 
 export default {
     data() {
@@ -176,35 +226,30 @@ table {
 }
 
 .thead {
-    padding: 26px 30px;
+    padding: 30px 24px;
 }
 
-thead td:first-child,
-tbody td:first-child {
+td:first-child {
     width: 340px;
 }
 
-thead td:nth-child(2),
-tbody td:nth-child(2) {
+td:nth-child(2) {
     width: 180px;
 }
 
-thead td:nth-child(3),
-tbody td:nth-child(3) {
+td:nth-child(3) {
     width: 180px;
 }
 
-thead td:nth-child(4),
-tbody td:nth-child(4) {
+td:nth-child(4) {
     width: 150px;
 }
 
-thead td:nth-child(5),
-tbody td:nth-child(5) {
+td:nth-child(5) {
     width: 150px;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
-
 
 thead td {
     color: var(--tx-semi, #95979D);
@@ -250,7 +295,6 @@ thead td {
     background: var(--bg-lightest, #0C171A);
 }
 
-
 .transaction_navigation .page_active {
     border-radius: 2px;
     background: var(--bg-light, #0C171A);
@@ -277,141 +321,125 @@ thead td {
 }
 
 .tbody {
-    padding: 30px 0;
+    padding: 0 26px;
+    height: 102px;
     width: 100%;
-    border-image: linear-gradient(to right, var(--pr-light) 3%, var(--bg-lighter) 3%, var(--bg-lighter) 97%, var(--pr-light) 97%) 1;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-}
-
-
-.tbody:last-child {
-    border-bottom: 1px solid var(--bg-lighter, #0C171A);
-}
-
-
-tbody {
-    width: 100%;
-}
-
-.route {
+    margin-bottom: 3px;
+    background: var(--bg-light, #050C17);
     display: flex;
     align-items: center;
-    gap: 16px;
 }
 
-.route .images {
+.bridge_asset {
     display: flex;
-    padding: 8px;
-    justify-content: center;
     align-items: center;
-    gap: 6px;
-    border-radius: 4px;
-    background: var(--bg-lighter, #0C171A);
-    width: 92px;
+    gap: 18px;
 }
 
-.route .name {
-    color: var(--text-normal, #EEF1F8);
+.bridge_asset_name p:first-child {
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
     font-size: 14px;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 100%;
     /* 14px */
     letter-spacing: 0.28px;
 }
 
-.route .timestamp {
+.bridge_asset_name p:last-child {
+    color: var(--tx-semi, #95979D);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+    margin-top: 14px;
     display: flex;
     align-items: center;
-    margin-top: 6px;
     gap: 8px;
+}
+
+.time_created p:first-child {
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.asset_status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.view_trx {
+    margin-top: 14px;
+    color: var(--tx-semi, #8B909E);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.time_created p:last-child {
     color: var(--text-semi-d, #95979D);
+    font-family: Matter;
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 100%;
     /* 14px */
     letter-spacing: 0.28px;
+    margin-top: 14px;
 }
 
-.route .images img {
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
-}
-
-.status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.status p {
-    color: var(--text-normal, #EEF1F8);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    /* 12px */
-    letter-spacing: 0.24px;
-}
-
-.processing_dot {
-    background: rgba(188, 254, 47, 0.06);
-}
-
-
-.dot {
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    width: 22px;
-    height: 22px;
+.bridge_asset_image {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
 }
 
 .chain {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 8px;
 }
 
 .chain p {
-    color: var(--text-dimmed, #66676C);
+    color: var(--tx-normal, #EEF1F8);
+    font-family: Matter;
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 100%;
     /* 14px */
     letter-spacing: 0.28px;
 }
 
 .chain img {
-    width: 12px;
-    height: 12px;
-    border-radius: 6px;
-}
-
-.chain>svg {
-    margin-left: 2px;
-}
-
-.source_txn>p,
-.destination_txn>p {
-    color: var(--text-normal, #EEF1F8);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 100%;
-    /* 14px */
-    letter-spacing: 0.28px;
-}
-
-.source_txn>p span,
-.destination_txn>p span {
-    color: var(--text-dimmed, #66676C);
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
 }
 </style>

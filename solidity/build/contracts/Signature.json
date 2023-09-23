@@ -49,7 +49,7 @@
   "sourceMap": "61:262:39:-:0;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "61:262:39:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:262:39;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:262:39;;;;;;;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ncontract Signature {\r\n    function verifyHash(bytes32 /* hash */) public pure virtual returns (bool) {\r\n        return true;\r\n    }\r\n\r\n    function getHash(uint256 dispatchId) public pure virtual returns (bytes32) {\r\n        return bytes32(dispatchId);\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\signature\\Signature.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\signature\\Signature.sol",
   "ast": {
     "absolutePath": "project:/contracts/signature/Signature.sol",
     "exportedSymbols": {
@@ -366,7 +366,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T07:11:14.735Z",
+  "updatedAt": "2023-09-23T10:06:08.752Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

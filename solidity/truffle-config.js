@@ -21,7 +21,7 @@ module.exports = {
       networkCheckTimeout: 999999999
     },
 
-    bnbTestnet: {
+    bscTestnet: {
       provider: () => new HDWalletProvider(MNEMONIC, 'https://bsc-testnet.public.blastapi.io'),
       network_id: 97,
       confirmations: 2,

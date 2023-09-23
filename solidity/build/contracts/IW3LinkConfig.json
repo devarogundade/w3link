@@ -50,7 +50,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IW3LinkConfig {\r\n    function fee(uint256 destChainId) external view returns (uint256);\r\n\r\n    function handler() external view returns (address);\r\n\r\n    function onlyHandler() external;\r\n}\r\n",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\interfaces\\IW3LinkConfig.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\interfaces\\IW3LinkConfig.sol",
   "ast": {
     "absolutePath": "project:/contracts/interfaces/IW3LinkConfig.sol",
     "exportedSymbols": {
@@ -268,7 +268,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T07:11:14.708Z",
+  "updatedAt": "2023-09-23T10:06:08.724Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

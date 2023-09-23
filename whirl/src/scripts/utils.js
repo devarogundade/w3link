@@ -9,22 +9,22 @@ const Utils = {
         return this.chains.find(chain => chain.id == id)
     },
     whirlIds: {
-        11155111: '0x1b6c979548033dFfC88cEe698c9d3E83c3b0669d',
-        97: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26',
-        80001: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa',
-        123456: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa'
+        11155111: '',
+        80001: '',
+        97: '0x7CAc15209c8cd33072FE3932cD6026Fa0577595A',
+        123456: '0xA245627e1534D5355072C4105bA19406200927E9'
     },
     whirlExtensionIds: {
-        11155111: '0x1b6c979548033dFfC88cEe698c9d3E83c3b0669d',
-        97: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26',
-        80001: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa',
-        123456: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa'
+        11155111: '',
+        80001: '',
+        97: '0xB87b6262Cc3711673fD428fdf0D55B2C904C20D9',
+        123456: '0x46Fae64A3a9cbf7C120e51ed1877c0223E429E38'
     },
     faucetIds: {
-        11155111: '0x1b6c979548033dFfC88cEe698c9d3E83c3b0669d',
-        97: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26',
-        80001: '0x9D35Cb69932f465064C9C73adB0a47e4062016fa',
-        123456: '0x373df9a34f37C2dd087Fa00363010b5D3D242e57'
+        11155111: '',
+        80001: '',
+        97: '0x75Be2aB14919B58A9634D10822CE0258e57F396F',
+        123456: '0x809F5389b64C615f5a2796FF0c2Cfb73e52E4e9F'
     },
     toDate: function (timestamp) {
         var a = new Date(timestamp * 1000)

@@ -99,7 +99,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\nimport \"./../interfaces/IW3Link.sol\";\r\nimport \"./../interfaces/IW3LinkApp.sol\";\r\nimport \"./../interfaces/IW3LinkConfig.sol\";\r\n\r\n/// @title A title that should describe the contract/interface\r\n/// @author The name of the author\r\n/// @notice Explain to an end user what this does\r\n/// @dev Explain to a developer any extra details\r\n\r\nabstract contract VRFExtension is IW3LinkApp {\r\n    IW3Link private _w3link;\r\n    IW3LinkConfig private _w3linkConfig;\r\n    address private _vrfContractId;\r\n    uint256 private _vrfChainId;\r\n\r\n    bytes32 immutable _keyHash;\r\n    uint64 private _subcriptionId;\r\n    uint16 private _confirmations;\r\n\r\n    /* Fee is use to balance link token fee */\r\n    uint256 private _vrfFee = 1 * 10 ** 15;\r\n\r\n    event SetFee(uint256 newFee);\r\n    event Generate();\r\n\r\n    constructor(\r\n        bytes32 keyHash_,\r\n        uint64 subcriptionId_,\r\n        uint16 confirmations_\r\n    ) {\r\n        /* Fantom W3Link Contract */\r\n        _w3link = IW3Link(0xC8709A2ab8CfDb387b8AC71c6083141c16d805C8);\r\n        _w3linkConfig = IW3LinkConfig(_w3link.config());\r\n        /* Fantom VRF Contract */\r\n        _vrfContractId = 0xC8709A2ab8CfDb387b8AC71c6083141c16d805C8;\r\n        /* Fantom Chain Id */\r\n        _vrfChainId = 4002;\r\n        _keyHash = keyHash_;\r\n        _subcriptionId = subcriptionId_;\r\n        _confirmations = confirmations_;\r\n    }\r\n\r\n    function generate() external payable {\r\n        uint256 estFee = _w3linkConfig.fee(_vrfChainId);\r\n        require(msg.value >= (estFee + _vrfFee), \"Use totalFee() to est. fee\");\r\n\r\n        bytes memory data = abi.encode(_subcriptionId, _confirmations);\r\n\r\n        _w3link.deposit{value: estFee}();\r\n\r\n        _w3link.dispatch(_vrfContractId, data, _vrfChainId, _keyHash);\r\n\r\n        emit Generate();\r\n    }\r\n\r\n    function totalFee() external view returns (uint256) {\r\n        uint256 estFee = _w3linkConfig.fee(_vrfChainId);\r\n        return (estFee + _vrfFee);\r\n    }\r\n\r\n    function setFee(uint256 newFee) external {\r\n        _vrfFee = newFee;\r\n        emit SetFee(newFee);\r\n    }\r\n\r\n    function execute(\r\n        uint256 /* fromChainId */,\r\n        bytes memory data,\r\n        bytes32 /* extra */\r\n    ) external override {\r\n        _w3linkConfig.onlyHandler();\r\n        \r\n        onRandomWords(abi.decode(data, (uint256[])));\r\n    }\r\n\r\n    function onRandomWords(uint256[] memory randomWords) internal virtual;\r\n\r\n    function onResult(bytes memory data) external override {}\r\n}\r\n",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\services\\VRFExtension.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\services\\VRFExtension.sol",
   "ast": {
     "absolutePath": "project:/contracts/services/VRFExtension.sol",
     "exportedSymbols": {
@@ -2650,7 +2650,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T07:11:14.730Z",
+  "updatedAt": "2023-09-23T10:06:08.749Z",
   "devdoc": {
     "author": "The name of the author",
     "details": "Explain to a developer any extra details",

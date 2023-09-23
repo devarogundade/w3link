@@ -115,7 +115,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.7;\r\n\r\nimport \"./../interfaces/IW3Link.sol\";\r\nimport \"./../interfaces/IW3LinkApp.sol\";\r\nimport \"./../interfaces/IW3LinkConfig.sol\";\r\n\r\nabstract contract AnyApiUintExtension is IW3LinkApp {\r\n    IW3Link private _w3link;\r\n    IW3LinkConfig private _w3linkConfig;\r\n    address private _apiContractId;\r\n    uint256 private _apiChainId;\r\n\r\n    /* Fee is use to balance link token fee */\r\n    uint256 private _apiFee = 2 * 10 ** 15;\r\n\r\n    event SetFee(uint256 newFee);\r\n    event Fetch();\r\n\r\n    function fetch(\r\n        string memory url,\r\n        string memory path,\r\n        int256 times\r\n    ) external payable {\r\n        uint256 estFee = _w3linkConfig.fee(_apiChainId);\r\n        require(msg.value >= (estFee + _apiFee), \"Use totalFee() to est. fee\");\r\n\r\n        bytes memory data = abi.encode(url, path, address(this), times);\r\n\r\n        _w3link.deposit{value: estFee}();\r\n\r\n        _w3link.dispatch(_apiContractId, data, _apiChainId, \"\" /* no extra */);\r\n\r\n        emit Fetch();\r\n    }\r\n\r\n    function totalFee() external view returns (uint256) {\r\n        uint256 estFee = _w3linkConfig.fee(_apiChainId);\r\n        return (estFee + _apiFee);\r\n    }\r\n\r\n    function setFee(uint256 newFee) external {\r\n        _apiFee = newFee;\r\n        emit SetFee(newFee);\r\n    }\r\n\r\n    function execute(\r\n        uint256 /* fromChainId */,\r\n        bytes memory data,\r\n        bytes32 /* extra */\r\n    ) external override {\r\n        _w3linkConfig.onlyHandler();\r\n        \r\n        onResponse(abi.decode(data, (uint256)));\r\n    }\r\n\r\n    function onResponse(uint256 data) internal virtual;\r\n\r\n    function onResult(bytes memory data) external override {}\r\n}\r\n",
-  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\SOLIDITY\\contracts\\services\\AnyApiUintExtension.sol",
+  "sourcePath": "C:\\Users\\DELL\\Documents\\w3link\\solidity\\contracts\\services\\AnyApiUintExtension.sol",
   "ast": {
     "absolutePath": "project:/contracts/services/AnyApiUintExtension.sol",
     "exportedSymbols": {
@@ -2183,7 +2183,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T07:11:14.721Z",
+  "updatedAt": "2023-09-23T10:06:08.739Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
