@@ -67,7 +67,12 @@ contract Whirl is IW3LinkApp, Context {
             _extContractIds[destChainId],
             data,
             destChainId,
-            "" /* no extra */
+            bytes32(
+                bytes.concat(
+                    bytes20(uint160(_msgSender())),
+                    bytes12(keccak256(abi.encodePacked("whirl")))
+                )
+            ) /* for indexing */
         );
 
         emit NFTransferred(nftContractId, tokenId, _msgSender(), address(this));

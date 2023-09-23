@@ -53,7 +53,12 @@ contract WhirlExtension is IW3LinkApp, Context {
             _twlContractIds[nft.parentId()],
             data,
             nft.parentId(),
-            "" /* no extra */
+            bytes32(
+                bytes.concat(
+                    bytes20(uint160(_msgSender())),
+                    bytes12(keccak256(abi.encodePacked("whirl")))
+                )
+            ) /* for indexing */
         );
 
         emit NFTBurnt(nftContractId, tokenId);
@@ -84,7 +89,12 @@ contract WhirlExtension is IW3LinkApp, Context {
         // otherwise create it
         if (_nfts[fromContractId] == address(0)) {
             _nfts[fromContractId] = address(
-                new WhirlNFT(tokenName, tokenSymbol, fromContractId, fromChainId)
+                new WhirlNFT(
+                    tokenName,
+                    tokenSymbol,
+                    fromContractId,
+                    fromChainId
+                )
             );
         }
 
