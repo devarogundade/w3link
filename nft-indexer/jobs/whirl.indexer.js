@@ -1,7 +1,7 @@
 const CronJob = require('cron').CronJob
 const { whirlId, chainId, rpc, startBlock } = require('../configs/chains.config')
 const eventController = require('../controllers/event.controller')
-const Whirl = require('../abis/W3Link.json')
+const Whirl = require('../abis/Whirl.json')
 const Web3 = require('web3')
 
 // @dev This listener is create for Pego Network Only

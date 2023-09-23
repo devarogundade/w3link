@@ -24,7 +24,7 @@ db.mongoose
     .then(() => {
         console.log("Connected to the database!")
         require("./jobs/transaction")
-        // require("./jobs/indexer")
+        require("./jobs/indexer")
     })
     .catch(err => {
         console.log("Cannot connect to the database!", err)
@@ -38,7 +38,7 @@ db.mongoose
     require("./routes/event.routes")(app)
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8081
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
 })

@@ -29,7 +29,7 @@
     position: absolute;
     left: 8px;
     width: 16px;
-    background: var(--pr-light);
+    background: var(--pr-primary);
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 

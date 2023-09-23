@@ -81,7 +81,11 @@ export default {
 
             const transaction = await tryMintNft(
                 this.nft.chainId,
-                "https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380"
+                JSON.stringify({
+                    image: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380',
+                    name: 'Saturday for Coding!',
+                    symbol: 'SFC'
+                })
             )
 
             if (transaction) {

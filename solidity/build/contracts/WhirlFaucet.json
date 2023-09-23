@@ -178,7 +178,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -222,7 +223,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -254,7 +256,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -278,7 +281,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -314,7 +318,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -327,7 +332,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -346,7 +352,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -359,7 +366,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -372,7 +380,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -385,7 +394,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -480,7 +490,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -493,7 +504,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -512,7 +524,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -1778,11 +1791,42 @@
           ],
           "name": "Transfer",
           "type": "event"
+        },
+        "0xc838a7fd61cef6ed117ca9829550cd25002c8912a0846c98e8b6ea66a79a80d8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "tokenUri",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTMinted",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x4c3B398fD6085AbeA5336ff11AEa8e457ddad1b1",
-      "transactionHash": "0x9df8c016730079e92bd70e4dcef78a6a9831d433711ebef9df21d777d99552c7"
+      "address": "0x049C1fF65E38ddb786f364D9C5e0d3c8120130D0",
+      "transactionHash": "0x923a78fb8a2f579c3b85d39cc37b38358ff76d17bbbcaad623dc30ce33d616fa"
     },
     "123456": {
       "events": {
@@ -1898,15 +1942,46 @@
           ],
           "name": "Transfer",
           "type": "event"
+        },
+        "0xc838a7fd61cef6ed117ca9829550cd25002c8912a0846c98e8b6ea66a79a80d8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "tokenUri",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTMinted",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0xE11e8fB7bdA1775AA9FbE9CcAdDaF6fA2F5De46C",
-      "transactionHash": "0x5391db627e2ac610caee251236adf5a417083994cb78d71161a84028c22de32e"
+      "address": "0xCae9F789aAe68A4d0AF2c3a1632a37c765EcBE57",
+      "transactionHash": "0x1dc8442a43dd9899ed0ca7a1787bee87d251da2a8a35c0fbe204ea9d112bea2e"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T16:10:06.727Z",
+  "updatedAt": "2023-09-23T16:16:39.115Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

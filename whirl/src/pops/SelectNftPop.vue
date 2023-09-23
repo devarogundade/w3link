@@ -66,7 +66,7 @@ import LoadingBox from '../components/LoadingBox.vue'
 </script>
 
 <script>
-import { tryGetNfts } from '../scripts/token'
+import { tryGetNfts, tryGetPegoNfts } from '../scripts/token'
 export default {
     data() {
         return {
@@ -82,7 +82,12 @@ export default {
     methods: {
         getNfts: async function () {
             this.loading = true
-            this.nfts = await tryGetNfts(this.$store.state.wallet.address)
+
+            const result1 = await tryGetNfts(this.$store.state.wallet.address)
+            const result2 = await tryGetPegoNfts(this.$store.state.wallet.address)
+
+            this.nfts = result1.concat(result2)
+
             this.loading = false
         }
     }
@@ -91,7 +96,7 @@ export default {
 
 <style scoped>
 .loader {
-    height: 500px;
+    height: 300px;
 }
 .container {
     position: fixed;

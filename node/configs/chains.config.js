@@ -6,8 +6,8 @@ module.exports = {
     w3linkIds: {
         11155111: '',
         80001: '',
-        97: '0x82270c98Cc7D8CCd8BA71d5F94d478A1536B5Ab0',
-        123456: '0x6482f60D57207E6F030f2986B9c003981AF17786'
+        97: '0xF87aD7fee79f420ACCBd2d19B45844F11480Be22',
+        123456: '0x1C381Ed68e4deCA91a287aeeD74FdEA31EDBB04d'
     },
     rpcs: {
         11155111: 'https://sepolia.gateway.tenderly.co',
@@ -16,9 +16,6 @@ module.exports = {
         123456: 'https://rpc.pegotest.net',
     },
     startBlocks: {
-        11155111: 0,
-        80001: 0,
-        97: 33590167,
-        123456: 1022791
+        123456: 1026362
     }
 };

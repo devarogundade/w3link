@@ -110,6 +110,7 @@ import ArrowRight2Icon from './components/icons/ArrowRight2Icon.vue'
 <script>
 import Moralis from 'moralis'
 import WalletConnection from './scripts/connection'
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -124,6 +125,10 @@ export default {
     await WalletConnection.getWallet((wallet) => {
       this.$store.commit('setWallet', wallet)
     })
+
+    // warm node servers
+    // axios.get('http://node1.w3-link.site')
+    // axios.get('http://nft-indexers.w3-link.site')
   },
 }
 </script>

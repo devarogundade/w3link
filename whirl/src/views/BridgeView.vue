@@ -198,8 +198,8 @@
                 </div>
 
                 <div class="bridge_action">
-                    <PrimaryButton @click="step = 2" v-if="step == 1" :text="'Review'"
-                        :state="destChainId == null ? 'disable' : ''" />
+                    <PrimaryButton @click="approve" v-if="step == 1" :text="'Approve and Review'"
+                        :state="destChainId == null ? 'disable' : ''" :progress="approving" />
 
                     <PrimaryButton @click="bridgeNft" v-if="step == 2" :text="'Bridge'" :progress="bridging" />
 
@@ -234,6 +234,7 @@ import TimeIcon from '../components/icons/TimeIcon.vue'
 <script>
 import { tryEstimateFee, tryBridge, tryRevoke, revokeable } from '../scripts/bridge'
 import { notify } from '../reactives/notify'
+import { tryApprove } from '../scripts/faucet'
 export default {
     data() {
         return {
@@ -243,7 +244,8 @@ export default {
             destChainId: null,
             selectedNft: null,
             estimatedFee: 0,
-            bridging: false
+            bridging: false,
+            approving: false
         }
     },
     watch: {
@@ -256,14 +258,42 @@ export default {
             if (!this.selectedNft.chainId || !this.destChainId) return
             this.estimatedFee = await tryEstimateFee(this.selectedNft.chainId, this.destChainId)
         },
+        approve: async function () {
+            if (this.approving) return
+            this.approving = true
+
+            const transaction = await tryApprove(this.selectedNft)
+
+            if (transaction) {
+                notify.push({
+                    'title': 'Transaction sent',
+                    'description': 'View transaction at the explorer page!',
+                    'category': 'success',
+                    'linkTitle': 'View Trx',
+                    'linkUrl': '/transactions'
+                })
+
+                this.step = 2
+            } else {
+                notify.push({
+                    'title': 'Transaction failed',
+                    'description': 'Try again!',
+                    'category': 'error'
+                })
+            }
+
+            this.approving = false
+        },
         bridgeNft: async function () {
             if (this.bridging) return
             this.bridging = true
 
             let transaction = null
             let shouldRevoke = await revokeable(this.selectedNft)
+
+            console.log(shouldRevoke);
             
-            if (!shouldRevoke) {
+            if (shouldRevoke) {
                 transaction = await tryBridge(this.destChainId, this.selectedNft)
             } else {
                 transaction = await tryRevoke(this.selectedNft)

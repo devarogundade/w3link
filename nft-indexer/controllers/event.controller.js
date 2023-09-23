@@ -10,7 +10,7 @@ exports.insertOrUpdate = async (event) => {
         },
         { $set: event },
         {
-            upsert: false,
+            upsert: true,
             returnNewDocument: true,
             returnDocument: "after"
         }
@@ -36,11 +36,12 @@ exports.delete = async (event) => {
 
 // Retrieve all NFT from the database.
 exports.findAll = async (req, res) => {
-    const { page = 1, limit = 100 } = req.query;
+    const { page = 1, limit = 100 } = req.query
+    const owner = req.params.address
 
     const count = await NFT.countDocuments();
 
-    NFT.find(req.query)
+    NFT.find({ owner: owner })
         .limit(limit * 1)
         .skip((page - 1) * limit)
         .sort({ nonce: 'desc' })
