@@ -1,6 +1,6 @@
 import { prepareWriteContract, writeContract, waitForTransaction, readContract } from '@wagmi/core'
 import whirlFaucetJSON from '../contracts/WhirlFaucet.json'
-import w3NFTJSON from '../contracts/W3NFT.json'
+import w3NFTJSON from '../contracts/WhirlNFT.json'
 import Utils from './utils'
 
 export async function isApproved(nft) {

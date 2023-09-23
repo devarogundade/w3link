@@ -1,7 +1,7 @@
 import { prepareWriteContract, writeContract, waitForTransaction, readContract, } from '@wagmi/core'
 import whirlJSON from '../contracts/Whirl.json'
 import whirlExtensionJSON from '../contracts/WhirlExtension.json'
-import w3NFTJSON from '../contracts/W3NFT.json'
+import w3NFTJSON from '../contracts/WhirlNFT.json'
 import Utils from './utils'
 
 export async function tryEstimateFee(fromChainId, destChainId) {

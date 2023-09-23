@@ -5,7 +5,7 @@ import "./../interfaces/IW3Link.sol";
 import "./../interfaces/IW3LinkApp.sol";
 import "./../interfaces/IW3LinkConfig.sol";
 
-import "./W3NFT.sol";
+import "./WhirlNFT.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
@@ -38,7 +38,7 @@ contract WhirlExtension is IW3LinkApp, Context {
     /// @dev This functions tell whirl Contract that the minted NFT was burn
     /// and it should unlock the original NFT
     function revoke(address nftContractId, uint256 tokenId) external payable {
-        W3NFT nft = W3NFT(_nfts[nftContractId]);
+        WhirlNFT nft = WhirlNFT(_nfts[nftContractId]);
         require(nft.ownerOf(tokenId) == _msgSender(), "Not owner");
         nft.burn(tokenId);
 
@@ -84,12 +84,12 @@ contract WhirlExtension is IW3LinkApp, Context {
         // otherwise create it
         if (_nfts[fromContractId] == address(0)) {
             _nfts[fromContractId] = address(
-                new W3NFT(tokenName, tokenSymbol, fromContractId, fromChainId)
+                new WhirlNFT(tokenName, tokenSymbol, fromContractId, fromChainId)
             );
         }
 
         // Mint the NFT
-        W3NFT nft = W3NFT(_nfts[fromContractId]);
+        WhirlNFT nft = WhirlNFT(_nfts[fromContractId]);
         nft.mint(holder, tokenId, tokenURI);
 
         emit NFTMinted(_msgSender(), address(nft), tokenURI, tokenId);
