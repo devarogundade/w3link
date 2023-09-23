@@ -1,7 +1,7 @@
 {
-  "name": "w3link-node",
+  "name": "nft-indexer",
   "version": "1.0.0",
-  "description": "W3Link RPC Node",
+  "description": "NFT Indexer",
   "main": "server.js",
   "scripts": {
     "test": "test"
@@ -10,8 +10,8 @@
     "blockchain",
     "pego",
     "evm",
-    "brigde",
-    "web3"
+    "nft",
+    "indexer"
   ],
   "author": "devarogundade",
   "license": "MIT",
