@@ -44,7 +44,7 @@ export async function tryMintNft(chainId, customUri = null) {
         const config = await prepareWriteContract({
             address: Utils.faucetIds[chainId],
             abi: whirlFaucetJSON.abi,
-            functionName: 'mint',
+            functionName: 'getFreeNft',
             args: [customUri],
             chainId: chainId
         })

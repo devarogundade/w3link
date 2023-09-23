@@ -9,6 +9,13 @@ contract WhirlFaucet is W3NFT {
 
     Counters.Counter private _tokenId;
 
+    event NFTMinted(
+        address indexed owner,
+        address tokenAddress,
+        string tokenUri,
+        uint256 tokenId
+    );
+
     constructor(
         string memory name_,
         string memory symbol_
@@ -16,7 +23,10 @@ contract WhirlFaucet is W3NFT {
 
     function getFreeNft(string memory uri) external {
         _tokenId.increment();
+
         _mint(msg.sender, _tokenId.current());
         _tokenURIS[_tokenId.current()] = uri;
+
+        emit NFTMinted(msg.sender, address(this), uri, _tokenId.current());
     }
 }

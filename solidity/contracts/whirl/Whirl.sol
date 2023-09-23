@@ -15,6 +15,13 @@ contract Whirl is IW3LinkApp, Context {
     IW3LinkConfig private _w3linkConfig;
     mapping(uint256 => address) private _extContractIds;
 
+    event NFTransferred(
+        address tokenAddress,
+        uint256 tokenId,
+        address from,
+        address to
+    );
+
     constructor(address w3link_) {
         _w3link = IW3Link(w3link_);
         _w3linkConfig = IW3LinkConfig(_w3link.config());
@@ -62,9 +69,11 @@ contract Whirl is IW3LinkApp, Context {
             destChainId,
             "" /* no extra */
         );
+
+        emit NFTransferred(nftContractId, tokenId, _msgSender(), address(this));
     }
 
-    /// @dev This function unlocks the Original NFT to the 
+    /// @dev This function unlocks the Original NFT to the
     /// owner of the burnt similar NFT on whirlExtension
     function execute(
         uint256 /* fromChainId */,
@@ -82,6 +91,8 @@ contract Whirl is IW3LinkApp, Context {
         // Unlock NFT to owner
         IERC721 nft = IERC721(nftContractId);
         nft.transferFrom(address(this), holder, tokenId);
+
+        emit NFTransferred(nftContractId, tokenId, address(this), _msgSender());
     }
 
     function onResult(bytes memory data) external override {}

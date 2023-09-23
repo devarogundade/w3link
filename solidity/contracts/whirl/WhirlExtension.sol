@@ -16,6 +16,15 @@ contract WhirlExtension is IW3LinkApp, Context {
 
     mapping(address => address) private _nfts;
 
+    event NFTMinted(
+        address indexed onwer,
+        address tokenAddress,
+        string tokenUri,
+        uint256 tokenId
+    );
+
+    event NFTBurnt(address tokenAddress, uint256 tokenId);
+
     constructor(address w3link_) {
         _w3link = IW3Link(w3link_);
         _w3linkConfig = IW3LinkConfig(_w3link.config());
@@ -46,6 +55,8 @@ contract WhirlExtension is IW3LinkApp, Context {
             nft.parentId(),
             "" /* no extra */
         );
+
+        emit NFTBurnt(nftContractId, tokenId);
     }
 
     /// @dev This function will mint a new similar NFT as locked on whirl Contract
@@ -80,6 +91,8 @@ contract WhirlExtension is IW3LinkApp, Context {
         // Mint the NFT
         W3NFT nft = W3NFT(_nfts[fromContractId]);
         nft.mint(holder, tokenId, tokenURI);
+
+        emit NFTMinted(_msgSender(), address(nft), tokenURI, tokenId);
     }
 
     function onResult(bytes memory data) external override {}
