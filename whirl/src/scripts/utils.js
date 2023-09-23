@@ -11,20 +11,20 @@ const Utils = {
     whirlIds: {
         11155111: '',
         80001: '',
-        97: '0x4C3b224b30a505d64Ccce0dCFf99669091a20dac',
-        123456: '0x5179bE03a25489Cc6ee0a047E1dA22Ac42C23120'
+        97: '0x7FE498BCb26052A887c2e5723D97bd50a05586a4',
+        123456: '0x8d8eD11A38a7ABe7feb5c13fCcb7Ce3c671e9700'
     },
     whirlExtensionIds: {
         11155111: '',
         80001: '',
-        97: '0x2b3A34c1871Bd30fa679b02def4818c65FbDFd99',
-        123456: '0x9880DFEb756E65c48fa5c2AAb0DFB202f20F0F45'
+        97: '0xe18775bbA12e292E5C28Cdd9A2c3Ae0E104901dd',
+        123456: '0x8DccbDaFB697d0342E397fe17294DD888C09385f'
     },
     faucetIds: {
         11155111: '',
         80001: '',
         97: '0x049C1fF65E38ddb786f364D9C5e0d3c8120130D0',
-        123456: '0xCae9F789aAe68A4d0AF2c3a1632a37c765EcBE57'
+        123456: '0x6C7C79d4ECDBd60891368Fc4924a4224F00cff6A'
     },
     toDate: function (timestamp) {
         var a = new Date(timestamp * 1000)

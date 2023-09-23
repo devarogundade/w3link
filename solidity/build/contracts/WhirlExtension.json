@@ -96,7 +96,8 @@
       "name": "revoke",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -4028,9 +4029,23 @@
     "name": "solc",
     "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "97": {
+      "events": {},
+      "links": {},
+      "address": "0x6F8DaE206Dd3e478555854765a7FCCcFDa04Be87",
+      "transactionHash": "0xe85b67cc81b82cbcc38276514acd03ef32e57d7106819c3c5ebc9a4f1bf49395"
+    },
+    "123456": {
+      "events": {},
+      "links": {},
+      "address": "0x8DccbDaFB697d0342E397fe17294DD888C09385f",
+      "transactionHash": "0x8e49a02c1c176a6bed3f909b906da625a763a79610dec0ca60ae89ddb430599d"
+    }
+  },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-23T19:31:57.399Z",
+  "updatedAt": "2023-09-23T22:57:02.716Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
