@@ -12,7 +12,7 @@ const chainIds = {
 }
 
 module.exports = async function (deployer, network, accounts) {
-    // return
+    return
     await deployer.deploy(W3LinkConfig, accounts[0])
     await deployer.deploy(W3Link, chainIds[network], W3LinkConfig.address)
 

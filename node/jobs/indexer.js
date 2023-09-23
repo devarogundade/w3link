@@ -1,13 +1,13 @@
 const CronJob = require('cron').CronJob
 const { newHash } = require('../utils/event-decoder')
-const { w3linkIds, PegoTestnet, rpcs } = require('../configs/chains.config')
+const { w3linkIds, PegoTestnet, rpcs, startBlocks } = require('../configs/chains.config')
 const eventController = require('../controllers/event.controller')
 const W3Link = require('../abis/W3Link.json')
 const Web3 = require('web3')
 
 // @dev This listener is create for Pego Network Only
 
-let fromBlock = 813841
+let fromBlock = startBlocks[PegoTestnet]
 
 const job = new CronJob('0 */1 * * * *', async function () {
     console.log('Indexer: Running Job')
@@ -39,6 +39,7 @@ const job = new CronJob('0 */1 * * * *', async function () {
                 destContractId: event.returnValues.destContractId,
                 fromContractId: event.returnValues.fromContractId,
                 destChainId: event.returnValues.destChainId,
+                fromChainId: PegoTestnet,
                 bridgeFee: event.returnValues.fee,
                 data: event.returnValues.data,
                 extra: event.returnValues.extra,

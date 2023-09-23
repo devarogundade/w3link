@@ -15,25 +15,23 @@ exports.processEvent = async (event) => {
 
     const w3Link = new web3.eth.Contract(W3Link.abi, w3linkIds[event.destChainId])
 
-    console.log('Contract: ', w3Link)
-
     const signer = web3.eth.accounts.privateKeyToAccount(handlerEvmKey)
     web3.eth.accounts.wallet.add(signer)
 
     console.log('Signer: ', signer)
 
     try {
-        // const gas = await w3Link.methods.execute(
-        //     event.hash,
-        //     event.destContractId,
-        //     event.data,
-        //     event.fromChainId,
-        //     event.extra
-        // ).estimateGas({ from: handlerEvmAddress })
-        // console.log('Gas: ', gas)
+        const gas = await w3Link.methods.execute(
+            event.hash,
+            event.destContractId,
+            event.data,
+            event.fromChainId,
+            event.extra
+        ).estimateGas({ from: handlerEvmAddress })
+        console.log('Gas: ', gas)
 
-        // const gasPrice = await web3.eth.getGasPrice()
-        // console.log('Gas Price: ', gasPrice)
+        const gasPrice = await web3.eth.getGasPrice()
+        console.log('Gas Price: ', gasPrice)
 
         const { transactionHash } = await w3Link.methods.execute(
             event.hash,
@@ -43,8 +41,8 @@ exports.processEvent = async (event) => {
             event.extra
         ).send({
             from: handlerEvmAddress,
-            gasPrice: 200_000,
-            gas: 200_000
+            gasPrice: gasPrice,
+            gas: gas
         })
 
         return transactionHash

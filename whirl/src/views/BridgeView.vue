@@ -110,9 +110,17 @@
                                 <img :src="destChainId == null ? '/images/none.png' : $chain(destChainId).image" alt="">
                                 <WalletDownIcon />
 
-                                <div class="dest_chains" v-if="pickingDestChain">
+                                <div class="dest_chains" v-if="pickingDestChain && selectedNft.chainId == 123456">
                                     <div class="dest_chain"
                                         v-for="chain, i in $chains.filter(c => c.id != selectedNft.chainId)" :key="i"
+                                        @click="destChainId = chain.id">
+                                        <img :src="chain.image" :alt="chain.symbol">
+                                        <p>{{ chain.name }}</p>
+                                    </div>
+                                </div>
+                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId != 123456">
+                                    <div class="dest_chain"
+                                        v-for="chain, i in $chains.filter(c => c.id == 123456)" :key="i"
                                         @click="destChainId = chain.id">
                                         <img :src="chain.image" :alt="chain.symbol">
                                         <p>{{ chain.name }}</p>

@@ -60,13 +60,15 @@ export async function tryMintNft(chainId, customUri = null) {
 
 export async function tryFetchNfts(chainId, owner) {
     try {
-        return readContract({
+        const tokenIds = readContract({
             address: Utils.faucetIds[chainId],
             abi: whirlFaucetJSON.abi,
             functionName: 'ownedTokenIds',
             args: [owner],
             chainId: chainId
         })
+
+        
     } catch (error) {
         console.error(error)
         return []
