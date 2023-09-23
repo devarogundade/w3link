@@ -1,5 +1,5 @@
 const CronJob = require('cron').CronJob
-const { whirlId, rpc, startBlock, whirlExtensionId } = require('../configs/chains.config')
+const { rpc, startBlock, whirlExtensionId } = require('../configs/chains.config')
 const eventController = require('../controllers/event.controller')
 const WhirlExtension = require('../abis/WhirlExtension.json')
 const Web3 = require('web3')
