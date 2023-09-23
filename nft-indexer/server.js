@@ -34,7 +34,7 @@ db.mongoose
     })
     
     app.get("/", (req, res) => {
-        res.json({ message: "W3Link RPC Node V1" })
+        res.json({ message: "NFT Endpoint (Alpha)" })
     })
     
     require("./routes/event.routes")(app)
