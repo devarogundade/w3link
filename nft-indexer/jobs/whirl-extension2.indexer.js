@@ -32,8 +32,8 @@ const job = new CronJob('0 */1 * * * *', async function () {
             const event = events[index]
             
             const eventModel = {
-                tokenAddress: event.tokenAddress,
-                tokenId: event.tokenId
+                tokenAddress: event.returnValues.tokenAddress,
+                tokenId: event.returnValues.tokenId
             }
             
             eventController.delete(eventModel)

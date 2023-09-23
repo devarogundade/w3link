@@ -36,7 +36,7 @@ const job = new CronJob('0 */1 * * * *', async function () {
                 tokenId: event.returnValues.tokenId,
                 chainId: chainId,
                 tokenUri: event.returnValues.tokenUri,
-                owner: event.returnValues.owner
+                owner: event.returnValues.owner.toLowercase()
             }
             
             eventController.insertOrUpdate(eventModel)
