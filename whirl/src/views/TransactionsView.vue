@@ -169,7 +169,7 @@ export default {
 .container {
     display: flex;
     justify-content: center;
-    padding: 150px 0;
+    padding: 60px 0;
 }
 
 .transactions_rect {

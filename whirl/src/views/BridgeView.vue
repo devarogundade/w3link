@@ -232,7 +232,7 @@ import TimeIcon from '../components/icons/TimeIcon.vue'
 </script>
 
 <script>
-import { tryEstimateFee, tryBridge, tryRevoke } from '../scripts/bridge'
+import { tryEstimateFee, tryBridge, tryRevoke, revokeable } from '../scripts/bridge'
 import { notify } from '../reactives/notify'
 export default {
     data() {
@@ -261,9 +261,9 @@ export default {
             this.bridging = true
 
             let transaction = null
-            let condition = true
+            let shouldRevoke = await revokeable(this.selectedNft)
             
-            if (condition) {
+            if (!shouldRevoke) {
                 transaction = await tryBridge(this.destChainId, this.selectedNft)
             } else {
                 transaction = await tryRevoke(this.selectedNft)
@@ -297,8 +297,7 @@ export default {
 .bridge_container {
     display: flex;
     justify-content: center;
-    padding-top: 150px;
-    padding-bottom: 50px;
+    padding: 60px 0;
 }
 
 .bridge_box {

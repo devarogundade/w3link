@@ -1,6 +1,6 @@
 import { prepareWriteContract, writeContract, waitForTransaction, readContract, } from '@wagmi/core'
 import whirlJSON from '../contracts/Whirl.json'
-import whirlExtension from '../contracts/WhirlExtension.json'
+import whirlExtensionJSON from '../contracts/WhirlExtension.json'
 import w3NFTJSON from '../contracts/W3NFT.json'
 import Utils from './utils'
 
@@ -42,7 +42,7 @@ export async function tryRevoke(nft) {
     try {
         const config = await prepareWriteContract({
             address: Utils.whirlExtensionIds[nft.chainId],
-            abi: whirlExtension.abi,
+            abi: whirlExtensionJSON.abi,
             functionName: 'revoke',
             args: [nft.address, nft.tokenId],
             chainId: nft.chainId
@@ -57,32 +57,18 @@ export async function tryRevoke(nft) {
     }
 }
 
-// export async function tryFetchNfts(chainId, owner) {
-//     try {
-//         return readContract({
-//             address: Utils.whirlIds[chainId],
-//             abi: w3NFTJSON.abi,
-//             functionName: 'ownedTokenIds',
-//             args: [owner],
-//             chainId: chainId
-//         })
-//     } catch (error) {
-//         console.error(error)
-//         return []
-//     }
-// }
+export async function revokeable(nft) {
+    try {
+        const parent = await readContract({
+            address: nft.address,
+            abi: w3NFTJSON.abi,
+            functionName: 'parent',
+            chainId: nft.chainId
+        })
 
-// export async function tryFetchExtNfts(chainId, owner) {
-//     try {
-//         return readContract({
-//             address: Utils.whirlExtensionIds[chainId],
-//             abi: w3NFTJSON.abi,
-//             functionName: 'ownedTokenIds',
-//             args: [owner],
-//             chainId: chainId
-//         })
-//     } catch (error) {
-//         console.error(error)
-//         return []
-//     }
-// }
+        return parent != null
+    } catch (error) {
+        console.error(error);
+        return false
+    }
+}
