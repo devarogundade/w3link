@@ -109,7 +109,7 @@ export default {
                     'description': 'Faucet NFT Successfully minted!',
                     'category': 'success',
                     'linkTitle': 'View Trx',
-                    'linkUrl': '/transactions'
+                    'linkUrl': `${this.$chain(this.nft.chainId).scan}/tx/${transaction.transactionHash}`
                 })
 
                 this.step = 3
