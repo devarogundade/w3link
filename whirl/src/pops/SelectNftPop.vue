@@ -40,7 +40,7 @@
                 <LoadingBox />
             </div>
 
-            <div class="scroll_y" v-else>
+            <div class="scroll_y" v-else-if="nfts.length > 0">
                 <div class="items">
                     <div class="item" v-for="nft, i in nfts" :key="i" @click="$emit('nft', nft)">
                         <img :src="nft.uri" :alt="nft.symbol">
@@ -53,6 +53,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="empty" v-if="!loading && nfts.length == 0">
+                <img src="/images/empty.png" alt="">
+                <p>Empty!, Mint a free NFT at the faucet</p>
             </div>
         </div>
     </div>
@@ -98,6 +103,7 @@ export default {
 .loader {
     height: 300px;
 }
+
 .container {
     position: fixed;
     top: 0;
@@ -133,7 +139,7 @@ export default {
 
 .box_header h3 {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -147,7 +153,7 @@ export default {
     align-items: center;
     gap: 12px;
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -169,7 +175,7 @@ export default {
 
 .toolbar .text p:first-child {
     color: var(--tx-immed, #5C5E66);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -185,7 +191,7 @@ export default {
 .toolbar .text p:last-child {
     margin-top: 8px;
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -208,7 +214,7 @@ export default {
     gap: 8px;
 
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -290,7 +296,7 @@ export default {
 
 .item_detail p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -302,7 +308,7 @@ export default {
 .item_detail p:last-child {
     margin-top: 6px;
     color: var(--tx-dimmed, #5C5E66);
-    
+
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

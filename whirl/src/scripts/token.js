@@ -35,7 +35,6 @@ export async function tryGetNfts(address) {
 
         for (const chain of chains) {
             const response = await Moralis.EvmApi.nft.getWalletNFTs({ address, chain })
-            console.log(response.result);
             response.result.forEach(nft => {
                 allNFTs.push({
                     address: nft.tokenAddress.lowercase,

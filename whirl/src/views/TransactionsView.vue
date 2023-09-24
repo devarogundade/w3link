@@ -97,6 +97,8 @@
                             </div>
                             <div class="empty" v-if="transactions.length == 0">
                                 <img src="/images/empty.png" alt="">
+                                <p v-if="$store.state.wallet.address">No transaction history!</p>
+                                <p v-else>Connect your wallet!</p>
                             </div>
                         </div>
 
@@ -135,12 +137,12 @@ import ArrowLeftIcon from '../components/icons/ArrowLeftIcon.vue'
 import OngoingIcon from '../components/icons/OngoingIcon.vue'
 import SuccessfulIcon from '../components/icons/SuccessfulIcon.vue'
 import FailedfulIcon from '../components/icons/FailedfulIcon.vue'
+import OutIcon from '../components/icons/OutIcon.vue'
 </script>
 
 <script>
 import { fetchTransactions } from '../scripts/scan'
 import { tryDecode } from '../scripts/token'
-import OutIcon from '../components/icons/OutIcon.vue'
 
 export default {
     data() {
@@ -166,7 +168,6 @@ export default {
         getMessages: async function (page) {
             try {
                 if (this.$store.state.wallet != '') {
-                    // eslint-disable-next-line no-undef
                     const response = await fetchTransactions(this.$store.state.wallet.address, page)
                     this.transactions = response.data
                     this.currentPage = response.currentPage

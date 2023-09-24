@@ -23,7 +23,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 //         await whirl.setExtContract(11155111, '0x9D4E92eA61c6B608f9337Ce1d87cf3cE8AD04414')
 //     })
 
-//     it('Whirl Extension: Set Source', async accounts => {
+//     it('Whirl Extension: Set Source', async () => {
 //         const whirlExtension = await WhirlExtension.deployed()
 //         await whirlExtension.setWhlContract(97, '0xd4c7a8eac899d1B6917cD8DbFDfd4BdC2F152621')
 //         await whirlExtension.setWhlContract(80001, '0xa79826BEF0B8ba7D4b19964EE725fc761e882Ba5')
@@ -33,24 +33,24 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 
 // Binance Bruno
 
-contract('W3LinkConfig', async accounts => {
-    it('W3LinkConfig: Set Fee', async () => {
-        const w3LinkConfig = await W3LinkConfig.deployed()
-        await w3LinkConfig.setFee(123456 , '50000000000000000')
-    })
-})
+// contract('W3LinkConfig', async accounts => {
+//     it('W3LinkConfig: Set Fee', async () => {
+//         const w3LinkConfig = await W3LinkConfig.deployed()
+//         await w3LinkConfig.setFee(123456 , '50000000000000000')
+//     })
+// })
 
-contract('whirl', async accounts => {
-    it('whirl: Set Dest', async () => {
-        const whirl = await Whirl.deployed()
-        await whirl.setExtContract(123456, '0x0844c015f29A48d279E4977c755A260F15E69Cf4')
-    })
+// contract('whirl', async accounts => {
+//     it('whirl: Set Dest', async () => {
+//         const whirl = await Whirl.deployed()
+//         await whirl.setExtContract(123456, '0x0844c015f29A48d279E4977c755A260F15E69Cf4')
+//     })
 
-    it('Whirl Extension: Set Source', async accounts => {
-        const whirlExtension = await WhirlExtension.deployed()
-        await whirlExtension.setWhlContract(123456, '0x0a772fE3fE308fd8cCC7f58c973D7dE05c2eE2D8')
-    })
-})
+//     it('Whirl Extension: Set Source', async () => {
+//         const whirlExtension = await WhirlExtension.deployed()
+//         await whirlExtension.setWhlContract(123456, '0x0a772fE3fE308fd8cCC7f58c973D7dE05c2eE2D8')
+//     })
+// })
 
 // Mumbai
 
@@ -67,7 +67,7 @@ contract('whirl', async accounts => {
 //         await whirl.setExtContract(123456, '0x0844c015f29A48d279E4977c755A260F15E69Cf4')
 //     })
 
-//     it('Whirl Extension: Set Source', async accounts => {
+//     it('Whirl Extension: Set Source', async () => {
 //         const whirlExtension = await WhirlExtension.deployed()
 //         await whirlExtension.setWhlContract(123456, '0x0a772fE3fE308fd8cCC7f58c973D7dE05c2eE2D8')
 //     })
@@ -88,7 +88,7 @@ contract('whirl', async accounts => {
 //         await whirl.setExtContract(123456, '0x0844c015f29A48d279E4977c755A260F15E69Cf4')
 //     })
 
-//     it('Whirl Extension: Set Source', async accounts => {
+//     it('Whirl Extension: Set Source', async () => {
 //         const whirlExtension = await WhirlExtension.deployed()
 //         await whirlExtension.setWhlContract(123456, '0x0a772fE3fE308fd8cCC7f58c973D7dE05c2eE2D8')
 //     })

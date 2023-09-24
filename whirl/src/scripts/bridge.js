@@ -19,13 +19,13 @@ export async function tryEstimateFee(fromChainId, destChainId) {
     }
 }
 
-export async function tryBridge(destChainId, nft) {
+export async function tryBridge(destChainId, nft, estFee) {
     try {
         const config = await prepareWriteContract({
             address: Utils.whirlIds[nft.chainId],
             abi: whirlJSON.abi,
             functionName: 'bridge',
-            args: [destChainId, nft.tokenId, nft.address],
+            args: [destChainId, nft.tokenId, nft.address, { value: estFee }],
             chainId: nft.chainId
         })
 
@@ -38,7 +38,7 @@ export async function tryBridge(destChainId, nft) {
     }
 }
 
-export async function tryRevoke(nft) {
+export async function tryRevoke(nft, estFee) {
     try {
         const parent = await readContract({
             address: nft.address,
@@ -51,7 +51,7 @@ export async function tryRevoke(nft) {
             address: Utils.whirlExtensionIds[nft.chainId],
             abi: whirlExtensionJSON.abi,
             functionName: 'revoke',
-            args: [parent, nft.tokenId],
+            args: [parent, nft.tokenId, { value: estFee }],
             chainId: nft.chainId
         })
 

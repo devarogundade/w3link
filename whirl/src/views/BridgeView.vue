@@ -329,9 +329,9 @@ export default {
             let shouldRevoke = await revokeable(this.selectedNft)
 
             if (!shouldRevoke) {
-                transaction = await tryBridge(this.destChainId, this.selectedNft)
+                transaction = await tryBridge(this.destChainId, this.selectedNft, this.estimatedFee)
             } else {
-                transaction = await tryRevoke(this.selectedNft)
+                transaction = await tryRevoke(this.selectedNft, this.estimatedFee)
             }
 
             if (transaction) {
