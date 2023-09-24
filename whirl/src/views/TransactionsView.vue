@@ -26,16 +26,16 @@
                                     </thead>
                                 </div>
                             </table>
-                            <div class="tbody" v-for="transaction, i in 2" :key="i">
+                            <div class="tbody" v-for="transaction, i in transactions" :key="i">
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="bridge_asset">
                                                 <img class="bridge_asset_image"
-                                                    src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380" />
+                                                    :src="JSON.parse(decode(transaction.data).tokenUri).image" />
                                                 <div class="bridge_asset_name">
-                                                    <p>Dark Knight</p>
-                                                    <p class="bridge_asset_name_id">2861
+                                                    <p>{{ JSON.parse(decode(transaction.data).tokenUri).name }}</p>
+                                                    <p class="bridge_asset_name_id">{{ decode(transaction.data).tokenId }}
                                                         <OutIcon />
                                                     </p>
                                                 </div>
@@ -43,12 +43,20 @@
                                         </td>
                                         <td>
                                             <div class="time_created">
-                                                <p>9 Sept 23</p>
+                                                <p>{{ $toDate(transaction.dispatchTimestamp) }}</p>
                                                 <p>12:33:43 PM</p>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="asset_status">
+                                            <div class="asset_status" v-if="transaction.status == 'DELIVERED'">
+                                                <SuccessfulIcon />
+                                                <p>Success</p>
+                                            </div>
+                                            <div class="asset_status" v-else-if="transaction.status == 'FAILED'">
+                                                <FailedfulIcon />
+                                                <p>Failed</p>
+                                            </div>
+                                            <div class="asset_status" v-else>
                                                 <OngoingIcon />
                                                 <p>Ongoing</p>
                                             </div>
@@ -56,32 +64,40 @@
                                         <td>
                                             <div class="source_chain">
                                                 <div class="chain">
-                                                    <img src="/images/pego.png" alt="">
-                                                    <p>PEGO</p>
+                                                    <img :src="$chain(transaction.fromChainId).image" alt="">
+                                                    <p>{{ $chain(transaction.fromChainId).name }}</p>
                                                 </div>
-                                                <p class="view_trx">
-                                                    <OutIcon /> View Txn
-                                                </p>
+                                                <a :href="`${$chain(transaction.fromChainId).scan}/tx/${transaction.fromHash}`"
+                                                    target="_blank">
+                                                    <p class="view_trx">
+                                                        <OutIcon /> View Txn
+                                                    </p>
+                                                </a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="dest_chain">
-                                                <div class="chain">
-                                                    <p>Binance</p>
-                                                    <img src="/images/bsc.png" alt="">
+                                            <div class="l_chain">
+                                                <div class="dest_chain">
+                                                    <div class="chain">
+                                                        <p>{{ $chain(transaction.destChainId).name }}</p>
+                                                        <img :src="$chain(transaction.destChainId).image" alt="">
+                                                    </div>
+                                                    <a :href="`${$chain(transaction.destChainId).scan}/tx/${transaction.toHash}`"
+                                                        target="_blank">
+                                                        <p class="view_trx">
+                                                            View Txn
+                                                            <OutIcon />
+                                                        </p>
+                                                    </a>
                                                 </div>
-                                                <p class="view_trx">
-                                                    View Txn
-                                                    <OutIcon />
-                                                </p>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </div>
-                            <!-- <div class="empty" v-if="transactions.length == 0">
+                            <div class="empty" v-if="transactions.length == 0">
                                 <img src="/images/empty.png" alt="">
-                            </div> -->
+                            </div>
                         </div>
 
                         <div class="transaction_navigation">
@@ -117,10 +133,13 @@ import SortIcon from '../components/icons/SortIcon.vue'
 import ArrowRightIcon from '../components/icons/ArrowRightIcon.vue'
 import ArrowLeftIcon from '../components/icons/ArrowLeftIcon.vue'
 import OngoingIcon from '../components/icons/OngoingIcon.vue'
+import SuccessfulIcon from '../components/icons/SuccessfulIcon.vue'
+import FailedfulIcon from '../components/icons/FailedfulIcon.vue'
 </script>
 
 <script>
-// import { fetchTransactions } from '../scripts/scan'
+import { fetchTransactions } from '../scripts/scan'
+import { tryDecode } from '../scripts/token'
 import OutIcon from '../components/icons/OutIcon.vue'
 
 export default {
@@ -133,6 +152,7 @@ export default {
         }
     },
     methods: {
+        decode: tryDecode,
         back: function () {
             if (this.currentPage > 1) {
                 this.getMessages(Number(this.currentPage) - 1)
@@ -147,7 +167,7 @@ export default {
             try {
                 if (this.$store.state.wallet != '') {
                     // eslint-disable-next-line no-undef
-                    const response = await fetctTransactions(this.$store.state.wallet.address, page)
+                    const response = await fetchTransactions(this.$store.state.wallet.address, page)
                     this.transactions = response.data
                     this.currentPage = response.currentPage
                     this.totalPages = response.totalPages
@@ -247,8 +267,7 @@ td:nth-child(4) {
 
 td:nth-child(5) {
     width: 150px;
-    display: flex;
-    justify-content: flex-end;
+    text-align: right;
 }
 
 thead td {
@@ -318,6 +337,11 @@ thead td {
     background: var(--bg-lightest, #0C1A33);
     height: 38px;
     border-radius: 4px;
+}
+
+.l_chain {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .tbody {

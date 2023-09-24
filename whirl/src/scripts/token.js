@@ -1,6 +1,7 @@
 import Moralis from 'moralis'
 import { EvmChain } from '@moralisweb3/common-evm-utils'
 import axios from 'axios'
+import Web3 from 'web3'
 
 export async function tryGetPegoNfts(address) {
     try {
@@ -54,3 +55,27 @@ export async function tryGetNfts(address) {
     }
 }
 
+export function tryDecode(data) {
+    try {
+        const web3 = new Web3('https://rpc.ankr.com/eth')
+        const format = ['uint256', 'address', 'string', 'string', 'string', 'address']
+        const value = web3.eth.abi.decodeParameters(format, data)
+        return {
+            tokenId: value[0],
+            address: value[1],
+            name: value[2],
+            symbol: value[3],
+            tokenUri: value[4],
+            owner: value[5]
+        }
+    } catch (error) {
+        console.error(error)
+        return {
+            tokenId: 0,
+            name: 'Not found',
+            symbol: 'NaN',
+            tokenUri: '',
+            owner: ''
+        }
+    }
+}
