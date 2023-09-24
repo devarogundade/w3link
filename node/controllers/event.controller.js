@@ -31,20 +31,6 @@ exports.create = async (req, res) => {
         })
 };
 
-// Create and Save a new Event
-exports.create2 = async (event) => {
-    // Save Event to database
-    Event.findOneAndUpdate(
-        { fromHash: event.fromHash },
-        { $set: event },
-        { upsert: true }
-    ).then(data => {
-        console.log(data)
-    }).catch(err => {
-        console.error(err)
-    })
-}
-
 // Retrieve all Event from the database.
 exports.findAll = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
