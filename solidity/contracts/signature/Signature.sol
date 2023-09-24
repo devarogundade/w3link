@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
+// Work in Progress
+
 contract Signature {
     function verifyHash(bytes32 /* hash */) public pure virtual returns (bool) {
         return true;

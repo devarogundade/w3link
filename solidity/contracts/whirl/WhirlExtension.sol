@@ -31,14 +31,14 @@ contract WhirlExtension is IW3LinkApp, Context {
     }
 
     /// @dev For setting whirl contract ids
-    function setTwlContract(uint256 destChainId, address contractId) external {
+    function setWhlContract(uint256 destChainId, address contractId) external {
         _whlContractIds[destChainId] = contractId;
     }
 
     /// @dev This functions tell whirl Contract that the minted NFT was burn
     /// and it should unlock the original NFT
     function revoke(address nftContractId, uint256 tokenId) external payable {
-        WhirlNFT nft = WhirlNFT(_nfts[nftContractId]);
+        WhirlNFT nft = WhirlNFT(nftContractId);
         require(nft.ownerOf(tokenId) == _msgSender(), "Not owner");
         nft.burn(tokenId);
 

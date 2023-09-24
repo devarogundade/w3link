@@ -50,6 +50,8 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
         uint256 destChainId,
         bytes32 extra
     ) external override {
+        require(destContractId != address(0), "Invalid dest contract");
+
         bytes32 hash = getHash(_dispatchId.current());
 
         _executed[hash] = false;

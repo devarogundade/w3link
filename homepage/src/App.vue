@@ -25,8 +25,8 @@ import axios from 'axios'
 export default {
   mounted() {
     // warm node servers
-    // axios.get('https://node1.w3-link.site')
-    // axios.get('https://nft.w3-link.site')
+    axios.get('https://node1.w3-link.site')
+    axios.get('https://nft.w3-link.site')
   }
 }
 </script>
