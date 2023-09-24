@@ -14,8 +14,5 @@ module.exports = {
         80001: 'https://rpc.ankr.com/polygon_mumbai',
         97: 'https://bsc-testnet.public.blastapi.io',
         123456: 'https://rpc.pegotest.net',
-    },
-    startBlocks: {
-        123456: 1030847
     }
 };

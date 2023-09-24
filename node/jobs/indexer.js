@@ -1,17 +1,21 @@
 const CronJob = require('cron').CronJob
 const { newHash } = require('../utils/event-decoder')
-const { w3linkIds, PegoTestnet, rpcs, startBlocks } = require('../configs/chains.config')
+const { w3linkIds, PegoTestnet, rpcs } = require('../configs/chains.config')
 const eventController = require('../controllers/event.controller')
 const W3Link = require('../abis/W3Link.json')
 const Web3 = require('web3')
+const fs = require('fs')
 
 // @dev This listener is create for Pego Network Only
 
-let fromBlock = startBlocks[PegoTestnet]
-
 const job = new CronJob('*/30 * * * * *', async function () {
     try {
-        console.log('Indexer: Running Job')
+        const data = fs.readFileSync('jobs/config.indexer.json', "utf-8")
+        const json = JSON.parse(data)
+      
+        const fromBlock = json.startBlocks[PegoTestnet]
+
+        console.log(`Indexer: Running Job from ${fromBlock}`)
 
         const web3 = new Web3(rpcs[PegoTestnet])
         const w3link = new web3.eth.Contract(W3Link.abi, w3linkIds[PegoTestnet])
@@ -52,9 +56,15 @@ const job = new CronJob('*/30 * * * * *', async function () {
             }
         })
 
-        fromBlock = latestBlock
+        fs.writeFileSync('jobs/config.indexer.json', JSON.stringify(
+            {
+                startBlocks: {
+                    PegoTestnet: latestBlock
+                }
+            }
+        ))
 
-        console.log('Indexer: Ending Job')
+        console.log(`Indexer: Ending Job at ${latestBlock}`)
     } catch (error) {
         console.error(error)
         if (!job.running) {

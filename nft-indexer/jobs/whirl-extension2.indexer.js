@@ -1,16 +1,20 @@
 const CronJob = require('cron').CronJob
-const { rpc, startBlock, whirlExtensionId } = require('../configs/chains.config')
+const { rpc, whirlExtensionId, chainId } = require('../configs/chains.config')
 const eventController = require('../controllers/event.controller')
 const WhirlExtension = require('../abis/WhirlExtension.json')
 const Web3 = require('web3')
+const fs = require('fs')
 
 // @dev This listener is create for Pego Network Only
 
-let fromBlock = startBlock
-
 const job = new CronJob('*/30 * * * * *', async function () {
     try {
-        console.log('Whirl Extension Indexer: Running Job')
+        const data = fs.readFileSync('jobs/whirl-extension2.indexer.json', "utf-8")
+        const json = JSON.parse(data)
+
+        const fromBlock = json.startBlocks[chainId]
+
+        console.log(`Indexer: Running Job from ${fromBlock}`)
 
         const web3 = new Web3(rpc)
         const whirlExtension = new web3.eth.Contract(WhirlExtension.abi, whirlExtensionId)
@@ -41,7 +45,13 @@ const job = new CronJob('*/30 * * * * *', async function () {
             }
         })
 
-        fromBlock = latestBlock
+        fs.writeFileSync('jobs/whirl-extension2.indexer.json', JSON.stringify(
+            {
+                startBlocks: {
+                    chainId: latestBlock
+                }
+            }
+        ))
 
         console.log('Whirl Extension Indexer: Ending Job')
     } catch (error) {
