@@ -59,7 +59,7 @@ const job = new CronJob('*/30 * * * * *', async function () {
         fs.writeFileSync('jobs/config.indexer.json', JSON.stringify(
             {
                 startBlocks: {
-                    PegoTestnet: latestBlock
+                    123456: latestBlock
                 }
             }
         ))

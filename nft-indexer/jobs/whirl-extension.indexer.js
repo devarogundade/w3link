@@ -51,7 +51,7 @@ const job = new CronJob('*/30 * * * * *', async function () {
         fs.writeFileSync('jobs/whirl-extension.indexer.json', JSON.stringify(
             {
                 startBlocks: {
-                    chainId: latestBlock
+                    123456: latestBlock
                 }
             }
         ))
