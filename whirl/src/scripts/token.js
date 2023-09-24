@@ -6,7 +6,7 @@ export async function tryGetPegoNfts(address) {
     try {
         const allNFTs = []
 
-        const response = await axios.get(`https://nft.w3-link.site/${address}/nfts`)
+        const response = await axios.get(`http://localhost:8080/${address}/nfts`)
 
         response.data.data.forEach(nft => {
             allNFTs.push({

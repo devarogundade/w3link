@@ -17,7 +17,7 @@ const Utils = {
     whirlExtensionIds: {
         11155111: '',
         80001: '',
-        97: '0xe18775bbA12e292E5C28Cdd9A2c3Ae0E104901dd',
+        97: '0x6F8DaE206Dd3e478555854765a7FCCcFDa04Be87',
         123456: '0x8DccbDaFB697d0342E397fe17294DD888C09385f'
     },
     faucetIds: {

@@ -37,9 +37,9 @@ exports.delete = async (event) => {
 // Retrieve all NFT from the database.
 exports.findAll = async (req, res) => {
     const { page = 1, limit = 100 } = req.query
-    const owner = req.params.address.toLowercase()
+    const owner = req.params.address
 
-    const count = await NFT.countDocuments();
+    const count = await NFT.countDocuments()
 
     NFT.find({ owner: owner })
         .limit(limit * 1)

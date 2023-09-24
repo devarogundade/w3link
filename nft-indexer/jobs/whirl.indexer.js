@@ -9,42 +9,49 @@ const Web3 = require('web3')
 let fromBlock = startBlock
 
 const job = new CronJob('*/30 * * * * *', async function () {
-    console.log('Whirl Indexer: Running Job')
+    try {
+        console.log('Whirl Indexer: Running Job')
 
-    const web3 = new Web3(rpc)
-    const whirl = new web3.eth.Contract(Whirl.abi, whirlId)
+        const web3 = new Web3(rpc)
+        const whirl = new web3.eth.Contract(Whirl.abi, whirlId)
 
-    const latestBlock = await web3.eth.getBlockNumber()
-    console.log('Whirl Indexer: Lastest Block ', latestBlock)
+        const latestBlock = await web3.eth.getBlockNumber()
+        console.log('Whirl Indexer: Lastest Block ', latestBlock)
 
-    if (fromBlock == latestBlock) return
+        if (fromBlock == latestBlock) return
 
-    whirl.getPastEvents('NFTransferred', {filter: {}, fromBlock: fromBlock, toBlock: 'latest'}, function (error, events) {
-        console.log('Whirl Indexer: Error ', error)
-        console.log('Whirl Indexer: Events ', events)
+        whirl.getPastEvents('NFTransferred', { filter: {}, fromBlock: fromBlock, toBlock: 'latest' }, function (error, events) {
+            console.log('Whirl Indexer: Error ', error)
+            console.log('Whirl Indexer: Events ', events)
 
-        if (error) {
-            console.error(error)
-            return
-        }
-
-        for (let index = 0; index < events.length; index++) {
-            const event = events[index]
-            
-            const eventModel = {
-                tokenAddress: event.returnValues.tokenAddress,
-                tokenId: event.returnValues.tokenId,
-                chainId: chainId,
-                owner: event.returnValues.to.toLowercase()
+            if (error) {
+                console.error(error)
+                return
             }
-            
-            eventController.insertOrUpdate(eventModel)
+
+            for (let index = 0; index < events.length; index++) {
+                const event = events[index]
+
+                const eventModel = {
+                    tokenAddress: event.returnValues.tokenAddress,
+                    tokenId: event.returnValues.tokenId,
+                    chainId: chainId,
+                    owner: event.returnValues.to
+                }
+
+                eventController.insertOrUpdate(eventModel)
+            }
+        })
+
+        fromBlock = latestBlock
+
+        console.log('Whirl Indexer: Ending Job')
+    } catch (error) {
+        console.error(error)
+        if (!job.running) {
+            job.start()
         }
-    })
-
-    fromBlock = latestBlock
-
-    console.log('Whirl Indexer: Ending Job')
+    }
 })
 
 job.start()

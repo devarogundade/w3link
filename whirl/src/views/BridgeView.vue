@@ -262,6 +262,12 @@ export default {
             if (this.approving) return
             this.approving = true
 
+            let shouldRevoke = await revokeable(this.selectedNft)
+            if (shouldRevoke) {
+                this.step = 2
+                return
+            }
+
             const transaction = await tryApprove(this.selectedNft)
 
             if (transaction) {
