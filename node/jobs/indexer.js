@@ -9,7 +9,7 @@ const Web3 = require('web3')
 
 let fromBlock = startBlocks[PegoTestnet]
 
-const job = new CronJob('0 */1 * * * *', async function () {
+const job = new CronJob('*/30 * * * * *', async function () {
     try {
         console.log('Indexer: Running Job')
 

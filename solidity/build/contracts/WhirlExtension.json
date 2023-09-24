@@ -200,7 +200,7 @@
         7323
       ],
       "WhirlNFT": [
-        7519
+        7536
       ]
     },
     "id": 7324,
@@ -261,7 +261,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 7324,
-        "sourceUnit": 7520,
+        "sourceUnit": 7537,
         "src": "189:24:41",
         "symbolAliases": [],
         "unitAlias": ""
@@ -314,7 +314,7 @@
         ],
         "canonicalName": "WhirlExtension",
         "contractDependencies": [
-          7519
+          7536
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
@@ -1143,7 +1143,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                        "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                         "typeString": "contract WhirlNFT"
                       },
                       "typeName": {
@@ -1156,13 +1156,13 @@
                             "1252:8:41"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 7519,
+                          "referencedDeclaration": 7536,
                           "src": "1252:8:41"
                         },
-                        "referencedDeclaration": 7519,
+                        "referencedDeclaration": 7536,
                         "src": "1252:8:41",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                          "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                           "typeString": "contract WhirlNFT"
                         }
                       },
@@ -1221,10 +1221,10 @@
                       "name": "WhirlNFT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7519,
+                      "referencedDeclaration": 7536,
                       "src": "1267:8:41",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_WhirlNFT_$7519_$",
+                        "typeIdentifier": "t_type$_t_contract$_WhirlNFT_$7536_$",
                         "typeString": "type(contract WhirlNFT)"
                       }
                     },
@@ -1240,7 +1240,7 @@
                     "src": "1267:30:41",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                      "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                       "typeString": "contract WhirlNFT"
                     }
                   },
@@ -1290,7 +1290,7 @@
                               "referencedDeclaration": 7118,
                               "src": "1316:3:41",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                                "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                                 "typeString": "contract WhirlNFT"
                               }
                             },
@@ -1457,7 +1457,7 @@
                         "referencedDeclaration": 7118,
                         "src": "1377:3:41",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                          "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                           "typeString": "contract WhirlNFT"
                         }
                       },
@@ -1469,7 +1469,7 @@
                       "memberLocation": "1381:4:41",
                       "memberName": "burn",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7485,
+                      "referencedDeclaration": 7502,
                       "src": "1377:8:41",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
@@ -1556,7 +1556,7 @@
                             "referencedDeclaration": 7118,
                             "src": "1490:3:41",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                              "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                               "typeString": "contract WhirlNFT"
                             }
                           },
@@ -1568,7 +1568,7 @@
                           "memberLocation": "1494:6:41",
                           "memberName": "parent",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 7510,
+                          "referencedDeclaration": 7527,
                           "src": "1490:10:41",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -1731,7 +1731,7 @@
                             "referencedDeclaration": 7118,
                             "src": "1565:3:41",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                              "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                               "typeString": "contract WhirlNFT"
                             }
                           },
@@ -1743,7 +1743,7 @@
                           "memberLocation": "1569:8:41",
                           "memberName": "parentId",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 7518,
+                          "referencedDeclaration": 7535,
                           "src": "1565:12:41",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -1932,7 +1932,7 @@
                               "referencedDeclaration": 7118,
                               "src": "1726:3:41",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                                "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                                 "typeString": "contract WhirlNFT"
                               }
                             },
@@ -1944,7 +1944,7 @@
                             "memberLocation": "1730:8:41",
                             "memberName": "parentId",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 7518,
+                            "referencedDeclaration": 7535,
                             "src": "1726:12:41",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -2002,7 +2002,7 @@
                             "referencedDeclaration": 7118,
                             "src": "1775:3:41",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                              "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                               "typeString": "contract WhirlNFT"
                             }
                           },
@@ -2014,7 +2014,7 @@
                           "memberLocation": "1779:8:41",
                           "memberName": "parentId",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 7518,
+                          "referencedDeclaration": 7535,
                           "src": "1775:12:41",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -3339,7 +3339,7 @@
                                   "nodeType": "NewExpression",
                                   "src": "2955:12:41",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_function_creation_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$_t_uint256_$returns$_t_contract$_WhirlNFT_$7519_$",
+                                    "typeIdentifier": "t_function_creation_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$_t_uint256_$returns$_t_contract$_WhirlNFT_$7536_$",
                                     "typeString": "function (string memory,string memory,address,uint256) returns (contract WhirlNFT)"
                                   },
                                   "typeName": {
@@ -3352,13 +3352,13 @@
                                         "2959:8:41"
                                       ],
                                       "nodeType": "IdentifierPath",
-                                      "referencedDeclaration": 7519,
+                                      "referencedDeclaration": 7536,
                                       "src": "2959:8:41"
                                     },
-                                    "referencedDeclaration": 7519,
+                                    "referencedDeclaration": 7536,
                                     "src": "2959:8:41",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                                      "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                                       "typeString": "contract WhirlNFT"
                                     }
                                   }
@@ -3375,7 +3375,7 @@
                                 "src": "2955:168:41",
                                 "tryCall": false,
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                                  "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                                   "typeString": "contract WhirlNFT"
                                 }
                               }
@@ -3383,7 +3383,7 @@
                             "expression": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                                  "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                                   "typeString": "contract WhirlNFT"
                                 }
                               ],
@@ -3452,7 +3452,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                        "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                         "typeString": "contract WhirlNFT"
                       },
                       "typeName": {
@@ -3465,13 +3465,13 @@
                             "3187:8:41"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 7519,
+                          "referencedDeclaration": 7536,
                           "src": "3187:8:41"
                         },
-                        "referencedDeclaration": 7519,
+                        "referencedDeclaration": 7536,
                         "src": "3187:8:41",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                          "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                           "typeString": "contract WhirlNFT"
                         }
                       },
@@ -3530,10 +3530,10 @@
                       "name": "WhirlNFT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7519,
+                      "referencedDeclaration": 7536,
                       "src": "3202:8:41",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_WhirlNFT_$7519_$",
+                        "typeIdentifier": "t_type$_t_contract$_WhirlNFT_$7536_$",
                         "typeString": "type(contract WhirlNFT)"
                       }
                     },
@@ -3549,7 +3549,7 @@
                     "src": "3202:31:41",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                      "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                       "typeString": "contract WhirlNFT"
                     }
                   },
@@ -3619,7 +3619,7 @@
                         "referencedDeclaration": 7288,
                         "src": "3244:3:41",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                          "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                           "typeString": "contract WhirlNFT"
                         }
                       },
@@ -3631,7 +3631,7 @@
                       "memberLocation": "3248:4:41",
                       "memberName": "mint",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7473,
+                      "referencedDeclaration": 7490,
                       "src": "3244:8:41",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_string_memory_ptr_$returns$__$",
@@ -3702,7 +3702,7 @@
                             "referencedDeclaration": 7288,
                             "src": "3329:3:41",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                              "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                               "typeString": "contract WhirlNFT"
                             }
                           }
@@ -3710,7 +3710,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_WhirlNFT_$7519",
+                              "typeIdentifier": "t_contract$_WhirlNFT_$7536",
                               "typeString": "contract WhirlNFT"
                             }
                           ],
@@ -4043,7 +4043,7 @@
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-24T00:08:20.029Z",
+  "updatedAt": "2023-09-24T04:57:58.071Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

@@ -84,7 +84,7 @@ export default {
                 JSON.stringify({
                     image: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380',
                     name: 'Saturday for Coding!',
-                    symbol: 'SFC'
+                    description: 'This is the bunny song!'
                 })
             )
 

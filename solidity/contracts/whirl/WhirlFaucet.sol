@@ -26,10 +26,18 @@ contract WhirlFaucet is ERC721, Ownable2Step {
 
     function getFreeNft(string memory uri) external {
         _tokenId.increment();
+        uint256 tokenId = _tokenId.current();
 
-        _mint(_msgSender(), _tokenId.current());
-        _tokenURIS[_tokenId.current()] = uri;
+        _mint(_msgSender(), tokenId);
+        _tokenURIS[tokenId] = uri;
 
-        emit NFTMinted(_msgSender(), address(this), uri, _tokenId.current());
+        emit NFTMinted(_msgSender(), address(this), uri, tokenId);
+    }
+
+    function tokenURI(
+        uint256 tokenId
+    ) public view virtual override returns (string memory) {
+        _requireMinted(tokenId);
+        return _tokenURIS[tokenId];
     }
 }

@@ -26,7 +26,7 @@ contract('whirl', async accounts => {
 
     // it('Whirl: Mint NFT', async () => {
     //     const whirlFaucet = await WhirlFaucet.deployed()
-    //     await whirlFaucet.getFreeNft(JSON.stringify({ image: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', name: 'Saturday for Coding!', symbol: 'SFC' }))
+    //     await whirlFaucet.getFreeNft(JSON.stringify({ image: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380', name: 'Saturday for Coding!', description: 'This is the bunny song!' }))
 
     //     await whirlFaucet.approve(Whirl.address, 1)
     // })
