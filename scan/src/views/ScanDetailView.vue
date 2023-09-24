@@ -16,7 +16,7 @@
                     <div class="tbody">
                         <tbody>
                             <tr>
-                                <td>Message Id:</td>
+                                <td>Message hash:</td>
                                 <td class="nonce">{{ event.hash }}</td>
                             </tr>
                         </tbody>
@@ -141,7 +141,7 @@
                     <div class="tbody">
                         <tbody>
                             <tr>
-                                <td>Message hash:</td>
+                                <td>Message Id:</td>
                                 <td>
                                     <div class="hash">
                                         <p>{{ event.bridgeHash }}</p>
