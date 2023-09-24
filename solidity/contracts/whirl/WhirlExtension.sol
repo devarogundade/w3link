@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 contract WhirlExtension is IW3LinkApp, Context {
     IW3Link private _w3link;
     IW3LinkConfig private _w3linkConfig;
-    mapping(uint256 => address) private _twlContractIds;
+    mapping(uint256 => address) private _whlContractIds;
 
     mapping(address => address) private _nfts;
 
@@ -32,7 +32,7 @@ contract WhirlExtension is IW3LinkApp, Context {
 
     /// @dev For setting whirl contract ids
     function setTwlContract(uint256 destChainId, address contractId) external {
-        _twlContractIds[destChainId] = contractId;
+        _whlContractIds[destChainId] = contractId;
     }
 
     /// @dev This functions tell whirl Contract that the minted NFT was burn
@@ -50,7 +50,7 @@ contract WhirlExtension is IW3LinkApp, Context {
 
         // Send message to whirl Contract
         _w3link.dispatch(
-            _twlContractIds[nft.parentId()],
+            _whlContractIds[nft.parentId()],
             data,
             nft.parentId(),
             bytes32(
