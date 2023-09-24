@@ -70,19 +70,15 @@ export function tryDecode(data) {
     } catch (error) {
         try {
             const web3 = new Web3('https://rpc.ankr.com/eth')
-            const format = ['uint256', 'address', 'address']
+            const format = ['uint256', 'address', 'address', 'string']
             const value = web3.eth.abi.decodeParameters(format, data)
             return {
                 tokenId: value[0],
                 address: value[1],
                 owner: value[2],
-
-                name: 'dsfd',
-            symbol: 'fdfddf',
-            tokenUri: JSON.stringify({
-                name: 'dfd',
-                image: ''
-            })
+                tokenUri: value[3],
+                name: '',
+                symbol: '',
             }
         } catch (error) {
             console.error(error)
