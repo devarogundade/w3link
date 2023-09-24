@@ -10,16 +10,16 @@ exports.toEvents = (request) => {
 
     try {
         for (const log of webhook.logs) {
-            const format = decoder.format(collection)
+            const format = decoder.dispatchFormat(collection)
 
             // abi format does not exists for event data
             if (format == null || typeof format === 'undefined') continue
 
             const hash = log.transactionHash
-            const data = decoder.decode(format, log.data)
+            const data = decoder.decodeLog(format, log.data)
 
             // object is invalid
-            const object = decoder.toObject(collection, data, hash, Number(webhook.chainId))
+            const object = decoder.toDisptachModel(collection, data, hash, Number(webhook.chainId))
             if (object == null || typeof object === 'undefined') continue
 
             objects.push(object)
