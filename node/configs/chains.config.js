@@ -6,8 +6,8 @@ module.exports = {
     w3linkIds: {
         11155111: '',
         80001: '',
-        97: '0xb5dE5d0995B34c1f057B08357ee1C2B552237BC5',
-        123456: '0x9C60F712E7D1F18072dEEb594ac033b6C449C64A'
+        97: '0x49b8C5BE6f719dC86b60135a56b78606AD07C172',
+        123456: '0x7dBd5B60c272cf5a712412259F7765C147F1cF26'
     },
     rpcs: {
         11155111: 'https://sepolia.gateway.tenderly.co',

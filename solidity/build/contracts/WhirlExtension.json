@@ -96,7 +96,8 @@
       "name": "revoke",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -4032,18 +4033,19 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0x6F8DaE206Dd3e478555854765a7FCCcFDa04Be87",
-      "transactionHash": "0xe85b67cc81b82cbcc38276514acd03ef32e57d7106819c3c5ebc9a4f1bf49395"
+      "address": "0xE0EaD839A58B96FdbAB5fC2C6A77C8Ba92389530",
+      "transactionHash": "0x2abdd128f4a58d6a4c4aa232da2ba02e8b665cef740c7bab3496e804221e11ab"
     },
     "123456": {
       "events": {},
       "links": {},
-      "address": "0x8DccbDaFB697d0342E397fe17294DD888C09385f",
-      "transactionHash": "0x8e49a02c1c176a6bed3f909b906da625a763a79610dec0ca60ae89ddb430599d"
+      "address": "0xC5FF00FF309B1337Cf144b37C150D350352C4802",
+      "transactionHash": "0x56adb6582c092d281006cc9a3cc9de506a3539576d55fe913502528f7fe9cacc"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-24T04:57:58.071Z",
+  "updatedAt": "2023-09-24T06:00:57.384Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
