@@ -4,7 +4,7 @@ const cors = require("cors")
 const app = express()
 
 var corsOptions = {
-    // origin: "http://localhost:8081"
+    // origin: "https://node1.w3-link.site"
 }
 
 app.use(cors(corsOptions))
