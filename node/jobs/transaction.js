@@ -1,7 +1,7 @@
 const CronJob = require('cron').CronJob
 const eventController = require('../controllers/event.controller')
 
-const job = new CronJob('0 */1 * * * *', function () {
+const job = new CronJob('*/30 * * * * *', function () {
     try {
         eventController.commit()
     } catch (error) {
