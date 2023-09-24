@@ -273,18 +273,16 @@ export default {
             if (this.approving) return
             this.approving = true
 
-            if (this.$store.state.activeChainId != this.selectedNft.chainId) {
-                try {
-                    await WalletConnection.switchNetwork(this.selectedNft.chainId)
-                    this.$store.commit('setActiveChainId', this.selectedNft.chainId)
-                } catch (error) {
-                    notify.push({
-                        'title': 'Wrong network',
-                        'description': 'Switch to the correct network!',
-                        'category': 'error'
-                    })
-                    return
-                }
+            try {
+                await WalletConnection.switchNetwork(this.selectedNft.chainId)
+                this.$store.commit('setActiveChainId', this.selectedNft.chainId)
+            } catch (error) {
+                notify.push({
+                    'title': 'Wrong network',
+                    'description': 'Switch to the correct network!',
+                    'category': 'error'
+                })
+                return
             }
 
             let shouldRevoke = await revokeable(this.selectedNft)
@@ -311,18 +309,16 @@ export default {
             if (this.bridging) return
             this.bridging = true
 
-            if (this.$store.state.activeChainId != this.selectedNft.chainId) {
-                try {
-                    await WalletConnection.switchNetwork(this.selectedNft.chainId)
-                    this.$store.commit('setActiveChainId', this.selectedNft.chainId)
-                } catch (error) {
-                    notify.push({
-                        'title': 'Wrong network',
-                        'description': 'Switch to the correct network!',
-                        'category': 'error'
-                    })
-                    return
-                }
+            try {
+                await WalletConnection.switchNetwork(this.selectedNft.chainId)
+                this.$store.commit('setActiveChainId', this.selectedNft.chainId)
+            } catch (error) {
+                notify.push({
+                    'title': 'Wrong network',
+                    'description': 'Switch to the correct network!',
+                    'category': 'error'
+                })
+                return
             }
 
             let transaction = null

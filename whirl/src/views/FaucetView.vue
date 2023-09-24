@@ -79,19 +79,17 @@ export default {
             if (this.minting) return
             this.minting = true
 
-            if (this.$store.state.activeChainId != this.nft.chainId) {
-                try {
-                    await WalletConnection.switchNetwork(this.nft.chainId)
-                    this.$store.commit('setActiveChainId', this.nft.chainId)
-                }
-                catch (error) {
-                    notify.push({
-                        'title': 'Wrong network',
-                        'description': 'Switch to the correct network!',
-                        'category': 'error'
-                    })
-                    return
-                }
+            try {
+                await WalletConnection.switchNetwork(this.nft.chainId)
+                this.$store.commit('setActiveChainId', this.nft.chainId)
+            }
+            catch (error) {
+                notify.push({
+                    'title': 'Wrong network',
+                    'description': 'Switch to the correct network!',
+                    'category': 'error'
+                })
+                return
             }
 
             const transaction = await tryMintNft(
