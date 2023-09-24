@@ -43,7 +43,7 @@ contract Whirl is IW3LinkApp, Context {
         uint256 destChainId,
         uint256 tokenId,
         address nftContractId
-    ) external {
+    ) external payable {
         IERC721 nft = IERC721(nftContractId);
         IERC721Metadata metadata = IERC721Metadata(nftContractId);
 

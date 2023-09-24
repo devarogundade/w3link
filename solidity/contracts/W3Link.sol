@@ -7,15 +7,10 @@ import "./interfaces/IW3LinkConfig.sol";
 import "./signature/Signature.sol";
 
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract W3Link is IW3Link, Ownable2Step, Signature {
-    using Counters for Counters.Counter;
-
     address private _config;
     uint256 public immutable _chainId;
-
-    Counters.Counter private _dispatchId;
 
     mapping(bytes32 => bool) private _executed;
 
@@ -52,7 +47,7 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
     ) external override {
         require(destContractId != address(0), "Invalid dest contract");
 
-        bytes32 hash = getHash(_dispatchId.current());
+        bytes32 hash = getHash(block.timestamp);
 
         _executed[hash] = false;
 
@@ -67,8 +62,6 @@ contract W3Link is IW3Link, Ownable2Step, Signature {
             data,
             extra
         );
-
-        _dispatchId.increment();
     }
 
     function execute(
