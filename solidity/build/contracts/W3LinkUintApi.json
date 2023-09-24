@@ -120,27 +120,27 @@
     "absolutePath": "project:/contracts/mocks/W3LinkUintApi.sol",
     "exportedSymbols": {
       "AnyApiUintExtension": [
-        6267
+        6277
       ],
       "IW3Link": [
-        5792
+        5802
       ],
       "IW3LinkApp": [
-        5809
+        5819
       ],
       "IW3LinkConfig": [
-        5834
+        5844
       ],
       "W3LinkUintApi": [
-        5853
+        5863
       ]
     },
-    "id": 5854,
+    "id": 5864,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5841,
+        "id": 5851,
         "literals": [
           "solidity",
           "^",
@@ -153,11 +153,11 @@
       {
         "absolutePath": "project:/contracts/services/AnyApiUintExtension.sol",
         "file": "./../services/AnyApiUintExtension.sol",
-        "id": 5842,
+        "id": 5852,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5854,
-        "sourceUnit": 6268,
+        "scope": 5864,
+        "sourceUnit": 6278,
         "src": "61:47:33",
         "symbolAliases": [],
         "unitAlias": ""
@@ -167,16 +167,16 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5844,
+              "id": 5854,
               "name": "AnyApiUintExtension",
               "nameLocations": [
                 "340:19:33"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 6267,
+              "referencedDeclaration": 6277,
               "src": "340:19:33"
             },
-            "id": 5845,
+            "id": 5855,
             "nodeType": "InheritanceSpecifier",
             "src": "340:19:33"
           }
@@ -185,17 +185,17 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 5843,
+          "id": 5853,
           "nodeType": "StructuredDocumentation",
           "src": "112:202:33",
           "text": "@title A title that should describe the contract/interface\n @author The name of the author\n @notice Explain to an end user what this does\n @dev Explain to a developer any extra details"
         },
         "fullyImplemented": true,
-        "id": 5853,
+        "id": 5863,
         "linearizedBaseContracts": [
-          5853,
-          6267,
-          5809
+          5863,
+          6277,
+          5819
         ],
         "name": "W3LinkUintApi",
         "nameLocation": "323:13:33",
@@ -203,15 +203,15 @@
         "nodes": [
           {
             "baseFunctions": [
-              6259
+              6269
             ],
             "body": {
-              "id": 5851,
+              "id": 5861,
               "nodeType": "Block",
               "src": "427:42:33",
               "statements": []
             },
-            "id": 5852,
+            "id": 5862,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -219,23 +219,23 @@
             "nameLocation": "376:10:33",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 5849,
+              "id": 5859,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "418:8:33"
             },
             "parameters": {
-              "id": 5848,
+              "id": 5858,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5847,
+                  "id": 5857,
                   "mutability": "mutable",
                   "name": "data",
                   "nameLocation": "395:4:33",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5852,
+                  "scope": 5862,
                   "src": "387:12:33",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -244,7 +244,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5846,
+                    "id": 5856,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "387:7:33",
@@ -259,19 +259,19 @@
               "src": "386:14:33"
             },
             "returnParameters": {
-              "id": 5850,
+              "id": 5860,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "427:0:33"
             },
-            "scope": 5853,
+            "scope": 5863,
             "src": "367:102:33",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 5854,
+        "scope": 5864,
         "src": "314:158:33",
         "usedErrors": []
       }
@@ -284,7 +284,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-24T05:42:42.378Z",
+  "updatedAt": "2023-09-24T09:46:54.196Z",
   "devdoc": {
     "author": "The name of the author",
     "details": "Explain to a developer any extra details",

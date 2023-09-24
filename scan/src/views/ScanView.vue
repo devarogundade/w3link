@@ -10,7 +10,7 @@
                 <div class="explore_stat">
                     <div class="explore_stat_title">
                         <p>Latest Messages</p>
-                        <p>Latest 10 out of <span>148,486</span></p>
+                        <p>Latest {{ total < 10 ? total : '10' }} out of <span>{{ total }}</span></p>
                     </div>
 
                     <div class="search">
@@ -21,52 +21,132 @@
                     </div>
                 </div>
 
-                <div class="explore_table"></div>
+                <LoadingBox v-if="loading" />
+
+                <div class="explore_table" v-else>
+                    <table>
+                        <div class="thead">
+                            <thead>
+                                <tr>
+                                    <td>Msg Id</td>
+                                    <td>Status</td>
+                                    <td>Created</td>
+                                    <td>Source Txn Hash</td>
+                                    <td>Destination Txn Hash</td>
+                                </tr>
+                            </thead>
+                        </div>
+                        <RouterLink :to="`/${event.bridgeHash}`" v-for="event, i in events" :key="i">
+                            <div class="tbody">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="event_id">{{ fineId(event.bridgeHash) }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="event_status" v-if="event.status == 'DISPATCHED'">
+                                                <OngoingIcon />
+                                                <p>Pending</p>
+                                            </div>
+                                            <div class="event_status" v-if="event.status == 'PROCESSING'">
+                                                <OngoingIcon />
+                                                <p>Processing</p>
+                                            </div>
+                                            <div class="event_status" v-if="event.status == 'DELIVERED'">
+                                                <SuccessfulIcon />
+                                                <p>Successful</p>
+                                            </div>
+                                            <div class="event_status" v-if="event.status == 'FAILED'">
+                                                <FailedfulIcon />
+                                                <p>Failed</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="event_time">{{ format(event.dispatchTimestamp) }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="event_hash">
+                                                <div class="event_hash_image">
+                                                    <img :src="$chain(event.fromChainId).image" alt="">
+                                                </div>
+                                                <a v-if="event.fromHash"
+                                                    :href="`${$chain(event.fromChainId).scan}/tx/${event.fromHash}`">
+                                                    <p>{{ fineHash(event.fromHash) }}</p>
+                                                </a>
+                                                <p v-else>--------</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="event_hash">
+                                                <a v-if="event.toHash"
+                                                    :href="`${$chain(event.destChainId).scan}/tx/${event.toHash}`">
+                                                    <p>{{ fineHash(event.toHash) }}</p>
+                                                </a>
+                                                <p v-else>--------</p>
+
+                                                <div class="event_hash_image">
+                                                    <img :src="$chain(event.destChainId).image" alt="">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                        </RouterLink>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
+import LoadingBox from '../components/LoadingBox.vue'
 import SearchIcon from '../components/icons/SearchIcon.vue'
+import OngoingIcon from '../../../whirl/src/components/icons/OngoingIcon.vue';
+import FailedfulIcon from '../../../whirl/src/components/icons/FailedfulIcon.vue';
+import SuccessfulIcon from '../../../whirl/src/components/icons/SuccessfulIcon.vue';
 </script >
 
 <script>
-// import { fetchMessages, fineHash } from '../scripts/explorer';
-// import { notify } from '../reactives/notify'
-// import { format } from 'timeago.js';
+import { fetchTransactions, fineHash, fineId } from '../scripts/scan';
+import { notify } from '../reactives/notify'
+import { format } from 'timeago.js';
 export default {
     data() {
         return {
             search: '',
             loading: false,
-            messages: [],
+            events: [],
             total: 0
         }
     },
     mounted() {
-        // this.getMessages()
+        this.getEvents()
     },
     methods: {
-        // getMessages: async function () {
-        //     this.loading = true
-        //     const response = await fetchMessages()
-        //     this.messages = response.data
-        //     this.total = response.total
-        //     this.loading = false
-        // },
-        // goSearch: function () {
-        //     if (this.search == '') {
-        //         notify.push({
-        //             title: 'Enter Msg Id or Txn Id',
-        //             description: 'Field is required!',
-        //             category: 'error'
-        //         })
-        //         return
-        //     }
+        format: format,
+        fineId: fineId,
+        fineHash: fineHash,
+        getEvents: async function () {
+            this.loading = true
+            const response = await fetchTransactions()
+            this.events = response.data
+            this.total = response.total
+            this.loading = false
+        },
+        goSearch: function () {
+            if (this.search == '') {
+                notify.push({
+                    title: 'Enter Msg Id or Txn Hash',
+                    description: 'Field is required!',
+                    category: 'error'
+                })
+                return
+            }
 
-        //     this.$router.push(`/messages/${this.search}`)
-        // }
+            this.$router.push(`/${this.search}`)
+        }
     }
 }
 </script>
@@ -87,7 +167,7 @@ export default {
 
 .explore_title h3 {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 34px;
     font-style: normal;
     font-weight: 600;
@@ -100,7 +180,7 @@ export default {
     margin-top: 26px;
     color: var(--tx-semi, #8B909E);
     text-align: center;
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -112,13 +192,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 1240px;
     margin-top: 120px;
 }
 
 .explore_stat_title p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -130,7 +210,7 @@ export default {
 .explore_stat_title p:last-child {
     margin-top: 8px;
     color: var(--tx-dimmed, #5C5E66);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -178,5 +258,145 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.explore_table {
+    width: 1240px;
+    margin-top: 30px;
+    border-radius: 15px;
+    border: 2px solid var(--background-lighter, #091121);
+    background: var(--background-dark, #04080D);
+    overflow: hidden;
+}
+
+.thead {
+    height: 70px;
+    padding: 0 26px;
+    display: flex;
+    align-items: center;
+}
+
+td:first-child {
+    width: 214px;
+}
+
+td:nth-child(2) {
+    width: 214px;
+}
+
+td:nth-child(3) {
+    width: 178px;
+}
+
+td:nth-child(4) {
+    width: 300px;
+}
+
+td:nth-child(5) {
+    width: 300px;
+    text-align: right;
+}
+
+table {
+    width: 100%;
+}
+
+thead td {
+    color: var(--tx-semi, #8B909E);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.tbody {
+    display: flex;
+    align-items: center;
+    height: 86px;
+    background: var(--bg-light, #050C17);
+    margin-bottom: 3px;
+    padding: 0 26px;
+}
+
+.tbody:hover {
+    background: var(--bg-lighter, #091121);
+}
+
+.tbody:last-child {
+    margin-bottom: 0;
+}
+
+.event_hash {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event_id {
+    color: var(--tx-normal, #EEF1F8);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.event_status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event_status p {
+    color: var(--tx-normal, #EEF1F8);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.event_time {
+    color: var(--tx-normal, #EEF1F8);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+.event_hash_image {
+    padding: 4px;
+    border-radius: 4px;
+    background: var(--bg-lightest, #0C1A33);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event_hash img {
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+}
+
+.event_hash p {
+    color: var(--tx-semi, #8B909E);
+    font-family: Matter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
+}
+
+td:nth-child(5) .event_hash {
+    justify-content: flex-end;
 }
 </style>

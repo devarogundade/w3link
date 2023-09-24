@@ -85,6 +85,15 @@ input[type=number] {
   display: none;
 }
 
+table,
+tr,
+td,
+th {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
 @keyframes shake {
 
   10%,
