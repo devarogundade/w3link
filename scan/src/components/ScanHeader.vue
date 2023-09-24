@@ -17,7 +17,7 @@
                             <p>Docs</p>
                         </div>
                     </a>
-                    <a target="_blank" href="https://w3-link.site/faucet">
+                    <a target="_blank" href="https://testnet-whirl.w3-link.site">
                         <div :class="'tab_item'">
                             <p>NFT Bridge</p>
                             <OutIcon />

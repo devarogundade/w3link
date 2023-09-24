@@ -12,7 +12,7 @@
             <a href="https://docs.w3-link.site" target="_blank">
               <div class="button">Build with W3Link</div>
             </a>
-            <a href="https://docs.w3-link.site/ecosystem" target="_blank">
+            <a href="https://docs.w3-link.site/ecosystem-dapps" target="_blank">
               <div class="button">Ecosystem DApps</div>
             </a>
           </div>
@@ -67,7 +67,7 @@
         <h3>See W3link in Action? <span>Meet Whirl.</span></h3>
         <p>Harnessing the crosschain interoperability provided by W3link, Whirl moves NFT assets across PEGO and other
           blockchains.</p>
-        <a href="https://whirl.w3-link.site" target="_blank">
+        <a href="https://testnet-whirl.w3-link.site" target="_blank">
           <button>Try it Out</button>
         </a>
         <img src="/images/whirl.png" alt="">
@@ -101,55 +101,60 @@
               </tr>
             </thead>
           </div>
-          <div class="tbody">
-            <tbody>
-              <tr>
-                <td>
-                  <div class="service_name">
-                    <h4>W3Link VRF</h4>
-                    <div>
-                      <p>Info</p>
-                      <OutIcon />
+          <a href="https://docs.w3-link.site/services" target="_blank">
+            <div class="tbody">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="service_name">
+                      <h4>W3Link VRF</h4>
+                      <div>
+                        <p>Info</p>
+                        <OutIcon />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="service_uses">Access verified randomness without compromising security or usability.</p>
-                </td>
-                <td>
-                  <div class="service_provider">
-                    <ChainLinkIcon />
-                    <p>Chainlink</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </div>
+                  </td>
+                  <td>
+                    <p class="service_uses">Access verified randomness without compromising security or usability.</p>
+                  </td>
+                  <td>
+                    <div class="service_provider">
+                      <ChainLinkIcon />
+                      <p>Chainlink</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </div>
+          </a>
 
-          <div class="tbody">
-            <tbody>
-              <tr>
-                <td>
-                  <div class="service_name">
-                    <h4>W3Link API</h4>
-                    <div>
-                      <p>Info</p>
-                      <OutIcon />
+          <a href="https://docs.w3-link.site/services" target="_blank">
+            <div class="tbody">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="service_name">
+                      <h4>W3Link API</h4>
+                      <div>
+                        <p>Info</p>
+                        <OutIcon />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="service_uses">Enables you to access external data sources like weather forecast, and sport prediction on chain.</p>
-                </td>
-                <td>
-                  <div class="service_provider">
-                    <ChainLinkIcon />
-                    <p>Chainlink</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </div>
+                  </td>
+                  <td>
+                    <p class="service_uses">Enables you to access external data sources like weather forecast, and sport
+                      prediction on chain.</p>
+                  </td>
+                  <td>
+                    <div class="service_provider">
+                      <ChainLinkIcon />
+                      <p>Chainlink</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </div>
+          </a>
         </table>
       </div>
     </div>
@@ -189,7 +194,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 .hero_text_content .title {
   color: var(--tx-normal, #EEF1F8);
   text-align: center;
-  
+
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -202,7 +207,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   margin-top: 40px;
   color: var(--tx-semi, #8B909E);
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -227,7 +232,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   align-items: center;
   justify-content: center;
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -287,7 +292,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 .what_title {
   color: #293A59;
   text-align: center;
-  
+
   font-size: 38px;
   font-style: normal;
   font-weight: 600;
@@ -322,7 +327,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   margin-top: 40px;
   color: #39375C;
   text-align: center;
-  
+
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -336,7 +341,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   margin-top: 26px;
   color: var(--tx-dimmed, #ABADAE);
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -354,7 +359,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 
   color: #0C1A33;
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -386,7 +391,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 .features h3 {
   color: #293A59;
   text-align: center;
-  
+
   font-size: 38px;
   font-style: normal;
   font-weight: 600;
@@ -404,7 +409,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   margin-top: 24px;
   color: #ABADAE;
   text-align: center;
-  
+
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -423,7 +428,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   border: none;
   color: #293A59;
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -459,7 +464,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 
 .service_info h3 {
   color: #293A59;
-  
+
   font-size: 30px;
   font-style: normal;
   font-weight: 600;
@@ -472,7 +477,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
   margin-top: 24px;
   margin-bottom: 114px;
   color: #ABADAE;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -487,7 +492,7 @@ import ChainLinkIcon from '../components/icons/ChainLinkIcon.vue'
 
   color: #293A59;
   text-align: center;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -523,7 +528,7 @@ td:nth-child(3) {
 
 thead td p {
   color: #ABADAE;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -534,7 +539,7 @@ thead td p {
 
 .service_name h4 {
   color: #293A59;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -556,7 +561,7 @@ thead td p {
 
 .service_name div p {
   color: #ABADAE;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -567,7 +572,7 @@ thead td p {
 
 .service_uses {
   color: #ABADAE;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -585,7 +590,7 @@ thead td p {
 
 .service_provider p {
   color: #293A59;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
