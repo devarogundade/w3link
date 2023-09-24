@@ -128,7 +128,7 @@
             </div>
           </a>
 
-          <a href="https://docs.w3-link.site/services" target="_blank">
+          <a href="https://docs.w3-link.site/product-guides/services" target="_blank">
             <div class="tbody">
               <tbody>
                 <tr>
