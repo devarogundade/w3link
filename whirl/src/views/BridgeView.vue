@@ -43,7 +43,7 @@
 
                             <div class="pick_nft">
                                 <p>No NFT selected</p>
-                                <div class="select" @click="pickingNft = true">
+                                <div class="select" @click="pickNft()">
                                     <PlusIcon />
                                     <p>Select</p>
                                 </div>
@@ -254,6 +254,17 @@ export default {
         }
     },
     methods: {
+        pickNft: function () {
+            if (!this.$store.state.wallet.address) {
+                notify.push({
+                    'title': 'Connect your wallet',
+                    'description': 'Use the top right button!',
+                    'category': 'error'
+                })
+                return
+            }
+            this.pickingNft = true
+        },
         estFee: async function () {
             if (!this.selectedNft.chainId || !this.destChainId) return
             this.estimatedFee = await tryEstimateFee(this.selectedNft.chainId, this.destChainId)
