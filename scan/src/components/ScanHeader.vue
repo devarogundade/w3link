@@ -75,7 +75,7 @@ export default {
                 return
             }
 
-            this.$router.push(`/${this.search}`)
+            this.$router.go(`/${this.search}`)
             this.search = ''
         }
     }
