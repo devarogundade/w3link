@@ -88,16 +88,16 @@ contract Whirl is IW3LinkApp, Context {
         _w3linkConfig.onlyHandler();
 
         // Decode data from whirlExtension Contract
-        (address holder, address nftContractId, uint256 tokenId) = abi.decode(
+        (address holder, address nftContractId, uint256 tokenId, ) = abi.decode(
             data,
-            (address, address, uint256)
+            (address, address, uint256, string)
         );
 
         // Unlock NFT to owner
         IERC721 nft = IERC721(nftContractId);
         nft.transferFrom(address(this), holder, tokenId);
 
-        emit NFTransferred(nftContractId, tokenId, address(this), _msgSender());
+        emit NFTransferred(nftContractId, tokenId, address(this), holder);
     }
 
     function onResult(bytes memory data) external override {}

@@ -68,13 +68,31 @@ export function tryDecode(data) {
             owner: value[5]
         }
     } catch (error) {
-        console.error(error)
-        return {
-            tokenId: 0,
-            name: 'Not found',
-            symbol: 'NaN',
-            tokenUri: '',
-            owner: ''
+        try {
+            const web3 = new Web3('https://rpc.ankr.com/eth')
+            const format = ['uint256', 'address', 'address']
+            const value = web3.eth.abi.decodeParameters(format, data)
+            return {
+                tokenId: value[0],
+                address: value[1],
+                owner: value[2],
+
+                name: 'dsfd',
+            symbol: 'fdfddf',
+            tokenUri: JSON.stringify({
+                name: 'dfd',
+                image: ''
+            })
+            }
+        } catch (error) {
+            console.error(error)
+            return {
+                tokenId: 0,
+                name: 'Not found',
+                symbol: 'NaN',
+                tokenUri: '',
+                owner: ''
+            }
         }
     }
 }

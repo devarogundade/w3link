@@ -345,6 +345,15 @@ thead td {
     justify-content: flex-end;
 }
 
+
+.l_chain .chain {
+    justify-content: flex-end;
+}
+
+.l_chain .view_trx {
+    justify-content: flex-end;
+}
+
 .tbody {
     padding: 0 26px;
     height: 102px;

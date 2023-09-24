@@ -8,6 +8,7 @@ import "./../interfaces/IW3LinkConfig.sol";
 import "./WhirlNFT.sol";
 
 import "@openzeppelin/contracts/utils/Context.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 contract WhirlExtension is IW3LinkApp, Context {
     IW3Link private _w3link;
@@ -39,11 +40,18 @@ contract WhirlExtension is IW3LinkApp, Context {
     /// and it should unlock the original NFT
     function revoke(address nftContractId, uint256 tokenId) external payable {
         WhirlNFT nft = WhirlNFT(nftContractId);
+        IERC721Metadata metadata = IERC721Metadata(nftContractId);
+
         require(nft.ownerOf(tokenId) == _msgSender(), "Not owner");
         nft.burn(tokenId);
 
         // Encode data for whirl Contract
-        bytes memory data = abi.encode(tokenId, nft.parent(), _msgSender());
+        bytes memory data = abi.encode(
+            _msgSender(),
+            nft.parent(),
+            tokenId,
+            metadata.tokenURI(tokenId)
+        );
 
         uint256 estFee = _w3linkConfig.fee(nft.parentId());
         _w3link.deposit{value: estFee}();
