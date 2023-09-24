@@ -40,18 +40,11 @@ export async function tryBridge(destChainId, nft, estFee) {
 
 export async function tryRevoke(nft, estFee) {
     try {
-        const parent = await readContract({
-            address: nft.address,
-            abi: w3NFTJSON.abi,
-            functionName: 'parent',
-            chainId: nft.chainId
-        })
-
         const config = await prepareWriteContract({
             address: Utils.whirlExtensionIds[nft.chainId],
             abi: whirlExtensionJSON.abi,
             functionName: 'revoke',
-            args: [parent, nft.tokenId, { value: estFee }],
+            args: [nft.address, nft.tokenId, { value: estFee }],
             chainId: nft.chainId
         })
 

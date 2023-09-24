@@ -1,6 +1,6 @@
 import { Web3Modal } from '@web3modal/html'
 import { bscTestnet, sepolia, polygonMumbai } from '@wagmi/core/chains'
-import { configureChains, createClient, switchNetwork } from '@wagmi/core'
+import { configureChains, createClient, getNetwork, switchNetwork } from '@wagmi/core'
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { pegoTestnet } from './chains'
 
@@ -77,12 +77,14 @@ const WalletConnection = {
             callback(account)
         } catch (error) {
             console.error(error);
-            return null
+            callback(null)
         }
     },
 
     switchNetwork: async function (destChainId) {
         try {
+            let network = getNetwork()
+            if (network.chain.id == destChainId) return true
             await switchNetwork({ chainId: destChainId })
             return true
         } catch (error) {

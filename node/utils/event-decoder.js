@@ -14,7 +14,7 @@ module.exports = {
     toDisptachModel: function (collection, data, transactionHash, fromChainId) {
         if (collection == 'dispatch') {
             return {
-                bridgeHash: newHash(),
+                bridgeHash: this.newHash(),
                 status: 'DISPATCHED',
                 fromHash: transactionHash,
                 dispatchTimestamp: Date.now(),
