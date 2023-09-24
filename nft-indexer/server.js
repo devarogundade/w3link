@@ -23,10 +23,10 @@ db.mongoose
     })
     .then(() => {
         console.log("Connected to the database!")
-        require("./jobs/whirl.indexer")
-        require("./jobs/whirl-extension.indexer")
-        require("./jobs/whirl-extension2.indexer")
-        require("./jobs/faucet.indexer")
+        // require("./jobs/whirl.indexer")
+        // require("./jobs/whirl-extension.indexer")
+        // require("./jobs/whirl-extension2.indexer")
+        // require("./jobs/faucet.indexer")
     })
     .catch(err => {
         console.log("Cannot connect to the database!", err)
