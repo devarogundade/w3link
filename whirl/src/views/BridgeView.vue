@@ -169,7 +169,7 @@
                         <p>Estimated Time</p>
                         <div>
                             <TimeIcon />
-                            <p>2 - 4 mins</p>
+                            <p>1 ~ 2 mins</p>
                         </div>
                     </div>
 

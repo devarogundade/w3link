@@ -96,7 +96,8 @@
       "name": "revoke",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -4184,30 +4185,82 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0x338EaBFE8Dda2214d71E56e57ECf19eD5440222e",
-      "transactionHash": "0x8e9ea937d248f33e05ae74bd1491f3df1e813c0d597fb6473c507efee1196578"
+      "address": "0x1CA59BfC199A9baf6e0654F3b1AA997bE5e938a2",
+      "transactionHash": "0x1093f909dfeaa19eeea98776fa408748b9c84053cdae24d55eb3d328f7f3ee28"
     },
     "80001": {
-      "events": {},
+      "events": {
+        "0x5d82cb7f72555b56c2ff444a5a501672a14d036b42a59f78fcc6225988cfe113": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTBurnt",
+          "type": "event"
+        },
+        "0xc838a7fd61cef6ed117ca9829550cd25002c8912a0846c98e8b6ea66a79a80d8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "onwer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "tokenUri",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTMinted",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xf4DFDB8463B45fAAfAeef1e0aAB52044772f9944",
-      "transactionHash": "0x375169972cd6a484e1f0212d719687ed03b9729dc57c334ded66f8b40adc23d8"
+      "address": "0x55894Bb2C6fCB4687B64cA5E317416dc76C28cB5",
+      "transactionHash": "0xdda1be86cc84179f80155b18b79c1aeb009097ff18e218e776f8903a042e0079"
     },
     "123456": {
       "events": {},
       "links": {},
-      "address": "0xF87aD7fee79f420ACCBd2d19B45844F11480Be22",
-      "transactionHash": "0x89a8b1f40cad8f40fde4d238cbb50e71a147b36b7056a6c823fefb23f8da5deb"
+      "address": "0x2b3A34c1871Bd30fa679b02def4818c65FbDFd99",
+      "transactionHash": "0xbd42764c98995803438dc14aa35f9a920e95c8faeac9057450a9820847001910"
     },
     "11155111": {
       "events": {},
       "links": {},
-      "address": "0x9D4E92eA61c6B608f9337Ce1d87cf3cE8AD04414",
-      "transactionHash": "0xd877376ceb75224dadd3fa64230c758a4f3eb4471e88fe7f6d8feedc01f9427c"
+      "address": "0x8eB8BC1bD8ddA410265b2E6D33F8924E7652bfCe",
+      "transactionHash": "0xe0b51c5258752e58848e5b722842c21974f10caf18753e281f2bda326524a3eb"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-24T22:11:30.467Z",
+  "updatedAt": "2023-09-24T22:25:39.408Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
