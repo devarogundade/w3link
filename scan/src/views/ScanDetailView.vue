@@ -51,10 +51,17 @@
                             <tr>
                                 <td>Source transaction hash:</td>
                                 <td>
-                                    <div class="hash">
+                                    <a v-if="event.fromHash"
+                                        :href="`${$chain(event.fromChainId).scan}/tx/${event.fromHash}`" target="_blank">
+                                        <div class="hash">
+                                            <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
+                                            <p>{{ event.fromHash }}</p>
+                                            <OutIcon v-if="event.fromHash != ''" />
+                                        </div>
+                                    </a>
+                                    <div class="hash" v-else>
                                         <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
-                                        <p>{{ event.fromHash }}</p>
-                                        <OutIcon />
+                                        <p>--------</p>
                                     </div>
                                 </td>
                             </tr>
@@ -65,10 +72,17 @@
                             <tr>
                                 <td>Destination transaction hash:</td>
                                 <td>
-                                    <div class="hash">
+                                    <a v-if="event.toHash" :href="`${$chain(event.destChainId).scan}/tx/${event.toHash}`"
+                                        target="_blank">
+                                        <div class="hash">
+                                            <div class="img"><img :src="$chain(event.destChainId).image" alt=""></div>
+                                            <p>{{ event.toHash }}</p>
+                                            <OutIcon v-if="event.toHash != ''" />
+                                        </div>
+                                    </a>
+                                    <div class="hash" v-else>
                                         <div class="img"><img :src="$chain(event.destChainId).image" alt=""></div>
-                                        <p>{{ event.toHash == '' ? '--------' : event.toHash }}</p>
-                                        <OutIcon v-if="event.toHash != ''" />
+                                        <p>--------</p>
                                     </div>
                                 </td>
                             </tr>
@@ -79,11 +93,14 @@
                             <tr>
                                 <td>Source user application:</td>
                                 <td>
-                                    <div class="hash">
-                                        <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
-                                        <p>{{ event.fromContractId }}</p>
-                                        <OutIcon />
-                                    </div>
+                                    <a :href="`${$chain(event.fromChainId).scan}/address/${event.fromContractId}`"
+                                        target="_blank">
+                                        <div class="hash">
+                                            <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
+                                            <p>{{ event.fromContractId }}</p>
+                                            <OutIcon />
+                                        </div>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -93,11 +110,14 @@
                             <tr>
                                 <td>Destination user application:</td>
                                 <td>
-                                    <div class="hash">
-                                        <div class="img"><img :src="$chain(event.destChainId).image" alt=""></div>
-                                        <p>{{ event.destContractId }}</p>
-                                        <OutIcon />
-                                    </div>
+                                    <a :href="`${$chain(event.destChainId).scan}/address/${event.destContractId}`"
+                                        target="_blank">
+                                        <div class="hash">
+                                            <div class="img"><img :src="$chain(event.destChainId).image" alt=""></div>
+                                            <p>{{ event.destContractId }}</p>
+                                            <OutIcon />
+                                        </div>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
