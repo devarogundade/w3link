@@ -13,7 +13,7 @@ module.exports = {
 
   networks: {
     sepolia: {
-      provider: () => new HDWalletProvider(MNEMONIC, 'https://sepolia.gateway.tenderly.co'),
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://ethereum-sepolia.blockpi.network/v1/rpc/public'),
       network_id: 11155111,
       confirmations: 2,
       timeoutBlocks: 9999999,

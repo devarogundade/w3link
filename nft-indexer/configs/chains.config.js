@@ -1,7 +1,7 @@
 module.exports = {
     chainId: 123456,
-    whirlId: '0x1f08C8abC3Abc7b14DB4432cd4559cbD8abd7C03',
-    whirlExtensionId: '0xC5FF00FF309B1337Cf144b37C150D350352C4802',
-    faucetId: '0x8604b54f18b3f36B2D02c097BB72794d2eD08bb5',
+    whirlId: '0x0a772fE3fE308fd8cCC7f58c973D7dE05c2eE2D8',
+    whirlExtensionId: '0x0844c015f29A48d279E4977c755A260F15E69Cf4',
+    faucetId: '0xA300bb38739B3Ed509E2B742921e426Eea4523Ab',
     rpc: 'https://rpc.pegotest.net'
 };
