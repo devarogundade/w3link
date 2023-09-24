@@ -7,9 +7,9 @@
                         <p>NFT Faucet</p>
                         <a :href="faucets[nft.chainId]" target="_blank">
                             <div class="sort">
-                            <p>{{ $chain(nft.chainId).symbol }} Faucet</p>
-                            <OutIcon />
-                        </div>
+                                <p>{{ $chain(nft.chainId).symbol }} Faucet</p>
+                                <OutIcon />
+                            </div>
                         </a>
                     </div>
 
@@ -28,9 +28,8 @@
                                 <WalletDownIcon />
 
                                 <div class="dest_chains" v-if="pickingDestChain">
-                                    <div class="dest_chain"
-                                        v-for="chain, i in $chains.filter(c => c.id != nft.chainId)" :key="i"
-                                        @click="nft.chainId = chain.id">
+                                    <div class="dest_chain" v-for="chain, i in $chains.filter(c => c.id != nft.chainId)"
+                                        :key="i" @click="nft.chainId = chain.id">
                                         <img :src="chain.image" :alt="chain.symbol">
                                         <p>{{ chain.name }}</p>
                                     </div>
@@ -59,6 +58,7 @@ import { notify } from '../reactives/notify';
 </script>
 
 <script>
+import WalletConnection from '../scripts/connection';
 import { tryMintNft } from '../scripts/faucet'
 export default {
     data() {
@@ -78,6 +78,21 @@ export default {
         mint: async function () {
             if (this.minting) return
             this.minting = true
+
+            if (this.$store.state.activeChainId != this.nft.chainId) {
+                try {
+                    await WalletConnection.switchNetwork(this.nft.chainId)
+                    this.$store.commit('setActiveChainId', this.nft.chainId)
+                }
+                catch (error) {
+                    notify.push({
+                        'title': 'Wrong network',
+                        'description': 'Switch to the correct network!',
+                        'category': 'error'
+                    })
+                    return
+                }
+            }
 
             const transaction = await tryMintNft(
                 this.nft.chainId,
@@ -172,7 +187,7 @@ export default {
 
 .dest>p {
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -191,7 +206,7 @@ export default {
 
 .chain p {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -239,7 +254,7 @@ export default {
     align-items: center;
     border-bottom: 2px solid var(--bg-lighter, #091121);
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

@@ -119,8 +119,7 @@
                                     </div>
                                 </div>
                                 <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId != 123456">
-                                    <div class="dest_chain"
-                                        v-for="chain, i in $chains.filter(c => c.id == 123456)" :key="i"
+                                    <div class="dest_chain" v-for="chain, i in $chains.filter(c => c.id == 123456)" :key="i"
                                         @click="destChainId = chain.id">
                                         <img :src="chain.image" :alt="chain.symbol">
                                         <p>{{ chain.name }}</p>
@@ -235,6 +234,7 @@ import TimeIcon from '../components/icons/TimeIcon.vue'
 import { tryEstimateFee, tryBridge, tryRevoke, revokeable } from '../scripts/bridge'
 import { notify } from '../reactives/notify'
 import { tryApprove } from '../scripts/faucet'
+import WalletConnection from '../scripts/connection'
 export default {
     data() {
         return {
@@ -262,6 +262,20 @@ export default {
             if (this.approving) return
             this.approving = true
 
+            if (this.$store.state.activeChainId != this.selectedNft.chainId) {
+                try {
+                    await WalletConnection.switchNetwork(this.selectedNft.chainId)
+                    this.$store.commit('setActiveChainId', this.selectedNft.chainId)
+                } catch (error) {
+                    notify.push({
+                        'title': 'Wrong network',
+                        'description': 'Switch to the correct network!',
+                        'category': 'error'
+                    })
+                    return
+                }
+            }
+
             let shouldRevoke = await revokeable(this.selectedNft)
             if (shouldRevoke) {
                 this.step = 2
@@ -271,18 +285,10 @@ export default {
             const transaction = await tryApprove(this.selectedNft)
 
             if (transaction) {
-                notify.push({
-                    'title': 'Transaction sent',
-                    'description': 'View transaction at the explorer page!',
-                    'category': 'success',
-                    'linkTitle': 'View Trx',
-                    'linkUrl': '/transactions'
-                })
-
                 this.step = 2
             } else {
                 notify.push({
-                    'title': 'Transaction failed',
+                    'title': 'Approval failed',
                     'description': 'Try again!',
                     'category': 'error'
                 })
@@ -294,9 +300,23 @@ export default {
             if (this.bridging) return
             this.bridging = true
 
+            if (this.$store.state.activeChainId != this.selectedNft.chainId) {
+                try {
+                    await WalletConnection.switchNetwork(this.selectedNft.chainId)
+                    this.$store.commit('setActiveChainId', this.selectedNft.chainId)
+                } catch (error) {
+                    notify.push({
+                        'title': 'Wrong network',
+                        'description': 'Switch to the correct network!',
+                        'category': 'error'
+                    })
+                    return
+                }
+            }
+
             let transaction = null
             let shouldRevoke = await revokeable(this.selectedNft)
-            
+
             if (!shouldRevoke) {
                 transaction = await tryBridge(this.destChainId, this.selectedNft)
             } else {
@@ -347,7 +367,7 @@ export default {
 
 .bridge_header h3 {
     color: var(--text-normal, #EEF1F8);
-    
+
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -364,7 +384,7 @@ export default {
 
 .powered p {
     color: var(--text-semi, #8B909E);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -394,7 +414,7 @@ export default {
 
 .labels p {
     color: var(--tx-dimmed, #5C5E66);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -444,7 +464,7 @@ export default {
 
 .picker_title {
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -508,7 +528,7 @@ export default {
 
 .picked_nft .name p {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -520,7 +540,7 @@ export default {
 .picked_nft .token_standard p:first-child,
 .picked_nft .token_id p:first-child {
     color: var(--tx-dimmed, #5C5E66);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -534,7 +554,7 @@ export default {
 
     color: var(--tx-semi, #8B909E);
     text-align: right;
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -559,7 +579,7 @@ export default {
 
 .pick_nft>p {
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -577,7 +597,7 @@ export default {
     align-items: center;
     gap: 10px;
     color: var(--text-normal, #EEF1F8);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -636,7 +656,7 @@ export default {
     align-items: center;
     border-bottom: 2px solid var(--bg-lighter, #091121);
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -675,7 +695,7 @@ export default {
 
 .route_picker .chain p {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -732,7 +752,7 @@ export default {
 
 .review_token_name p:first-child {
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -756,7 +776,7 @@ export default {
 .review_token_name p:last-child {
     margin-top: 4px;
     color: var(--tx-dimmed, #5C5E66);
-    
+
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -799,7 +819,7 @@ export default {
 
 .est>p {
     color: var(--tx-semi, #8B909E);
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -814,7 +834,7 @@ export default {
     gap: 10px;
 
     color: var(--tx-normal, #EEF1F8);
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -852,7 +872,7 @@ export default {
 
 .view_trx p {
     color: var(--bg-lightest, #0C1A33);
-    
+
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -883,7 +903,7 @@ export default {
 .success_msg p:first-child {
     color: var(--tx-normal, #EEF1F8);
     text-align: center;
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -896,7 +916,7 @@ export default {
     margin-top: 20px;
     color: var(--tx-semi, #8B909E);
     text-align: center;
-    
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
