@@ -146,6 +146,7 @@ export default {
             }
 
             this.$router.push(`/${this.search}`)
+            this.search = ''
         }
     }
 }

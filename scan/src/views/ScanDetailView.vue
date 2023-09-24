@@ -291,13 +291,13 @@ td:first-child {
     letter-spacing: 0.28px;
 }
 
-.hash {
+.tbody .hash {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.hash .img {
+.tbody .hash .img {
     border-radius: 4px;
     background: var(--bg-lightest, #11282E);
     width: 22px;
@@ -307,13 +307,13 @@ td:first-child {
     justify-content: center;
 }
 
-.hash img {
+.tbody .hash img {
     width: 16px;
     height: 16px;
     border-radius: 8px;
 }
 
-.hash p {
+.tbody .hash p {
     color: var(--tx-normal, #EEF1F8);
     font-size: 14px;
     font-style: normal;
@@ -401,7 +401,7 @@ td:first-child {
     background: var(--bg-light, #0D1112);
     padding: 16px 150px 16px 20px;
     margin: 28px 0;
-    width: 800px;
+    width: 900px;
 }
 
 .payload p {

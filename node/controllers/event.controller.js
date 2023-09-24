@@ -54,7 +54,7 @@ exports.findAll = async (req, res) => {
     Event.find(req.query)
         .limit(limit * 1)
         .skip((page - 1) * limit)
-        .sort({ nonce: 'desc' })
+        .sort({ dispatchTimestamp: 'desc' })
         .then(data => {
             res.json({
                 data,

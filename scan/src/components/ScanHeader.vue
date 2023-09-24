@@ -2,36 +2,43 @@
     <section id="section">
         <div class="app_width">
             <header>
-                <div class="tabs">
+                <div class="tabs" :style="$route.name == 'scan' ? { width: '100%', justifyContent: 'space-between' } : {}">
                     <div class="logo">
                         <ScanLogo />
                     </div>
 
-                    <RouterLink to="/">
-                        <div :class="$route.name == 'bridge' ? 'tab_item_active tab_item' : 'tab_item'">
-                            <p>Home</p>
+                    <div class="items" :style="{ display: 'flex', gap: '60px' }">
+                        <RouterLink to="/">
+                            <div class="tab_item">
+                                <p>Home</p>
+                            </div>
+                        </RouterLink>
+                        <a target="_blank" href="https://docs.w3-link.site">
+                            <div :class="'tab_item'">
+                                <p>Docs</p>
+                            </div>
+                        </a>
+                        <a target="_blank" href="https://testnet-whirl.w3-link.site">
+                            <div :class="'tab_item'">
+                                <p>NFT Bridge</p>
+                                <OutIcon />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="connection" style="width: 190px;" v-if="$route.name == 'scan'">
+                        <div class="theme">
+                            <SunIcon />
                         </div>
-                    </RouterLink>
-                    <a target="_blank" href="https://docs.w3-link.site">
-                        <div :class="'tab_item'">
-                            <p>Docs</p>
-                        </div>
-                    </a>
-                    <a target="_blank" href="https://testnet-whirl.w3-link.site">
-                        <div :class="'tab_item'">
-                            <p>NFT Bridge</p>
-                            <OutIcon />
-                        </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="connection">
+                <div class="connection" v-if="$route.name == 'scan-detail'">
                     <div class="search">
                         <input type="text" v-model="search" placeholder="Search by Msg Id or Transaction hash">
                         <div @click="goSearch" class="search_action">
                             <SearchIcon />
                         </div>
                     </div>
-
 
                     <div class="theme">
                         <SunIcon />
@@ -50,41 +57,27 @@ import OutIcon from './icons/OutIcon.vue';
 </script >
 
 <script>
-// import { fetchMessages, fineHash } from '../scripts/explorer';
-// import { notify } from '../reactives/notify'
-// import { format } from 'timeago.js';
+import { notify } from '../reactives/notify'
 export default {
     data() {
         return {
-            search: '',
-            loading: false,
-            messages: [],
-            total: 0
+            search: ''
         }
     },
-    mounted() {
-        // this.getMessages()
-    },
     methods: {
-        // getMessages: async function () {
-        //     this.loading = true
-        //     const response = await fetchMessages()
-        //     this.messages = response.data
-        //     this.total = response.total
-        //     this.loading = false
-        // },
-        // goSearch: function () {
-        //     if (this.search == '') {
-        //         notify.push({
-        //             title: 'Enter Msg Id or Txn Id',
-        //             description: 'Field is required!',
-        //             category: 'error'
-        //         })
-        //         return
-        //     }
+        goSearch: function () {
+            if (this.search == '') {
+                notify.push({
+                    title: 'Enter Msg Id or Txn Hash',
+                    description: 'Field is required!',
+                    category: 'error'
+                })
+                return
+            }
 
-        //     this.$router.push(`/messages/${this.search}`)
-        // }
+            this.$router.push(`/${this.search}`)
+            this.search = ''
+        }
     }
 }
 </script>
@@ -101,7 +94,6 @@ section {
 header {
     width: 100%;
     height: 90px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
