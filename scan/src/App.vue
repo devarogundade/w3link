@@ -11,7 +11,7 @@
 <style scoped>
 .app {
   background-image: url('/images/bg.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-position: center center;
   background-size: 1920px;
   height: 100vh;
