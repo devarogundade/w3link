@@ -18,9 +18,9 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(97, '0x83f3C4E6aB2c369B68434607ce6878a650078519')
-//         await whirl.setExtContract(80001, '0xF87aD7fee79f420ACCBd2d19B45844F11480Be22')
-//         await whirl.setExtContract(11155111, '0x664698266Ba332Cb2D30D9FE4f8461577c8119Af')
+//         await whirl.setExtContract(97, '0xad397ABF9a38ec497dE0c781EF35ac701799693C')
+//         await whirl.setExtContract(80001, '0x869785a3d7aD32E76d0d79e94D45c61A5B36606c')
+//         await whirl.setExtContract(11155111, '0x1031d2A64c23EE5d08592741524Dc8C7afD07EA4')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {
@@ -43,7 +43,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
+//         await whirl.setExtContract(123456, '0xF8b650e0e939ed2421093C4A786DB9ce8b49E63f')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {
@@ -64,7 +64,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
+//         await whirl.setExtContract(123456, '0xF8b650e0e939ed2421093C4A786DB9ce8b49E63f')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {
@@ -85,7 +85,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
+//         await whirl.setExtContract(123456, '0xF8b650e0e939ed2421093C4A786DB9ce8b49E63f')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {

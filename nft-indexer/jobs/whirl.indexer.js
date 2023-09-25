@@ -7,7 +7,7 @@ const fs = require('fs')
 
 // @dev This listener is create for Pego Network Only
 
-const job = new CronJob('*/30 * * * * *', async function () {
+const job = new CronJob('*/20 * * * * *', async function () {
     try {
         const data = fs.readFileSync('jobs/whirl.indexer.json', "utf-8")
         const json = JSON.parse(data)

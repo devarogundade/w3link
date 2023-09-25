@@ -18,7 +18,7 @@ contract WhirlExtension is IW3LinkApp, Context {
     mapping(address => address) private _nfts;
 
     event NFTMinted(
-        address indexed onwer,
+        address indexed owner,
         address tokenAddress,
         string tokenUri,
         uint256 tokenId
@@ -111,7 +111,7 @@ contract WhirlExtension is IW3LinkApp, Context {
         WhirlNFT nft = WhirlNFT(_nfts[fromContractId]);
         nft.mint(holder, tokenId, tokenURI);
 
-        emit NFTMinted(_msgSender(), _nfts[fromContractId], tokenURI, tokenId);
+        emit NFTMinted(holder, _nfts[fromContractId], tokenURI, tokenId);
     }
 
     function onResult(bytes memory data) external override {}
