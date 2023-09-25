@@ -40,11 +40,15 @@ const Countdown = {
         var a = new Date(timestamp)
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         var month = months[a.getMonth()]
-        var date = a.getDate()
+        var date = a.getDate()  
+        var year = a.getFullYear()
+        return `${date}, ${month} ${year.toString().replace('20', '')}`;
+    },
+    toTime: function(timestamp) {
+        var a = new Date(timestamp)
         var hour = a.getHours()
         var min = a.getMinutes()   
-        var year = a.getFullYear()
-        return `${hour}:${min}, ${date} ${month} ${year.toString().replace('20', '')}`;
+        return `${hour} : ${min}`;
     }
 }
 

@@ -23,6 +23,9 @@ export default {
         },
         app.config.globalProperties.$toDate = (value) => {
             return Countdown.toDate(value)
+        },
+        app.config.globalProperties.$toTime = (value) => {
+            return Countdown.toTime(value)
         }
     }
   }

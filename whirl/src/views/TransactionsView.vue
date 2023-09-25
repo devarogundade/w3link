@@ -44,7 +44,7 @@
                                         <td>
                                             <div class="time_created">
                                                 <p>{{ $toDate(transaction.dispatchTimestamp) }}</p>
-                                                <p>12:33:43 PM</p>
+                                                <p>{{ $toTime(transaction.dispatchTimestamp) }}</p>
                                             </div>
                                         </td>
                                         <td>
