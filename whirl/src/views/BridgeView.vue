@@ -61,7 +61,7 @@
                             <div class="nft">
                                 <div class="name">
                                     <p>{{ selectedNft.name }}</p>
-                                    <WalletDownIcon @click="pickingNft = true" />
+                                    <WalletDownIcon @click="pickNft()" />
                                 </div>
                                 <div class="token_standard">
                                     <p>Token Standard</p>
@@ -109,8 +109,13 @@
                                 <p>{{ destChainId == null ? 'Destination chain' : $chain(destChainId).name }}</p>
                                 <img :src="destChainId == null ? '/images/none.png' : $chain(destChainId).image" alt="">
                                 <WalletDownIcon />
-
-                                <div class="dest_chains" v-if="pickingDestChain && selectedNft.chainId == 123456">
+                                <div class="dest_chains" v-if="pickingDestChain && parentId">
+                                    <div class="dest_chain" @click="destChainId = parentId">
+                                        <img :src="$chain(parentId).image" :alt="$chain(parentId).symbol">
+                                        <p>{{ $chain(parentId).name }}</p>
+                                    </div>
+                                </div>
+                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId == 123456">
                                     <div class="dest_chain"
                                         v-for="chain, i in $chains.filter(c => c.id != selectedNft.chainId)" :key="i"
                                         @click="destChainId = chain.id">
@@ -231,7 +236,7 @@ import TimeIcon from '../components/icons/TimeIcon.vue'
 </script>
 
 <script>
-import { tryEstimateFee, tryBridge, tryRevoke, revokeable } from '../scripts/bridge'
+import { tryEstimateFee, tryBridge, tryRevoke, revokeable, tryParentId } from '../scripts/bridge'
 import { notify } from '../reactives/notify'
 import { tryApprove } from '../scripts/faucet'
 import WalletConnection from '../scripts/connection'
@@ -244,6 +249,7 @@ export default {
             destChainId: null,
             selectedNft: null,
             estimatedFee: 0,
+            parentId: null,
             bridging: false,
             approving: false
         }
@@ -251,6 +257,9 @@ export default {
     watch: {
         destChainId: function () {
             this.estFee()
+        },
+        selectedNft: function () {
+            this.getParentId()
         }
     },
     methods: {
@@ -264,6 +273,14 @@ export default {
                 return
             }
             this.pickingNft = true
+            this.destChainId = null
+            this.parentId = null
+        },
+        getParentId: async function () {
+            this.parentId = await tryParentId(this.selectedNft)
+            if (this.parentId) {
+                this.destChainId = this.parentId
+            }
         },
         estFee: async function () {
             if (!this.selectedNft.chainId || !this.destChainId) return
@@ -271,8 +288,8 @@ export default {
         },
         approve: async function () {
             if (this.approving) return
-            this.approving = true      
-            
+            this.approving = true
+
             try {
                 await WalletConnection.switchNetwork(this.selectedNft.chainId)
                 this.$store.commit('setActiveChainId', this.selectedNft.chainId)

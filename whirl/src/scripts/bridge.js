@@ -72,3 +72,17 @@ export async function revokeable(nft) {
         return false
     }
 }
+
+export async function tryParentId(nft) {
+    try {
+        return await readContract({
+            address: nft.address,
+            abi: whirlNftJSON.abi,
+            functionName: 'parentId',
+            chainId: nft.chainId
+        })
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
