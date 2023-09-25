@@ -1,6 +1,6 @@
 const Utils = {
     chains: [
-        { id: 11155111, name: "Sepolia", image: "/images/ethereum.png", symbol: "ETH", chainHexId: "0xaa36a7", rpc: "https://rpc.notadegen.com/sepolia", coin: "Ethereum", scan: 'https://sepolia.etherscan.io' },
+        { id: 11155111, name: "Sepolia", image: "/images/ethereum.png", symbol: "ETH", chainHexId: "0xaa36a7", rpc: "https://eth-sepolia-public.unifra.io", coin: "Ethereum", scan: 'https://sepolia.etherscan.io' },
         { id: 97, name: "BSC Testnet", image: "/images/bsc.png", symbol: "BNB", chainHexId: "0x61", rpc: "https://bsc-testnet.public.blastapi.io", coin: "Binance Smart Chain", scan: 'https://testnet.bscscan.com' },
         { id: 80001, name: "Mumbai", image: "/images/polygon.png", symbol: "MATIC", chainHexId: "0x13881", rpc: "https://polygon-mumbai.blockpi.network/v1/rpc/public", coin: "Polygon", scan: 'https://mumbai.polygonscan.com' },
         { id: 123456, name: "PEGO", image: "/images/pego.png", symbol: "PG", chainHexId: "0x13881", rpc: "https://polygon-mumbai.blockpi.network/v1/rpc/public", coin: "PEGO", scan: 'https://scan.pegotest.net' },
@@ -15,10 +15,10 @@ const Utils = {
         123456: '0xb5dE5d0995B34c1f057B08357ee1C2B552237BC5'
     },
     whirlExtensionIds: {
-        11155111: '0x43f42617d49bC7e178F7a47edf77B1A9162AB30C',
-        80001: '0x3A307963018BAecA8Bbe1d824f565907205F7a4c',
-        97: '0x1DdD50fD806C79a189Fe0eb57fB90ACDefDA8f0b',
-        123456: '0x64444e1ce8089FE0e417CaA6148967f9545fF1e0'
+        11155111: '0x664698266Ba332Cb2D30D9FE4f8461577c8119Af',
+        80001: '0xF87aD7fee79f420ACCBd2d19B45844F11480Be22',
+        97: '0x83f3C4E6aB2c369B68434607ce6878a650078519',
+        123456: '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8'
     },
     faucetIds: {
         11155111: '0x5E011b621d96f73a2c93c5d57CeE619AE595b409',

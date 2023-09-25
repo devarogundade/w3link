@@ -271,8 +271,8 @@ export default {
         },
         approve: async function () {
             if (this.approving) return
-            this.approving = true
-
+            this.approving = true      
+            
             try {
                 await WalletConnection.switchNetwork(this.selectedNft.chainId)
                 this.$store.commit('setActiveChainId', this.selectedNft.chainId)

@@ -15,21 +15,21 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 //     })
 // })
 
-// contract('whirl', async accounts => {
-//     it('whirl: Set Dest', async () => {
-//         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(97, '0x1DdD50fD806C79a189Fe0eb57fB90ACDefDA8f0b')
-//         await whirl.setExtContract(80001, '0x3A307963018BAecA8Bbe1d824f565907205F7a4c')
-//         await whirl.setExtContract(11155111, '0x43f42617d49bC7e178F7a47edf77B1A9162AB30C')
-//     })
+contract('whirl', async accounts => {
+    it('whirl: Set Dest', async () => {
+        const whirl = await Whirl.deployed()
+        await whirl.setExtContract(97, '0x83f3C4E6aB2c369B68434607ce6878a650078519')
+        await whirl.setExtContract(80001, '0xF87aD7fee79f420ACCBd2d19B45844F11480Be22')
+        await whirl.setExtContract(11155111, '0x664698266Ba332Cb2D30D9FE4f8461577c8119Af')
+    })
 
-//     it('Whirl Extension: Set Source', async () => {
-//         const whirlExtension = await WhirlExtension.deployed()
-//         await whirlExtension.setWhlContract(97, '0x09d0482b6903099A1bCB8475472BA6E68b9d07bE')
-//         await whirlExtension.setWhlContract(80001, '0xb4A3577f75D897dC40D079A0DA5C8aC4E5f5F1D8')
-//         await whirlExtension.setWhlContract(11155111, '0xE11e8fB7bdA1775AA9FbE9CcAdDaF6fA2F5De46C')
-//     })
-// })
+    it('Whirl Extension: Set Source', async () => {
+        const whirlExtension = await WhirlExtension.deployed()
+        await whirlExtension.setWhlContract(97, '0x09d0482b6903099A1bCB8475472BA6E68b9d07bE')
+        await whirlExtension.setWhlContract(80001, '0xb4A3577f75D897dC40D079A0DA5C8aC4E5f5F1D8')
+        await whirlExtension.setWhlContract(11155111, '0xE11e8fB7bdA1775AA9FbE9CcAdDaF6fA2F5De46C')
+    })
+})
 
 // Binance Bruno
 
@@ -43,7 +43,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0x64444e1ce8089FE0e417CaA6148967f9545fF1e0')
+//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {
@@ -64,7 +64,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0x64444e1ce8089FE0e417CaA6148967f9545fF1e0')
+//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {
@@ -85,7 +85,7 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 // contract('whirl', async accounts => {
 //     it('whirl: Set Dest', async () => {
 //         const whirl = await Whirl.deployed()
-//         await whirl.setExtContract(123456, '0x64444e1ce8089FE0e417CaA6148967f9545fF1e0')
+//         await whirl.setExtContract(123456, '0xD7cC58E278a146055C19e105eD0f997eC0FC7fa8')
 //     })
 
 //     it('Whirl Extension: Set Source', async () => {

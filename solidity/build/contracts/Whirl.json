@@ -60,8 +60,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -102,8 +101,7 @@
       "name": "bridge",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -3796,7 +3794,7 @@
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-25T05:12:49.139Z",
+  "updatedAt": "2023-09-25T08:02:27.379Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

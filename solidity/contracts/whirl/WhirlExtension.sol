@@ -43,7 +43,6 @@ contract WhirlExtension is IW3LinkApp, Context {
         IERC721Metadata metadata = IERC721Metadata(nftContractId);
 
         require(nft.ownerOf(tokenId) == _msgSender(), "Not owner");
-        nft.burn(tokenId);
 
         // Encode data for whirl Contract
         bytes memory data = abi.encode(
@@ -68,6 +67,8 @@ contract WhirlExtension is IW3LinkApp, Context {
                 )
             ) /* for indexing */
         );
+        
+        nft.burn(tokenId);
 
         emit NFTBurnt(nftContractId, tokenId);
     }
@@ -110,7 +111,7 @@ contract WhirlExtension is IW3LinkApp, Context {
         WhirlNFT nft = WhirlNFT(_nfts[fromContractId]);
         nft.mint(holder, tokenId, tokenURI);
 
-        emit NFTMinted(_msgSender(), address(nft), tokenURI, tokenId);
+        emit NFTMinted(_msgSender(), _nfts[fromContractId], tokenURI, tokenId);
     }
 
     function onResult(bytes memory data) external override {}
