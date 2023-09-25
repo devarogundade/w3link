@@ -321,7 +321,6 @@ td:first-child {
     line-height: 100%;
     /* 14px */
     letter-spacing: 0.28px;
-    text-decoration-line: underline;
 }
 
 
