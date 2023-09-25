@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
     // Save Event to database
     Event.findOneAndUpdate(
         { fromHash: event.fromHash },
-        { $set: event },
+        { $setOnInsert: event },
         {
             upsert: true,
             returnNewDocument: true,
@@ -36,7 +36,7 @@ exports.create2 = async (event) => {
     // Save Event to database
     Event.findOneAndUpdate(
         { fromHash: event.fromHash },
-        { $set: event },
+        { $setOnInsert: event },
         { upsert: true }
     ).then(data => {
         console.log(data)
