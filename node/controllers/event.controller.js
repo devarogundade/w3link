@@ -94,6 +94,23 @@ exports.commit = async () => {
     const unProcessedEvent = await Event.findOne({ status: 'DISPATCHED' })
     if (!unProcessedEvent) return
 
+    if (unProcessedEvent.toHash) {
+        Event.findOneAndUpdate(
+            { fromHash: unProcessedEvent.fromHash },
+            { $set: { status: 'DELIVERED' } },
+            {
+                upsert: false,
+                returnNewDocument: true,
+                returnDocument: "after"
+            }).then(data => {
+                console.log(data);
+            }).catch(err => {
+                console.error(err);
+            })
+
+        return
+    }
+
     console.log('Processing: ', unProcessedEvent)
 
     // Update Event to database
