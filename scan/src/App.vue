@@ -14,7 +14,7 @@
   background-repeat: repeat-y;
   background-position: center center;
   background-size: 1920px;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 }
 
