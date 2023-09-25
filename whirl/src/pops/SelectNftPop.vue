@@ -12,7 +12,7 @@
             <div class="toolbar">
                 <div class="text">
                     <p>Your assets on <span>All Networks</span></p>
-                    <p><span>{{ nfts.length }}</span> NFTs</p>
+                    <p><span>{{ filterNfts().length }}</span> NFTs</p>
                 </div>
 
                 <div class="network" @click="switching = !switching">
@@ -40,9 +40,9 @@
                 <LoadingBox />
             </div>
 
-            <div class="scroll_y" v-else-if="nfts.length > 0">
+            <div class="scroll_y" v-else-if="filterNfts().length > 0">
                 <div class="items">
-                    <div class="item" v-for="nft, i in nfts" :key="i" @click="$emit('nft', nft)">
+                    <div class="item" v-for="nft, i in filterNfts()" :key="i" @click="$emit('nft', nft)">
                         <img :src="nft.uri" :alt="nft.symbol">
                         <div class="item_detail">
                             <div class="item_text">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="empty" v-if="!loading && nfts.length == 0">
+            <div class="empty" v-if="!loading && filterNfts().length == 0">
                 <img src="/images/empty.png" alt="">
                 <p>Empty!, Mint a free NFT at the faucet</p>
             </div>
@@ -85,6 +85,10 @@ export default {
         this.getNfts()
     },
     methods: {
+        filterNfts: function () {
+            if (this.network == 0) return this.nfts
+            return this.nfts.filter(nft => nft.chainId == this.network)
+        },
         getNfts: async function () {
             this.loading = true
 

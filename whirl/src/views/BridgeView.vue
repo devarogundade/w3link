@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="token_standard">
                                     <p>Token Standard</p>
-                                    <p>ERC-721</p>
+                                    <p>{{ parentId ? 'ERC-721 (Bridged)' : 'ERC-721' }}</p>
                                 </div>
                                 <div class="token_id">
                                     <p>Token ID</p>
