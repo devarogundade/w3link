@@ -82,13 +82,15 @@
                                                         <p>{{ $chain(transaction.destChainId).name }}</p>
                                                         <img :src="$chain(transaction.destChainId).image" alt="">
                                                     </div>
-                                                    <a :href="`${$chain(transaction.destChainId).scan}/tx/${transaction.toHash}`"
+                                                    <a v-if="transaction.toHash"
+                                                        :href="`${$chain(transaction.destChainId).scan}/tx/${transaction.toHash}`"
                                                         target="_blank">
                                                         <p class="view_trx">
                                                             View Txn
                                                             <OutIcon />
                                                         </p>
                                                     </a>
+                                                    <p v-else class="view_trx">--------</p>
                                                 </div>
                                             </div>
                                         </td>
