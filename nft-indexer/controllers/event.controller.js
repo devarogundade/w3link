@@ -8,7 +8,7 @@ exports.insertOrUpdate = async (event) => {
             tokenAddress: event.tokenAddress,
             tokenId: event.tokenId
         },
-        { $set: event },
+        { $setOnInsert: event },
         {
             upsert: true,
             returnNewDocument: true,
