@@ -38,6 +38,10 @@ contract WhirlFaucet is ERC721, Ownable2Step {
         emit NFTMinted(_msgSender(), address(this), uri, tokenId);
     }
 
+    function minted(address minter) external view returns (bool) {
+        return _minted[minter];
+    }
+
     function tokenURI(
         uint256 tokenId
     ) public view virtual override returns (string memory) {
