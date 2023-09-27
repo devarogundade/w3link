@@ -1,0 +1,17 @@
+:root {
+  --bg: #060A0F;
+  --bg-dark: #04080D;
+  --bg-light: #050C17;
+  --bg-lighter: #091121;
+  --bg-lightest: #0C1A33;
+
+  --pr-dimmed: #C0B477;
+  --pr-primary: #E5C82E;
+
+  --sm-green: #2BC564;
+  --sm-red: #F06979;
+  
+  --tx-dimmed: #5C5E66;
+  --tx-normal: #EEF1F8;
+  --tx-semi-dimmed: #8B909E;
+}

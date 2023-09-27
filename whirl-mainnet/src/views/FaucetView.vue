@@ -80,7 +80,7 @@ export default {
             const transaction = await tryMintNft(
                 this.nft.chainId,
                 JSON.stringify({
-                    image: 'https://testnet-whirl.w3-link.site/images/nft.png',
+                    image: 'https://whirl.w3-link.site/images/nft.png',
                     name: 'Beta Pass NFT',
                     description: 'Mint Whirl’s Beta Pass NFT for testing out the Dapp and as a Pass for Beta testing participation.'
                 })
