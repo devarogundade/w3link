@@ -1,26 +1,21 @@
 <template>
     <section id="section">
         <div class="app_width">
-            <div class="container" v-if="!loading">
+            <div class="container">
                 <div class="faucet_rect">
                     <div class="faucet_rect_toolbar">
-                        <p>NFT Faucet</p>
-                        <a :href="faucets[nft.chainId]" target="_blank">
-                            <div class="sort">
-                                <p>{{ $chain(nft.chainId).symbol }} Faucet</p>
-                                <OutIcon />
-                            </div>
-                        </a>
+                        <h3>Beta Pass NFT</h3>
+                        <p>Mint Whirl’s Beta Pass NFT for testing out the Dapp and as a Pass for Beta testing participation.
+                        </p>
                     </div>
 
                     <div class="faucet_rect_box">
                         <div class="image">
-                            <img src="https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380"
-                                alt="">
+                            <img src="/images/nft.png" alt="">
                         </div>
 
                         <div class="dest">
-                            <p>Chain</p>
+                            <p>Selected chain</p>
 
                             <div class="chain" @click="pickingDestChain = !pickingDestChain">
                                 <p>{{ $chain(nft.chainId).name }}</p>
@@ -42,15 +37,16 @@
                         </div>
                     </div>
                 </div>
+                <p class="faucet_link">
+                    Get {{ $chain(nft.chainId).name }} tokens <a :href="faucets[nft.chainId]" target="_blank">here</a>
+                    <OutIcon />
+                </p>
             </div>
         </div>
-
-        <Loadingbox v-if="loading" />
     </section>
 </template>
 
 <script setup>
-import Loadingbox from '../components/LoadingBox.vue'
 import PrimaryButton from '../components/PrimaryButton.vue';
 import OutIcon from '../components/icons/OutIcon.vue'
 import WalletDownIcon from '../components/icons/WalletDownIcon.vue'
@@ -95,9 +91,9 @@ export default {
             const transaction = await tryMintNft(
                 this.nft.chainId,
                 JSON.stringify({
-                    image: 'https://img.freepik.com/premium-photo/girl-with-vr-glasses-metaverse-concept-generated-ai_802770-148.jpg?w=1380',
-                    name: 'Saturday for Coding!',
-                    description: 'This is the bunny song!'
+                    image: 'https://testnet-whirl.w3-link.site/images/nft.png',
+                    name: 'Beta Pass NFT',
+                    description: 'Mint Whirl’s Beta Pass NFT for testing out the Dapp and as a Pass for Beta testing participation.'
                 })
             )
 
@@ -114,7 +110,7 @@ export default {
             } else {
                 notify.push({
                     'title': 'Transaction failed',
-                    'description': 'Try again!',
+                    'description': 'Note that you can\'t mint more than once!',
                     'category': 'error'
                 })
             }
@@ -128,19 +124,38 @@ export default {
 <style scoped>
 .container {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 60px 0;
 }
 
 .faucet_rect {
-    width: 360px;
+    width: 358px;
     flex-shrink: 0;
 }
 
-.faucet_rect_toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.faucet_rect_toolbar h3 {
+    color: var(--tx-normal, #EEF1F8);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 24px */
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+
+
+.faucet_rect_toolbar p {
+    color: var(--tx-dimmed, #5C5E66);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: 0.28px;
+    margin-top: 24px;
 }
 
 .faucet_rect_box {
@@ -151,25 +166,11 @@ export default {
     border: 2px var(--bg-lighter, #091121) solid;
 }
 
-.faucet_rect .image {
-    padding: 20px;
-}
 
 .faucet_rect .image img {
-    height: 320px;
-    width: 100%;
+    width: 1005;
+    height: 358px;
     object-fit: cover;
-    border-radius: 10px;
-}
-
-.faucet_rect_toolbar>p {
-    color: var(--text-normal, #EEF1F8);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 120%;
-    /* 24px */
-    letter-spacing: 0.4px;
 }
 
 .dest {
@@ -179,19 +180,19 @@ export default {
     align-items: center;
     position: relative;
     justify-content: space-between;
-    background: var(--bg-lighter);
+    background: var(--bg-light);
     margin-bottom: 3px;
 }
 
 .dest>p {
-    color: var(--tx-semi, #8B909E);
-
-    font-size: 16px;
+    color: var(--tx-dimmed, #5C5E66);
+    font-family: Matter;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%;
-    /* 19.2px */
-    letter-spacing: 0.32px;
+    line-height: 100%;
+    /* 14px */
+    letter-spacing: 0.28px;
 }
 
 .chain {
@@ -204,7 +205,6 @@ export default {
 
 .chain p {
     color: var(--tx-normal, #EEF1F8);
-
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -296,7 +296,37 @@ export default {
 }
 
 .action {
-    padding: 20px;
+    padding: 26px;
     background: var(--bg-lighter);
+}
+
+.faucet_link {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+    color: var(--tx-semi, #8B909E);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: 0.28px;
+}
+
+.faucet_link a {
+    color: var(--pr-dimmed, #C0B477);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.28px;
+    text-decoration-line: underline;
+    margin-left: 4px;
+}
+
+.faucet_link svg {
+    margin-left: 10px;
+    margin-top: 2px;
 }
 </style>

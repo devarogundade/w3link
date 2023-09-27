@@ -9,6 +9,7 @@ contract WhirlFaucet is ERC721, Ownable2Step {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenId;
+    mapping(address => bool) private _minted;
 
     mapping(uint256 => string) public _tokenURIS;
 
@@ -25,11 +26,14 @@ contract WhirlFaucet is ERC721, Ownable2Step {
     ) ERC721(name_, symbol_) Ownable2Step() {}
 
     function getFreeNft(string memory uri) external {
+        require(_minted[_msgSender()] == false, "You cant mint more");
         _tokenId.increment();
         uint256 tokenId = _tokenId.current();
 
         _mint(_msgSender(), tokenId);
         _tokenURIS[tokenId] = uri;
+
+        _minted[_msgSender()] = true;
 
         emit NFTMinted(_msgSender(), address(this), uri, tokenId);
     }

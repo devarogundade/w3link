@@ -47,6 +47,15 @@ module.exports = {
       skipDryRun: true,
       networkCheckTimeout: 999999999
     },
+
+    pegoMainnet: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://pegorpc.com'),
+      network_id: 20201022,
+      confirmations: 2,
+      timeoutBlocks: 9999999,
+      skipDryRun: true,
+      networkCheckTimeout: 999999999
+    }
   },
 
   // Set default mocha options here, use special reporters, etc.

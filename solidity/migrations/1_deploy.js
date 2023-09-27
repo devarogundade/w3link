@@ -3,7 +3,7 @@ const W3Link = artifacts.require("W3Link")
 
 const chainIds = {
     'bscTestnet': 97, 'sepolia': 11155111, 'mumbai': 80001, 'pegoTestnet': 123456,
-    'bsc': 56, 'polygon': 137, 'ethereum': 1, 'pego': 20201022
+    'bsc': 56, 'polygon': 137, 'ethereum': 1, 'pegoMainnet': 20201022
 }
 
 module.exports = async function (deployer, network, accounts) {
