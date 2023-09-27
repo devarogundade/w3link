@@ -55,6 +55,15 @@ module.exports = {
       timeoutBlocks: 9999999,
       skipDryRun: true,
       networkCheckTimeout: 999999999
+    },
+
+    bsc: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://binance.llamarpc.com'),
+      network_id: 56,
+      confirmations: 2,
+      timeoutBlocks: 9999999,
+      skipDryRun: true,
+      networkCheckTimeout: 999999999
     }
   },
 

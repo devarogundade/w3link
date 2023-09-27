@@ -96,7 +96,8 @@
       "name": "revoke",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -4142,6 +4143,12 @@
     "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
   },
   "networks": {
+    "56": {
+      "events": {},
+      "links": {},
+      "address": "0xa4244fAb5ED5F0f99a27F228a9A91776F731C5Af",
+      "transactionHash": "0x278bdcbc51e4c7c1a711652f0a7913c70fdcb768c87d05e111d49cd4ab3da761"
+    },
     "97": {
       "events": {},
       "links": {},
@@ -4216,10 +4223,16 @@
       "links": {},
       "address": "0x1031d2A64c23EE5d08592741524Dc8C7afD07EA4",
       "transactionHash": "0xcc8715b60bbcfa21749ba3e4bc30ca780c81c684e757b1b38f44fb198062bd4d"
+    },
+    "20201022": {
+      "events": {},
+      "links": {},
+      "address": "0xb32aAD4C0b1998FB68bFa0fFbDaF2c45DCaE2c8b",
+      "transactionHash": "0x5c1485c72d1e3e63e84bc40f4bd666f9e738073c413fd9ff452f50e9731ce9aa"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-09-27T20:59:04.192Z",
+  "updatedAt": "2023-09-27T21:16:28.829Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

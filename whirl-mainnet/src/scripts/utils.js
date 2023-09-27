@@ -7,16 +7,16 @@ const Utils = {
         return this.chains.find(chain => chain.id == id)
     },
     whirlIds: {
-        56: '0x09d0482b6903099A1bCB8475472BA6E68b9d07bE',
-        20201022: '0xb5dE5d0995B34c1f057B08357ee1C2B552237BC5'
+        56: '0x07a35276Dc26366Bb15D8E26cA0e7f1449B8fA00',
+        20201022: '0x33d8Aceac786F1f5572550A9eB51C2Aca7AE5d67'
     },
     whirlExtensionIds: {
-        56: '0xad397ABF9a38ec497dE0c781EF35ac701799693C',
-        20201022: '0xF8b650e0e939ed2421093C4A786DB9ce8b49E63f'
+        56: '0xa4244fAb5ED5F0f99a27F228a9A91776F731C5Af',
+        20201022: '0xb32aAD4C0b1998FB68bFa0fFbDaF2c45DCaE2c8b'
     },
     faucetIds: {
-        56: '0x289Aa7e160D284a349dc881886eE252Ad87baB46',
-        20201022: '0xA300bb38739B3Ed509E2B742921e426Eea4523Ab'
+        56: '0x33d8Aceac786F1f5572550A9eB51C2Aca7AE5d67',
+        20201022: '0x62238545ab485B674ee09f7c24297E94abE5a67b'
     },
     toDate: function (timestamp) {
         var a = new Date(timestamp)

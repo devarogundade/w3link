@@ -2,8 +2,8 @@ module.exports = {
     BSC: 56,
     Pego: 20201022,
     w3linkIds: {
-        56: '0xC734ca06CDAe04A3E0A78255DFbabB81665aa508',
-        20201022: '0x710cCf9304597c75D879fF315BF093078ba30D9c'
+        56: '0xB699B29F10c293f2b8E56d0df7E282bBB3A9378f',
+        20201022: '0x07a35276Dc26366Bb15D8E26cA0e7f1449B8fA00'
     },
     rpcs: {
         56: 'https://binance.llamarpc.com',

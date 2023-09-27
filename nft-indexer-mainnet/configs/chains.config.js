@@ -1,7 +1,7 @@
 module.exports = {
     chainId: 20201022,
-    whirlId: '0xb5dE5d0995B34c1f057B08357ee1C2B552237BC5',
-    whirlExtensionId: '0xF8b650e0e939ed2421093C4A786DB9ce8b49E63f',
-    faucetId: '0xA300bb38739B3Ed509E2B742921e426Eea4523Ab',
+    whirlId: '0x07a35276Dc26366Bb15D8E26cA0e7f1449B8fA00',
+    whirlExtensionId: '0xa4244fAb5ED5F0f99a27F228a9A91776F731C5Af',
+    faucetId: '0x33d8Aceac786F1f5572550A9eB51C2Aca7AE5d67',
     rpc: 'https://pegorpc.com'
 };
