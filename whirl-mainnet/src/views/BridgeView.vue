@@ -115,7 +115,7 @@
                                         <p>{{ $chain(parentId).name }}</p>
                                     </div>
                                 </div>
-                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId == 123456">
+                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId == 20201022">
                                     <div class="dest_chain"
                                         v-for="chain, i in $chains.filter(c => c.id != selectedNft.chainId)" :key="i"
                                         @click="destChainId = chain.id">
@@ -123,8 +123,8 @@
                                         <p>{{ chain.name }}</p>
                                     </div>
                                 </div>
-                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId != 123456">
-                                    <div class="dest_chain" v-for="chain, i in $chains.filter(c => c.id == 123456)" :key="i"
+                                <div class="dest_chains" v-else-if="pickingDestChain && selectedNft.chainId != 20201022">
+                                    <div class="dest_chain" v-for="chain, i in $chains.filter(c => c.id == 20201022)" :key="i"
                                         @click="destChainId = chain.id">
                                         <img :src="chain.image" :alt="chain.symbol">
                                         <p>{{ chain.name }}</p>
