@@ -93,3 +93,67 @@ const WhirlFaucet = artifacts.require("WhirlFaucet")
 //         await whirlExtension.setWhlContract(123456, '0xb5dE5d0995B34c1f057B08357ee1C2B552237BC5')
 //     })
 // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PEGO Mainnet
+
+// contract('W3LinkConfig', async accounts => {
+//     it('W3LinkConfig: Set Fee', async () => {
+//         const w3LinkConfig = await W3LinkConfig.deployed()
+//         await w3LinkConfig.setFee(56 , '500000000000000000')
+//     })
+// })
+
+// contract('whirl', async accounts => {
+//     it('whirl: Set Dest', async () => {
+//         const whirl = await Whirl.deployed()
+//         await whirl.setExtContract(56, '0xa4244fAb5ED5F0f99a27F228a9A91776F731C5Af')
+//     })
+
+//     it('Whirl Extension: Set Source', async () => {
+//         const whirlExtension = await WhirlExtension.deployed()
+//         await whirlExtension.setWhlContract(56, '0x07a35276Dc26366Bb15D8E26cA0e7f1449B8fA00')
+//     })
+// })
+
+// Binance Bruno
+
+// contract('W3LinkConfig', async accounts => {
+//     it('W3LinkConfig: Set Fee', async () => {
+//         const w3LinkConfig = await W3LinkConfig.deployed()
+//         await w3LinkConfig.setFee(20201022 , '3000000000000000')
+//     })
+// })
+
+// contract('whirl', async accounts => {
+//     it('whirl: Set Dest', async () => {
+//         const whirl = await Whirl.deployed()
+//         await whirl.setExtContract(20201022, '0xb32aAD4C0b1998FB68bFa0fFbDaF2c45DCaE2c8b')
+//     })
+
+//     it('Whirl Extension: Set Source', async () => {
+//         const whirlExtension = await WhirlExtension.deployed()
+//         await whirlExtension.setWhlContract(20201022, '0x33d8Aceac786F1f5572550A9eB51C2Aca7AE5d67')
+//     })
+// })
