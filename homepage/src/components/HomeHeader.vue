@@ -8,23 +8,23 @@
                 <div class="tabs">
                     <a target="_blank" href="https://docs.w3-link.site">
                         <div :class="'tab_item'">
-                            <p>Docs</p>
+                            <p>{{ $t("header.docs") }}</p>
                         </div>
                     </a>
                     <a target="_blank" href="https://github.com/devarogundade/w3link">
                         <div :class="'tab_item'">
-                            <p>Github</p>
+                            <p>{{ $t("header.github") }}</p>
                         </div>
                     </a>
                     <a target="_blank" href="https://scan.w3-link.site">
                         <div :class="'tab_item'">
-                            <p>Scan</p>
+                            <p>{{ $t("header.scan") }}</p>
                             <OutIcon />
                         </div>
                     </a>
                     <a target="_blank" href="https://whirl.w3-link.site">
                         <div :class="'tab_item'">
-                            <p>NFT Bridge</p>
+                            <p>{{ $t("header.nftBridge") }}</p>
                             <OutIcon />
                         </div>
                     </a>
@@ -32,9 +32,21 @@
                 <div class="connection">
                     <a href="https://docs.w3-link.site" target="_blank">
                         <div class="connection_action">
-                            Start building
+                            <p>{{ $t("header.startBuilding") }}</p>
                         </div>
                     </a>
+
+                    <div class="current_lang" @click="switching = !switching">
+                        <img :src="`/images/${aciveCode}.png`" alt="">
+                        <WalletDownIcon />
+
+                        <div class="langs" v-if="switching">
+                            <div class="lang" v-for="lang, i in languages" :key="i" @click="switchLanguage(lang)">
+                                <img :src="`/images/${lang.code}.png`" alt="">
+                                <p>{{ lang.name }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
         </div>
@@ -42,9 +54,60 @@
 </template>
 
 <script setup>
+import WalletDownIcon from './icons/WalletDownIcon.vue';
 import OutIcon from './icons/OutIcon.vue';
 import W3LinkLogo from './icons/W3LinkLogo.vue';
 </script >
+
+<script>
+import i18n from "@/i18n"
+import { notify } from '../reactives/notify';
+export default {
+    data() {
+        return {
+            switching: false,
+            aciveCode: i18n.global.locale.value,
+            languages: [
+                {
+                    name: 'English',
+                    code: 'en',
+                    active: true
+                },
+                {
+                    name: 'Chinese',
+                    code: 'ch',
+                    active: true
+                },
+                {
+                    name: 'Korean',
+                    code: 'kr',
+                    active: false
+                },
+                {
+                    name: 'Thai',
+                    code: 'th',
+                    active: false
+                }
+            ]
+        }
+    },
+    methods: {
+        switchLanguage(lang) {
+            if (!lang.active) {
+                notify.push({
+                    title: "Language support coming soon.",
+                    description: "We are working to make W3Link accessible for you!",
+                    category: "error"
+                })
+                return
+            }
+
+            i18n.global.locale.value = lang.code
+            this.aciveCode = lang.code
+        }
+    }
+}
+</script>
 
 <style scoped>
 section {
@@ -87,7 +150,7 @@ header {
 
     color: var(--tx-normal, #EEF1F8);
     text-align: center;
-    
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -131,5 +194,63 @@ a .tab_item {
 
 a .tab_item svg {
     margin-top: 2px;
+}
+
+.current_lang {
+    width: 46px;
+    height: 46px;
+    border-radius: 4px;
+    background: var(--bg-lightest, #0C1A33);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.current_lang svg {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+}
+
+.langs {
+    border-radius: 4px;
+    border: 2px solid var(--bg-lighter, #091121);
+    background: var(--bg-light, #050C17);
+    overflow: hidden;
+    width: 184px;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    z-index: 1;
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 64px;
+    border-bottom: 2px solid var(--bg-lighter, #091121);
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.lang:hover {
+    background: var(--bg-lighter, #050C17);
+}
+
+.lang:last-child {
+    border: none;
+}
+
+.lang p {
+    color: var(--tx-normal, #EEF1F8);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 16px */
+    letter-spacing: 0.32px;
 }
 </style>

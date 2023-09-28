@@ -3,24 +3,22 @@
     <div class="app_width">
       <div class="hero">
         <div class="hero_text_content">
-          <h3 class="title">Cross-chain interoperability protocol for PEGO.</h3>
-          <p class="desc">W3link is enabling Web3 applications on PEGO go cross-chain, by powering seamless transfer of
-            data from other
-            blockchains and vice versa.</p>
+          <h3 class="title">{{ $t("hero.title") }}</h3>
+          <p class="desc">{{ $t("hero.description") }}</p>
 
           <div class="buttons">
             <a href="https://docs.w3-link.site" target="_blank">
-              <div class="button">Build with W3Link</div>
+              <div class="button">{{ $t("hero.button1") }}</div>
             </a>
             <a href="https://docs.w3-link.site/ecosystem-dapps" target="_blank">
-              <div class="button">Ecosystem DApps</div>
+              <div class="button">{{ $t("hero.button2") }}</div>
             </a>
           </div>
         </div>
 
         <div class="scroll">
           <MouseIcon />
-          <p>Scroll</p>
+          <p>{{ $t("hero.scroll") }}</p>
         </div>
       </div>
     </div>
@@ -29,33 +27,30 @@
   <section id="section" class="what_container">
     <div class="app_width">
       <div class="what">
-        <h3 class="what_title">What w3link offers</h3>
+        <h3 class="what_title">{{ $t("what.title") }}</h3>
 
         <div class="items">
           <div class="item">
             <TransferIcon />
-            <h6>Seamlessly Transfer data</h6>
-            <p>By making relaying of arbitrary data across multiple blockchains effortless, Dapps on PEGO can easily
-              maximize their functionalities by going cross-chain.</p>
+            <h6>{{ $t("what.items[0].title") }}</h6>
+            <p>{{ $t("what.items[0].description") }}</p>
           </div>
 
           <div class="item">
             <KeyIcon />
-            <h6>Access services interoperably</h6>
-            <p>Easily integrate and access yet available blockchain services on PEGO, in an interoperable way through our
-              list of provided cross-chain accessible services.</p>
+            <h6>{{ $t("what.items[1].title") }}</h6>
+            <p>{{ $t("what.items[1].description") }}</p>
           </div>
 
           <div class="item">
             <NewBlockIcon />
-            <h6>One integration for multiple chain support</h6>
-            <p>Integrating your Dapp with w3link readily unlock it's support for other blockchain i.e BNB chain, Polygon,
-              Fantom, avalanche and more.</p>
+            <h6>{{ $t("what.items[2].title") }}</h6>
+            <p>{{ $t("what.items[2].description") }}</p>
           </div>
         </div>
 
         <a href="https://docs.w3-link.site" target="_blank">
-          <button class="what_learn">Learn more</button>
+          <button class="what_learn">{{ $t("what.learnMore") }}</button>
         </a>
       </div>
     </div>
@@ -64,11 +59,10 @@
   <section id="section" class="features_container">
     <div class="app_width">
       <div class="features">
-        <h3>See W3link in Action? <span>Meet Whirl.</span></h3>
-        <p>Harnessing the crosschain interoperability provided by W3link, Whirl moves NFT assets across PEGO and other
-          blockchains.</p>
+        <h3>{{ $t("features.titleA") }} <span>{{ $t("features.titleB") }}</span></h3>
+        <p>{{ $t("features.description") }}</p>
         <a href="https://whirl.w3-link.site" target="_blank">
-          <button>Try it Out</button>
+          <button>{{ $t("features.tryItOut") }}</button>
         </a>
         <img src="/images/whirl.png" alt="">
       </div>
@@ -79,10 +73,9 @@
     <div class="app_width">
       <div class="service_container">
         <div class="service_info">
-          <h3>Provided Cross-chain Services</h3>
-          <p>To provide for the needs of the existing and next big Web3 dApps on PEGO, W3link eases their access to
-            services available on other blockchains.</p>
-          <button>See Docs</button>
+          <h3>{{ $t("services.title") }}</h3>
+          <p>{{ $t("services.description") }}</p>
+          <button>{{ $t("services.button") }}</button>
         </div>
 
         <table class="service_table">
@@ -90,13 +83,13 @@
             <thead>
               <tr>
                 <td>
-                  <p>Service Name</p>
+                  <p>{{ $t("services.serviceName") }}</p>
                 </td>
                 <td>
-                  <p>Uses</p>
+                  <p>{{ $t("services.uses") }}</p>
                 </td>
                 <td>
-                  <p>Provider</p>
+                  <p>{{ $t("services.provider") }}</p>
                 </td>
               </tr>
             </thead>
@@ -107,20 +100,20 @@
                 <tr>
                   <td>
                     <div class="service_name">
-                      <h4>W3Link VRF</h4>
+                      <h4>{{ $t("services.items[0].name") }}</h4>
                       <div>
-                        <p>Info</p>
+                        <p>{{ $t("services.info") }}</p>
                         <OutIcon />
                       </div>
                     </div>
                   </td>
                   <td>
-                    <p class="service_uses">Access verified randomness without compromising security or usability.</p>
+                    <p class="service_uses">{{ $t("services.items[0].description") }}</p>
                   </td>
                   <td>
                     <div class="service_provider">
                       <ChainLinkIcon />
-                      <p>Chainlink</p>
+                      <p>{{ $t("services.items[0].provider") }}</p>
                     </div>
                   </td>
                 </tr>
@@ -134,21 +127,20 @@
                 <tr>
                   <td>
                     <div class="service_name">
-                      <h4>W3Link API</h4>
+                      <h4>{{ $t("services.items[1].name") }}</h4>
                       <div>
-                        <p>Info</p>
+                        <p>{{ $t("services.info") }}</p>
                         <OutIcon />
                       </div>
                     </div>
                   </td>
                   <td>
-                    <p class="service_uses">Enables you to access external data sources like weather forecast, and sport
-                      prediction on chain.</p>
+                    <p class="service_uses">{{ $t("services.items[1].description") }}</p>
                   </td>
                   <td>
                     <div class="service_provider">
                       <ChainLinkIcon />
-                      <p>Chainlink</p>
+                      <p>{{ $t("services.items[1].provider") }}</p>
                     </div>
                   </td>
                 </tr>
