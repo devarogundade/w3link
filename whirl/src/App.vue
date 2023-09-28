@@ -5,7 +5,7 @@
         <div class="app_width">
           <div class="text">
             <p>Whirl also live on Mainnet</p>
-            <a href="https://whirl.w3-link.site">
+            <a href="https://whirl-mainnet.w3-link.site">
               <button>Try it now
                 <ArrowRight2Icon />
               </button>

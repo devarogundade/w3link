@@ -27,6 +27,9 @@ export default {
     // warm node servers
     axios.get('https://node1.w3-link.site')
     axios.get('https://nft.w3-link.site')
+
+    axios.get('https://node1-mainnet.w3-link.site')
+    axios.get('https://nft-mainnet.w3-link.site')
   }
 }
 </script>
