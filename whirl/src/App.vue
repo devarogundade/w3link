@@ -125,10 +125,6 @@ export default {
     await WalletConnection.getWallet((wallet) => {
       this.$store.commit('setWallet', wallet)
     })
-
-    // warm node servers
-    axios.get('https://node1.w3-link.site')
-    axios.get('https://nft.w3-link.site')
   },
 }
 </script>
