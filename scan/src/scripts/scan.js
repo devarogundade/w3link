@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export async function fetchTransactions(page = 1) {
-     try {
-        const response = await axios.get(`https://node1.w3-link.site/api/events?page=${page}`)
+    try {
+        const response = await axios.get(`https://node-w3link.azurewebsites.net/api/events?page=${page}`)
         return response.data
     } catch (error) {
         console.error(error)
@@ -12,12 +12,12 @@ export async function fetchTransactions(page = 1) {
 
 export async function fetchTransaction(hash) {
     try {
-       const response = await axios.get(`https://node1.w3-link.site/api/events/${hash}`)
-       return response.data
-   } catch (error) {
-       console.error(error)
-       return []
-   }
+        const response = await axios.get(`https://node-w3link.azurewebsites.net/api/events/${hash}`)
+        return response.data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
 export function fineHash(hash) {
